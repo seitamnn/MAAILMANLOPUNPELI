@@ -1,3 +1,4 @@
+# jos tää ois niinku se main paska
 import connection
 from colorama import Fore
 print(Fore.RED + '''

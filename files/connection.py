@@ -1,3 +1,4 @@
+# tääl vaa tehää yhteys -> ku halutaan käyttää toises tiedostos nii laitetaa import connection
 import mysql.connector
 
 connect = mysql.connector.connect(
