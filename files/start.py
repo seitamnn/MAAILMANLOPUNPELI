@@ -1,3 +1,6 @@
-print("Here's the story: ")
-username = input("Welcome! Enter your name: ")
-print(f"Great to see you {username}! We have been waiting for you.")
+import connection
+
+start = input("Would you like to start? (Y/N) \n").lower()
+if start == 'y':
+    print("Welcome to our game!")
+    cursor = connection.connect

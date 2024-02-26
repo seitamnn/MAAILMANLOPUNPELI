@@ -1,5 +1,4 @@
 import mysql.connector
-
 connect = mysql.connector.connect(
     host="localhost",
     port=3306,
