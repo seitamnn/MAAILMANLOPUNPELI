@@ -1,1 +1,2 @@
 # lokaalit tehtävät
+print("moiii")
