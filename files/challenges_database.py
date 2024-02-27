@@ -1,0 +1,1 @@
+# tietokannasta haetaan funktiot
