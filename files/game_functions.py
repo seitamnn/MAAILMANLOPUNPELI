@@ -73,6 +73,7 @@ challenge_distance_cancelledflight()
 def fahrenheit_to_celsius():
     print("Ancient ingredient must be stored in a cold pack, but you broke it! You found a new one, but now you need to make sure the ingredient didn't warm up.")
     print("Thermometer shows the temperature in fahrenheits, but you need to convert them into celsius so you can read them.")
+    print("Temperature in fahrenheits is 39")
     while True:
         celsius = float(input("What is the temperature in Celsius?: "))
         if celsius == 3.0:
