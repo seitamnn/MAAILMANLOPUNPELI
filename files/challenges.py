@@ -28,3 +28,31 @@ def challenge_recognized(): # tehtävä sut tunnistetaan
     else:
         print("That wasn't an option silly...")
     return
+
+def challenge_chemist(): # tehtävä huijaa olevasi kemisti
+    currency = 100
+    distance = 100
+    print("The airport security question you. You don't trust them so you lie.\nYou tell them you're a chemist and they test you.")
+    Fe = str(input("What is the chemical symbol of iron?\n")).lower() # eka testin kysymys
+    if Fe == 'fe':
+        print(Fe)
+        Au = str(input("What is the chemical symbol of gold?\n")).lower() # toka testin kysymys
+        if Au == 'au':
+            print(Au)
+            N = str(input("What is the chemical symbol of nitrogen?\n")).lower() # vika testin kysymys
+            if N == 'n':
+                print(N)
+                print("They believe you and you leave empty handed. Good thing you barely make it to your next flight!") # jos vastaa kaikkiin oikein
+            else: # kolmannen epäonnistuminen
+                distance = distance - 10
+                currency = currency - 10
+                print("They don't believe you. You lost $ and the aliens are closer to you")
+        else: # tokan epäonnistuminen
+            distance = distance - 10
+            currency = currency - 10
+            print("They don't believe you. You lost $ and the aliens are closer to you")
+    else: # ekan epäonnistuminen
+        distance = distance - 10
+        currency = currency - 10
+        print("They don't believe you. You lost $ and the aliens are closer to you")
+    return
