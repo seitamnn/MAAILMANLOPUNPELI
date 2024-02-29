@@ -1,4 +1,4 @@
-# jos tää ois niinku se main paska
+# jos tää ois niinku se alotus paska
 import connection
 from colorama import Fore
 import time
@@ -31,7 +31,8 @@ They threaten to unleash a deadly virus designed to wipe out mankind.
 
 You are part of a resistance movement whose goal is to prevent the aliens intentions and save humanity from destruction. 
 Together with top scientists, you have developed an antidote to the aliens' deadly virus in a laboratory in Cuba. 
-However, creating the antidote requires an ancient ingredient found only in a super laboratory in Norway.
+However, making the antidote requires an ancient ingredient that, according to the laboratory's lead scientist Alex Zen, 
+can only be found in a super laboratory in Norway.
 
 You have been chosen for the mission to retrieve this ingredient from Norway and safely transport it back to 
 the resistance headquarters in Cuba, where the antidote can be manufactured. 
