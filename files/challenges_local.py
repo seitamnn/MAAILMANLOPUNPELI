@@ -1,2 +1,0 @@
-# lokaalit tehtävät
-print("moiii")
