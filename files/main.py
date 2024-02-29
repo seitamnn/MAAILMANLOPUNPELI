@@ -1,5 +1,4 @@
 # Pääohjelma tähän lol
-
 import connection
 import mysql.connector
 from colorama import Fore
@@ -21,8 +20,11 @@ if start == 'y':
 else:
     print("GAME OVER")
 player_name = input("Select a player name: \n")
-#cursor.execute("UPDATE game SET screen_name='{player_name}' WHERE id='jee'")
-print(f"Are you ready for an adventure {player_name}???!!!")
+#sql = "INSERT INTO game (id, location, screen_name, currency, alien_distance, in_possession) VALUES (%s, %s, %s, %s, %s,%s)"
+#mycursor = connect.cursor()
+#mycursor.execute(sql, ('AB', 'MUHA', player_name, 1000, 1000, False))
+#connect.commit()
+#print(mycursor.lastrowid)
 
 speed = 0.05
 
