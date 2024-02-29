@@ -95,3 +95,99 @@ def fahrenheit_to_celsius():
             print("Try again.")
 
 fahrenheit_to_celsius()
+
+
+from countryinfo import CountryInfo
+import random
+
+# Tulostetaan tilanne lentokentällä
+print("at the airport, child comes to you and ask for help. She tells you that she has lost her family and can't find you. solve the following question to help the child ")
+
+def country_capital():
+    #Arvotaan satunnainen maa ja haetaan sen pääkaupunki
+    country_name = random.choice(list(CountryInfo().all()))
+    capital = CountryInfo(country_name).capital()
+    return country_name, capital
+
+def check_answer(country, answer):
+    #Tarkistetaan vastaus ja annetaan vastauksen mukainen teksti
+    if answer.lower() == country[1].lower():
+        print("Correct! the kids family tells you that aliens are lurking at your next destination. thanks to the tip you can now take another route and avoid the encounter whit the aliens. you get +1 distance point")
+    else:
+        print("Wrong! Unfortunately, you miss your next flight, because it took more time to help the child . Aliens advance 1 dictance point closer.")
+
+def guess_the_capital():
+    #pelataan itse peliä
+    country = country_capital()
+    answer = input(f"What is the capital of {country[0]}? ")
+
+    check_answer(country, answer)
+
+#kutsutaan funktiota ja testataan se
+guess_the_capital()
+
+
+
+def suspicious_employee():
+    print("airport clerk thinks you're an airport employee and they ask you to take out pile of trash")
+
+    answer = input("Do you want to help? (Y/N): ").lower()
+
+    if answer == "y":
+        print("You take out the trash and the clerk thanks you for your help. You lose one distance point but gain x amount of currency.")
+    elif answer == "n":
+        print("the clerk becomes suspicious of you and wants to talk to you for a very long time before letting you continue your journey. you lose 2 distance points")
+    else:
+        print("invalid choice. select y or n.")
+
+
+#Ohjelma käynnistyy tästä
+suspicious_employee()
+
+
+print("In the airport you come across makeover experts and they offer you opportunity to change your appearance for a small amount of currency. Let's see what they have to offer. ")
+def makeover_time(currency, x, y):
+    print("Welcome to the makeover studio!")
+    print("Your currency:", currency)
+
+    while True:
+        print("\nMake your choice regarding the makeover:")
+        print("1. Change one thing (costs x currency)")
+        print("2. Change two things (costs 2 * x currency)")
+        print("3. Complete makeover (costs y currency)")
+        print("4. Don't want to change anything")
+
+        choice = input("Your choice (1-4): ")
+
+        if choice == "1":
+            if currency >= x:
+                currency -= x
+                print("One thing changed!")
+                return  #Lopetetaan suoritus, kun yksi muutos on tehty.
+            else:
+                print("You don't have enough money to change one thing.")
+        elif choice == "2":
+            if currency >= 2 * x:
+                currency -= 2 * x
+                print("Two things changed!")
+                return  #Lopetetaan suoritus, kun kaksi muutosta on tehty.
+            else:
+                print("You don't have enough money to change two things.")
+        elif choice == "3":
+            if currency >= y:
+                currency -= y
+                print("Complete makeover done!")
+                return  #Lopetetaan suoritus, kun täydellinen muodonmuutos on tehty.
+            else:
+                print("You don't have enough money for a complete makeover.")
+        elif choice == "4":
+            print("Thanks for your visit!")
+            return  #Lopetetaan suoritus, jos käyttäjä ei halua muuttaa mitään.
+        else:
+            print("Invalid choice. Try again and pick number 1-4.")
+
+# kutsutaan funktio ja testataan se
+currency = 100  #Pelaajan valuutta
+x = 10  #Yhden asian muutoksen hinta
+y = 50  #Täydellisen muodonmuutoksen hinta
+makeover_time(currency, x, y)
