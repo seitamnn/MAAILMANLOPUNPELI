@@ -265,6 +265,27 @@ The bet is 10 euros.''')
                 challenge_currency_subtract(10)
 
 
+def challenge_resistance_test():
+    print('''
+    You encounter another resistance member. He is skeptical if you are truly part of the resistance 
+    and wants to make sure before helping you further. By answering his question correctly, you gain 
+    more distance from the aliens. Hurry up! The question is:
+    ''')
+    correct_answer = "Dr Alex Zen"
+    answer = input("What is the name of the lead scientist of the resistance? ")
+    if answer == correct_answer:
+        print("That is correct! You have proved that you're true resistance member and gained +1 distance")
+    elif answer == "Alex Zen":
+        print("That is correct! You have proved that you're true resistance member and gained +1 distance")
+    else:
+        print("That's not it! Did you even read the lore in the beginning...No help for you this time. Curry on.")
+
+
+
+
+
+
+
 
 
 
