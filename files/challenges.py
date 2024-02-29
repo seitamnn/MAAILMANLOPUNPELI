@@ -79,6 +79,8 @@ def challenge_distance_cancelledflight():
         print("Better luck next time. Let's hope the next one is on time. -1 distance ")
     elif decision == "purchase": #Menettää valuuttaa
         print("You get on another plane. New tickets cost you 10€. ")
+        challenge_currency_subtract(10)
+
 
 #challenge_distance_cancelledflight()
 
