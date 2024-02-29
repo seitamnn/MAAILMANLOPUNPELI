@@ -191,3 +191,80 @@ currency = 100  #Pelaajan valuutta
 x = 10  #Yhden asian muutoksen hinta
 y = 50  #Täydellisen muodonmuutoksen hinta
 makeover_time(currency, x, y)
+
+
+
+def challenge_hiding_closet():
+    print('''You encounter a fugitive at the airport fleeing from aliens. 
+He wants to hide in the airport janitor's closet, which is locked with a three-digit code. 
+You have three attempts to answer correctly, or the door will lock permanently. 
+If you manage to open the door, the fugitive might reward you for your help! 
+Get to work! Hurry!
+''')
+    code = [1, 2, 4]
+    player_code = []
+    attemps = 1
+    number1 = int(input("Enter the first number: "))
+    player_code.append(number1)
+    number2 = int(input("Enter the second number: "))
+    player_code.append(number2)
+    number3 = int(input("Enter the third number: "))
+    player_code.append(number3)
+
+    while player_code != code and attemps < 3:
+        print("Invalid code! Try again!")
+        if number1 == code[0]:
+            print("First number is correct!")
+        if number2 == code[1]:
+            print("Second number is correct!")
+        if number3 == code[2]:
+            print("Third number is correct!")
+        player_code.clear()
+        number1 = int(input("Enter the first number: "))
+        player_code.append(number1)
+        number2 = int(input("Enter the second number: "))
+        player_code.append(number2)
+        number3 = int(input("Enter the third number: "))
+        player_code.append(number3)
+        attemps += 1
+    if attemps == 3 and player_code != code:
+        print("You idiot! You locked the fucking door!")
+    else:
+        print("WOW! You did it! You managed to open the door and earned 20€!")
+        challenge_currency_add(20)
+
+
+def challenge_crazydice():
+    print('''You encounter a quirky street artist at the airport, and he wants to challenge you 
+to a dice roll for money. The one who gets the higher total of the two dice wins and takes the loser's money. 
+The bet is 10 euros.''')
+
+    start = input("The quirky street artist won't let you go before you accept the challenge and the "
+                  "aliens are catching up. Hurry and accept the challenge by pressing enter! ")
+    if start == "":
+        print("The quirky street artist begins...")
+        street_artist_dice1 = random.randint(1,6)
+        street_artist_dice2 = random.randint(1, 6)
+        street_artist_total = street_artist_dice1 + street_artist_dice2
+        print(f"The quirky street artist got {street_artist_dice1} and {street_artist_dice2} "
+              f"making the total of {street_artist_total}")
+
+        player_roll = input("Now it's your turn. Press enter to roll!")
+        if player_roll == "":
+            player_dice1 = random.randint(1, 6)
+            player_dice2 = random.randint(1,6)
+            player_dice_total = player_dice1 + player_dice2
+            if street_artist_total < player_dice_total:
+                print(f"Congrats! you rolled a {player_dice1} and {player_dice2} making the total of {player_dice_total}! "
+                      f"You won 10€!")
+                challenge_currency_add(10)
+            else:
+                print(f"Oh no! You rolled {player_dice1} and {player_dice2} making the total {player_dice_total}. "
+                      f"You lost your 10€!")
+                challenge_currency_subtract(10)
+
+
+
+
+
+

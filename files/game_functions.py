@@ -44,3 +44,15 @@ def select_airport():
 #Testi
 chosen_airport = select_airport()
 print("have a safe flight to", chosen_airport + "!")
+
+def challenge_currency_add(add_amount):
+    currency_sql = f"UPDATE game SET currency += '{add_amount}'"
+    cursor = connect.cursor()
+    cursor.execute(currency_sql)
+    reuslt = cursor.fetchall()
+
+def challenge_currency_subtract(subtract_amount):
+    currency_sql = f"UPDATE game SET currency -= '{subtract_amount}'"
+    cursor = connect.cursor()
+    cursor.execute(currency_sql)
+    reuslt = cursor.fetchall()
