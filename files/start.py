@@ -2,15 +2,14 @@ import connection
 from connection import connect
 import time
 
-
-def start(player_name):
-    mycursor = connect.cursor()
+def start(player_name): #annetaan inputina saatu pelaajan nimi
+    mycursor = connect.cursor() # osotetaa tietokantaan
     sql = "INSERT INTO game (id, location, screen_name, currency, alien_distance, in_possession) VALUES (%s, %s, %s, %s, %s,%s)"
-    mycursor.execute(sql, (5, 'MUHA', player_name, 1000, 1000, False))  # MUHA = José Martí International Airport
-    mycursor.fetchall()
+    mycursor.execute(sql, (3, 'MUHA', player_name, 1000, 1000, False))  # MUHA = José Martí International Airport
+    mycursor.fetchall() # palauttaa kaikki tulosjoukot, jotka vastaavat ylempään sql kyselyyn
     print("Great! Now let's start...\n")
 
-    speed = 0.05
+    speed = 0.05 # nopeus tekstille
 
     lore = '''
     It's year 2586. Earth faces a grim fate as evil aliens suddenly arrived. 
@@ -30,7 +29,7 @@ def start(player_name):
     along the way to succeed in your mission and save humanity from destruction. 
     The fate of the world is in your hands. Good luck!
     '''
-    for letter in lore:
-        print(letter, end='', flush=True)
-        time.sleep(speed)
+    for letter in lore: # kirjain kerrallaan
+        print(letter, end='', flush=True) # end: estää uuden rivin tulostamisen jokaisen kirjaimen jälkeen, flush: pakottaa tulostuksen heti eli näkyy välittömästi ilman puskurointia
+        time.sleep(speed) # aiheuttaa lyhyen viiveen jokaisen kirjaimen tulostuksen jälkeen
     print()

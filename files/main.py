@@ -5,7 +5,7 @@ import mysql.connector
 from colorama import Fore
 import time
 import random
-from start import start
+from start import start, challenge_currency_help
 
 print(Fore.RED + '''
 ██████╗     ███████╗     █████╗      ██████╗ 
@@ -24,4 +24,5 @@ else:
     print("GAME OVER")
 
 player_name = str(input("Select a player name: \n"))
-start(player_name)
+start(player_name) # start-funktio luotu start-tiedostossa
+
