@@ -19,25 +19,27 @@ def challenge_currency_help(player_name): # tehtävä valuutan vaihto
         connect.commit()
 
 
-def challenge_recognized(): # tehtävä sut tunnistetaan
-    currency = 100
-    distance = 100
+def challenge_recognized(player_name): # tehtävä sut tunnistetaan
     print("At the check-in one of the employees recognizes you.\nThey give you a dirty look as you lay your eyes on the pin on their vest\n'END TO PLANET EARTH' it says\nDo they recognize you from tv?")
     answer = int(input("You can either 1. bribe them or 2. play it cool. Choose (1/2)\n"))
+    mycursor = connect.cursor() # osotetaa tietokantaa
     if answer == 1: # jos lahjoo
-        currency = currency - 10
+        sql = "UPDATE game SET currency = currency - 10 WHERE screen_name = %s"
+        mycursor.execute(sql, (player_name,))
+        connect.commit()
         print("Offering a bribe helps you stay low but now your pockets are 10$ lighter")
     elif answer == 2:
-        distance = distance - 10
+        sql = "UPDATE game SET alien_distance = alien_distance - 10 WHERE screen_name = %s"
+        mycursor.execute(sql, (player_name,))
+        connect.commit()
         print("You didn't want to make a scene and tried to play it cool.\nThe employee lets their anti-earth friends know about your location.\nThe aliens are closer to you.")
     else:
         print("That wasn't an option silly...")
     return
 
-def challenge_chemist(): # tehtävä huijaa olevasi kemisti
-    currency = 100
-    distance = 100
+def challenge_chemist(player_name): # tehtävä huijaa olevasi kemisti
     print("The airport security question you. You don't trust them so you lie.\nYou tell them you're a chemist and they test you.")
+    mycursor = connect.cursor() # osotetaa tietokantaa
     Fe = str(input("What is the chemical symbol of iron?\n")).lower() # eka testin kysymys
     if Fe == 'fe':
         print(Fe)
@@ -47,18 +49,21 @@ def challenge_chemist(): # tehtävä huijaa olevasi kemisti
             N = str(input("What is the chemical symbol of nitrogen?\n")).lower() # vika testin kysymys
             if N == 'n':
                 print(N)
-                print("They believe you and you leave empty handed. Good thing you barely make it to your next flight!") # jos vastaa kaikkiin oikein
+                print("Well done! They believe you and you leave empty handed. Good thing you barely make it to your next flight!") # jos vastaa kaikkiin oikein
             else: # kolmannen epäonnistuminen
-                distance = distance - 10
-                currency = currency - 10
+                sql = "UPDATE game SET alien_distance = alien_distance - 10, currency = currency - 10 WHERE screen_name = %s"
+                mycursor.execute(sql, (player_name,))
+                connect.commit()
                 print("They don't believe you. You lost $ and the aliens are closer to you")
         else: # tokan epäonnistuminen
-            distance = distance - 10
-            currency = currency - 10
+            sql = "UPDATE game SET alien_distance = alien_distance - 10, currency = currency - 10 WHERE screen_name = %s"
+            mycursor.execute(sql, (player_name,))
+            connect.commit()
             print("They don't believe you. You lost $ and the aliens are closer to you")
     else: # ekan epäonnistuminen
-        distance = distance - 10
-        currency = currency - 10
+        sql = "UPDATE game SET alien_distance = alien_distance - 10, currency = currency - 10 WHERE screen_name = %s"
+        mycursor.execute(sql, (player_name,))
+        connect.commit()
         print("They don't believe you. You lost $ and the aliens are closer to you")
     return
 
