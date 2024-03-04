@@ -1,20 +1,13 @@
 # tänne esim arpomis hommelit liikkumisee yms
 import random
 import mysql.connector
+from connection import connect
 
-connection = mysql.connector.connect(
-    host="localhost",
-    port=3306,
-    database="flight_game",
-    user="root",
-    password="root",
-    autocommit=True
-)
 #funktio lentokentältä toiselle lentämiseen
 def select_airport():
     #Yhdistetään tietokantaan
     sql = (f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country")
-    cursor = connection.cursor()
+    cursor = connect.cursor()
     cursor.execute(sql)
     airports = cursor.fetchall()
     cursor.close()

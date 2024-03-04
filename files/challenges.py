@@ -1,6 +1,7 @@
 # tehtävät lol
 import mysql.connector
 from connection import connect
+import game_functions
 
 def challenge_currency_help(player_name): # tehtävä valuutan vaihto
     print("You ran into a world travler in distress. They need your help with currency.")
