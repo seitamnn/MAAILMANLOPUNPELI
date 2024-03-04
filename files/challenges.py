@@ -3,7 +3,7 @@ import mysql.connector
 from connection import connect
 import game_functions
 
-def challenge_currency_help(screen_name): # tehtävä valuutan vaihto
+def challenge_currency_help(screen_name): # tehtävä valuutan vaihto #fuck you
     print("You ran into a world travler in distress. They need your help with currency.")
     answer = input("How much is 10 euros in yens?")
     mycursor = connect.cursor() # osotetaa tietokantaa
