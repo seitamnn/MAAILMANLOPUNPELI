@@ -18,4 +18,6 @@ Alla kuva muokatusta game- taulusta.
 ![image](https://github.com/seitamnn/MAAILMANLOPUNPELI/assets/156774906/7f4a5371-cbe0-4baf-a4bd-435a620117a7)
 
 ## 3. Miten peli toimii?
-Peli toteutetaan Python-kielellä, sekä se käyttää muokattua relaatiotietokantaa. Se on tehty pelattavaksi näppäimistöllä. 
+Peli toteutetaan Python-kielellä, sekä se käyttää muokattua relaatiotietokantaa. Se on tehty pelattavaksi näppäimistöllä.
+Liikkuminen lentokenttien välillä toimii niin, että ohjelma arpoo pelaajalle kolme eri lentokenttää, joista pelaaja valitsee mieluisimman vaihtoehdon. 
+Tietokantaan on määrätty tietty määrä etäisyyttä sekä valuuttaa, jotka lisääntyvät tai vähenevät pelin edetessä. Jokaisen tehtävän jälkeen tietokanta päivittyy pelaajan suorituksen mukaan. Osassa tehtävissä pelaajalla on mahdollisuus valita kahden vaihtoehdon väliltä, mutta joissakin lopputulos määräytyy sen mukaan, vastaako pelaaja oikein vai väärin esimerkiksi laskutehtäviin. 
