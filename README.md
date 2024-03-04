@@ -18,4 +18,4 @@ Alla kuva muokatusta game- taulusta.
 ![image](https://github.com/seitamnn/MAAILMANLOPUNPELI/assets/156774906/7f4a5371-cbe0-4baf-a4bd-435a620117a7)
 
 ## 3. Miten peli toimii?
-Peli toteutetaan Python-kielellä, sekä se käyttää muokattua relaatiotietokantaa. Se on tehty pelattavaksi näppäimistöllä.
+Peli toteutetaan Python-kielellä, sekä se käyttää muokattua relaatiotietokantaa. Se on tehty pelattavaksi näppäimistöllä. 
