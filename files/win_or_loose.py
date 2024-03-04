@@ -2,6 +2,7 @@
 # game over / you won!
 from colorama import Fore
 import time
+from connection import connect
 
 def game_over():
     game_over = Fore.RED + '''
