@@ -3,21 +3,17 @@ import mysql.connector
 from connection import connect
 import game_functions
 
-def challenge_currency_help(player_name): # tehtävä valuutan vaihto
+def challenge_currency_help(screen_name): # tehtävä valuutan vaihto
     print("You ran into a world travler in distress. They need your help with currency.")
     answer = input("How much is 10 euros in yens?")
     mycursor = connect.cursor() # osotetaa tietokantaa
     if answer == 1630: # jos käyttäjän vastaus vastaa oikeaa vastausta
         print("That's right! The traveler grants you with a reward.")
-        sql = "UPDATE game SET currency = currency + 10 WHERE screen_name = %s" # currency tauluun +10 jossa oikee nimi
-        mycursor.execute(sql, (player_name,))
-        connect.commit()
+        challenge_currency_add(10, screen_name) # lisätään valuuttaan 10 €
     else:
         print("Oh no! That's not quite right...")
         print("The traveler fooled you. It was a pickpocket bluffing you. You lost 20 $")
-        sql = "UPDATE game SET currency = currency - 10 WHERE screen_name = %s"
-        mycursor.execute(sql, (player_name,))
-        connect.commit()
+        challenge_currency_subtract(20, screen_name) # vähennetään valuuttaa -20
 
 
 def challenge_recognized(player_name): # tehtävä sut tunnistetaan
@@ -25,14 +21,10 @@ def challenge_recognized(player_name): # tehtävä sut tunnistetaan
     answer = int(input("You can either 1. bribe them or 2. play it cool. Choose (1/2)\n"))
     mycursor = connect.cursor() # osotetaa tietokantaa
     if answer == 1: # jos lahjoo
-        sql = "UPDATE game SET currency = currency - 10 WHERE screen_name = %s"
-        mycursor.execute(sql, (player_name,))
-        connect.commit()
+        challenge_currency_subtract(10, screen_name) #vähennetään -10
         print("Offering a bribe helps you stay low but now your pockets are 10$ lighter")
     elif answer == 2:
-        sql = "UPDATE game SET alien_distance = alien_distance - 10 WHERE screen_name = %s"
-        mycursor.execute(sql, (player_name,))
-        connect.commit()
+        challenge_distance_substract(1, screen_name)
         print("You didn't want to make a scene and tried to play it cool.\nThe employee lets their anti-earth friends know about your location.\nThe aliens are closer to you.")
     else:
         print("That wasn't an option silly...")
@@ -52,19 +44,16 @@ def challenge_chemist(player_name): # tehtävä huijaa olevasi kemisti
                 print(N)
                 print("Well done! They believe you and you leave empty handed. Good thing you barely make it to your next flight!") # jos vastaa kaikkiin oikein
             else: # kolmannen epäonnistuminen
-                sql = "UPDATE game SET alien_distance = alien_distance - 10, currency = currency - 10 WHERE screen_name = %s"
-                mycursor.execute(sql, (player_name,))
-                connect.commit()
+                challenge_currency_subtract(10, screen_name)
+                challenge_distance_substract(1, screen_name)
                 print("They don't believe you. You lost $ and the aliens are closer to you")
         else: # tokan epäonnistuminen
-            sql = "UPDATE game SET alien_distance = alien_distance - 10, currency = currency - 10 WHERE screen_name = %s"
-            mycursor.execute(sql, (player_name,))
-            connect.commit()
+            challenge_currency_subtract(10, screen_name)
+            challenge_distance_substract(1, screen_name)
             print("They don't believe you. You lost $ and the aliens are closer to you")
     else: # ekan epäonnistuminen
-        sql = "UPDATE game SET alien_distance = alien_distance - 10, currency = currency - 10 WHERE screen_name = %s"
-        mycursor.execute(sql, (player_name,))
-        connect.commit()
+        challenge_currency_subtract(10, screen_name)
+        challenge_distance_substract(1, screen_name)
         print("They don't believe you. You lost $ and the aliens are closer to you")
     return
 
@@ -76,8 +65,10 @@ def challenge_distance_alienraid():
     decision = input("Do you run or hide? ") #Pelaaja valkkaa haluaako juosta koneeseen vai piiloutua ja odottaa seuraavaa.
     if decision == "run":
         print("Oh no! Aliens notice you and now they know where you are going. -2 distance ")
+        challenge_distance_substract(2, screen_name)
     elif decision == "hide":
         print("Now run to hide. You need to wait for the next flight. -1 distance")
+        challenge_distance_substract(1, screen_name)
 
 #challenge_distance_alienraid()
 
@@ -88,9 +79,10 @@ def challenge_distance_cancelledflight():
     decision = input("Do you wait or purchase a new ticket? ")
     if decision == "wait": #Menettää välimatkaa
         print("Better luck next time. Let's hope the next one is on time. -1 distance ")
+        challenge_distance_substract(1, screen_name)
     elif decision == "purchase": #Menettää valuuttaa
         print("You get on another plane. New tickets cost you 10€. ")
-        challenge_currency_subtract(10)
+        challenge_currency_subtract(10, screen_name)
 
 
 #challenge_distance_cancelledflight()
@@ -137,8 +129,10 @@ def check_answer(country, answer):
     # Tarkistetaan vastaus ja annetaan vastauksen mukainen teksti
     if answer.lower() == country[1].lower():
         print("Correct! The child's family tells you that aliens are lurking at your next destination. Thanks to the tip, you can now take another route and avoid the encounter with the aliens. You get +1 distance point.")
+        challenge_distance_add(1, screen_name)
     else:
         print("Wrong! Unfortunately, you miss your next flight because it took more time to help the child. Aliens advance 1 distance point closer.")
+        challenge_distance_substract(1, screen_name)
 
 
 def guess_the_capital():
@@ -159,8 +153,11 @@ def suspicious_employee():
 
     if answer == "y":
         print("You take out the trash and the clerk thanks you for your help. You lose one distance point but gain x amount of currency.")
+        challenge_currency_add(10, screen_name)
+        challenge_distance_substract(1, screen_name)
     elif answer == "n":
         print("the clerk becomes suspicious of you and wants to talk to you for a very long time before letting you continue your journey. you lose 2 distance points")
+        challenge_distance_substract(2, screen_name)
     else:
         print("invalid choice. select y or n.")
 
@@ -185,21 +182,24 @@ def makeover_time(currency, x, y):
 
         if choice == "1":
             if currency >= x:
-                currency -= x
+                challenge_currency_subtract(20, screen_name)
+                challenge_distance_add(1, screen_name)
                 print("One thing changed!")
                 return  #Lopetetaan suoritus, kun yksi muutos on tehty.
             else:
                 print("You don't have enough money to change one thing.")
         elif choice == "2":
             if currency >= 2 * x:
-                currency -= 2 * x
+                challenge_currency_subtract(20, screen_name)
+                challenge_distance_add(2, screen_name)
                 print("Two things changed!")
                 return  #Lopetetaan suoritus, kun kaksi muutosta on tehty.
             else:
                 print("You don't have enough money to change two things.")
         elif choice == "3":
             if currency >= y:
-                currency -= y
+                challenge_currency_subtract(50, screen_name)
+                challenge_distance_add(3, screen_name)
                 print("Complete makeover done!")
                 return  #Lopetetaan suoritus, kun täydellinen muodonmuutos on tehty.
             else:
@@ -255,7 +255,7 @@ Get to work! Hurry!
         print("You idiot! You locked the fucking door!")
     else:
         print("WOW! You did it! You managed to open the door and earned 20€!")
-        challenge_currency_add(20)
+        challenge_currency_add(20, screen_name)
 
 
 def challenge_crazydice():
@@ -281,11 +281,11 @@ The bet is 10 euros.''')
             if street_artist_total < player_dice_total:
                 print(f"Congrats! you rolled a {player_dice1} and {player_dice2} making the total of {player_dice_total}! "
                       f"You won 10€!")
-                challenge_currency_add(10)
+                challenge_currency_add(10, screen_name)
             else:
                 print(f"Oh no! You rolled {player_dice1} and {player_dice2} making the total {player_dice_total}. "
                       f"You lost your 10€!")
-                challenge_currency_subtract(10)
+                challenge_currency_subtract(10, screen_name)
 
 
 def challenge_resistance_test():
@@ -298,8 +298,10 @@ def challenge_resistance_test():
     answer = input("What is the name of the lead scientist of the resistance? ")
     if answer == correct_answer:
         print("That is correct! You have proved that you're true resistance member and gained +1 distance")
+        challenge_distance_add(1, screen_name)
     elif answer == "Alex Zen":
         print("That is correct! You have proved that you're true resistance member and gained +1 distance")
+        challenge_distance_add(1, screen_name)
     else:
         print("That's not it! Did you even read the lore in the beginning...No help for you this time. Curry on.")
 
