@@ -5,7 +5,7 @@ import mysql.connector
 from colorama import Fore
 import time
 import random
-from start import start, challenge_currency_help
+from start import start
 
 print(Fore.RED + '''
 ██████╗     ███████╗     █████╗      ██████╗ 
