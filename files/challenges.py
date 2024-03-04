@@ -1,7 +1,9 @@
 # tehtävät lol
 import mysql.connector
 from connection import connect
-import game_functions
+from game_functions import challenge_distance_add, challenge_distance_substract, challenge_currency_add, challenge_currency_subtract
+import random
+from countryinfo import CountryInfo
 
 def challenge_currency_help(screen_name): # tehtävä valuutan vaihto #fuck you
     print("You ran into a world travler in distress. They need your help with currency.")
@@ -16,7 +18,7 @@ def challenge_currency_help(screen_name): # tehtävä valuutan vaihto #fuck you
         challenge_currency_subtract(20, screen_name) # vähennetään valuuttaa -20
 
 
-def challenge_recognized(player_name): # tehtävä sut tunnistetaan
+def challenge_recognized(screen_name): # tehtävä sut tunnistetaan
     print("At the check-in one of the employees recognizes you.\nThey give you a dirty look as you lay your eyes on the pin on their vest\n'END TO PLANET EARTH' it says\nDo they recognize you from tv?")
     answer = int(input("You can either 1. bribe them or 2. play it cool. Choose (1/2)\n"))
     mycursor = connect.cursor() # osotetaa tietokantaa
@@ -30,7 +32,7 @@ def challenge_recognized(player_name): # tehtävä sut tunnistetaan
         print("That wasn't an option silly...")
     return
 
-def challenge_chemist(player_name): # tehtävä huijaa olevasi kemisti
+def challenge_chemist(screen_name): # tehtävä huijaa olevasi kemisti
     print("The airport security question you. You don't trust them so you lie.\nYou tell them you're a chemist and they test you.")
     mycursor = connect.cursor() # osotetaa tietokantaa
     Fe = str(input("What is the chemical symbol of iron?\n")).lower() # eka testin kysymys
@@ -58,7 +60,7 @@ def challenge_chemist(player_name): # tehtävä huijaa olevasi kemisti
     return
 
 #Alienratsia
-def challenge_distance_alienraid():
+def challenge_distance_alienraid(screen_name):
     print("There's only few minutes before your next flight. On your way to the departure gate you face an alien raid!")
     print(" You can run to your flight or hide in the trash can and wait for the next flight. ")
 
@@ -73,7 +75,7 @@ def challenge_distance_alienraid():
 #challenge_distance_alienraid()
 
 #Pelaajan seuraava kone perutaan, pitää valita menettääkö valuuttaa vai välimatkaa
-def challenge_distance_cancelledflight():
+def challenge_distance_cancelledflight(screen_name):
     print("The next flight has been cancelled! ")
     print("You can wait for the next one or purchase a new ticket.")
     decision = input("Do you wait or purchase a new ticket? ")
@@ -88,7 +90,7 @@ def challenge_distance_cancelledflight():
 #challenge_distance_cancelledflight()
 
 #Pitää muuttaa f --> C
-def fahrenheit_to_celsius():
+def fahrenheit_to_celsius(screen_name):
     print("Ancient ingredient must be stored in a cold pack, but you broke it! You found a new one, but now you need to make sure the ingredient didn't warm up.")
     print("Thermometer shows the temperature in fahrenheits, but you need to convert them into celsius so you can read them.")
     print("Temperature in fahrenheits is 39") #Pelaajalle kerrotaan valmiiksi F, jolloin hänen täytyy itse laskea mitä se on Celsiuksina
@@ -100,12 +102,7 @@ def fahrenheit_to_celsius():
         else:
             print("Try again.") #Pelaaja joutuu vastaamaan uudestaan
 
-#fahrenheit_to_celsius()
-
-import random
-from countryinfo import CountryInfo
-
-def country_capital():
+def country_capital(screen_name):
     # Tulostetaan tilanne lentokentällä
     print(
         "At the airport, a child comes to you and asks for help. She tells you that she has lost her family and can't find them. Solve the following question to help the child.")
@@ -125,7 +122,7 @@ def country_capital():
     return country_name, capital
 
 
-def check_answer(country, answer):
+def check_answer(country, answer, screen_name):
     # Tarkistetaan vastaus ja annetaan vastauksen mukainen teksti
     if answer.lower() == country[1].lower():
         print("Correct! The child's family tells you that aliens are lurking at your next destination. Thanks to the tip, you can now take another route and avoid the encounter with the aliens. You get +1 distance point.")
@@ -135,18 +132,13 @@ def check_answer(country, answer):
         challenge_distance_substract(1, screen_name)
 
 
-def guess_the_capital():
+def guess_the_capital(screen_name):
     #aloittaa itse pelin kysymällä pelaajalta satunnaisen maan pääkaupunkia ja tarkistaa vastauksen.
     country = country_capital()
     answer = input(f"What is the capital of {country[0]}? ")
-
     check_answer(country, answer)
 
-
-#kutsutaan pelin aloittavaa funktiota, jotta peli voidaan pelata
-guess_the_capital()
-
-def suspicious_employee():
+def suspicious_employee(screen_name):
     print("airport clerk thinks you're an airport employee and they ask you to take out pile of trash")
 
     answer = input("Do you want to help? (Y/N): ").lower()
@@ -161,13 +153,8 @@ def suspicious_employee():
     else:
         print("invalid choice. select y or n.")
 
-
-#Ohjelma käynnistyy tästä
-suspicious_employee()
-
-
 print("In the airport you come across makeover experts and they offer you opportunity to change your appearance for a small amount of currency. Let's see what they have to offer. ")
-def makeover_time(currency, x, y):
+def makeover_time(currency, x, y, screen_name):
     print("Welcome to the makeover studio!")
     print("Your currency:", currency)
 
@@ -218,7 +205,7 @@ makeover_time(currency, x, y)
 
 
 
-def challenge_hiding_closet():
+def challenge_hiding_closet(screen_name):
     print('''You encounter a fugitive at the airport fleeing from aliens. 
 He wants to hide in the airport janitor's closet, which is locked with a three-digit code. 
 You have three attempts to answer correctly, or the door will lock permanently. 
@@ -258,7 +245,7 @@ Get to work! Hurry!
         challenge_currency_add(20, screen_name)
 
 
-def challenge_crazydice():
+def challenge_crazydice(screen_name):
     print('''You encounter a quirky street artist at the airport, and he wants to challenge you 
 to a dice roll for money. The one who gets the higher total of the two dice wins and takes the loser's money. 
 The bet is 10 euros.''')
@@ -287,8 +274,7 @@ The bet is 10 euros.''')
                       f"You lost your 10€!")
                 challenge_currency_subtract(10, screen_name)
 
-
-def challenge_resistance_test():
+def challenge_resistance_test(screen_name):
     print('''
     You encounter another resistance member. He is skeptical if you are truly part of the resistance 
     and wants to make sure before helping you further. By answering his question correctly, you gain 
