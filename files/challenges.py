@@ -109,37 +109,47 @@ def fahrenheit_to_celsius():
 
 #fahrenheit_to_celsius()
 
-
-from countryinfo import CountryInfo
 import random
-
-# Tulostetaan tilanne lentokentällä
-print("at the airport, child comes to you and ask for help. She tells you that she has lost her family and can't find you. solve the following question to help the child ")
+from countryinfo import CountryInfo
 
 def country_capital():
-    #Arvotaan satunnainen maa ja haetaan sen pääkaupunki
-    country_name = random.choice(list(CountryInfo().all()))
+    # Tulostetaan tilanne lentokentällä
+    print(
+        "At the airport, a child comes to you and asks for help. She tells you that she has lost her family and can't find them. Solve the following question to help the child.")
+
+#Valitaan satunnaisen maa listalta ja hakee sen pääkaupungin countryinfo-moduulin avulla.
+    country_list = [
+        "Russia", "Canada", "China", "United States", "Brazil", "Australia", "India", "Argentina",
+        "Denmark", "Algeria", "Finland", "Greenland", "Sweden", "Vietnam", "Switzerland", "Nepal",
+        "Italy", "Indonesia", "Belgium", "Bolivia", "Iran", "Mongolia", "Peru", "Spain", "Kazakhstan", "Germany",
+        "United Kingdom", "South Africa", "Colombia", "Ethiopia", "Thailand", "Poland", "Japan", "Norway",
+        "Egypt", "Greece", "Pakistan", "Chile", "South Korea", "Turkey", "New Zealand", "Zambia",
+        "Canada", "Afghanistan", "Iceland", "France", "Somalia", "North Korea",
+        "Ukraine", "Botswana", "Madagascar"
+    ]
+    country_name = random.choice(country_list)
     capital = CountryInfo(country_name).capital()
     return country_name, capital
 
+
 def check_answer(country, answer):
-    #Tarkistetaan vastaus ja annetaan vastauksen mukainen teksti
+    # Tarkistetaan vastaus ja annetaan vastauksen mukainen teksti
     if answer.lower() == country[1].lower():
-        print("Correct! the kids family tells you that aliens are lurking at your next destination. thanks to the tip you can now take another route and avoid the encounter whit the aliens. you get +1 distance point")
+        print("Correct! The child's family tells you that aliens are lurking at your next destination. Thanks to the tip, you can now take another route and avoid the encounter with the aliens. You get +1 distance point.")
     else:
-        print("Wrong! Unfortunately, you miss your next flight, because it took more time to help the child . Aliens advance 1 dictance point closer.")
+        print("Wrong! Unfortunately, you miss your next flight because it took more time to help the child. Aliens advance 1 distance point closer.")
+
 
 def guess_the_capital():
-    #pelataan itse peliä
+    #aloittaa itse pelin kysymällä pelaajalta satunnaisen maan pääkaupunkia ja tarkistaa vastauksen.
     country = country_capital()
     answer = input(f"What is the capital of {country[0]}? ")
 
     check_answer(country, answer)
 
-#kutsutaan funktiota ja testataan se
+
+#kutsutaan pelin aloittavaa funktiota, jotta peli voidaan pelata
 guess_the_capital()
-
-
 
 def suspicious_employee():
     print("airport clerk thinks you're an airport employee and they ask you to take out pile of trash")
