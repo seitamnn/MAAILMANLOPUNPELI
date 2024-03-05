@@ -17,8 +17,11 @@ def start(player_name): #annetaan inputina saatu pelaajan nimi
     They threaten to unleash a deadly virus designed to wipe out mankind.
 
     You are part of a resistance movement whose goal is to prevent the aliens intentions and save humanity from destruction. 
-    Together with top scientists, you have developed an antidote to the aliens' deadly virus in a laboratory in Cuba. 
-    However, creating the antidote requires an ancient ingredient found only in a super laboratory in Norway.
+    Together with top scientists, you have developed an antidote to the aliens deadly virus in a secret laboratory near 
+    Jose Marti International Airport in Cuba. 
+    However, creating the antidote requires an ancient ingredient. According to the laboratory's lead scientist 
+    Alex Zen, ingredient is found only in a super laboratory, located in an extremely secretive location near 
+    Oslo Airport in Norway.
 
     You have been chosen for the mission to retrieve this ingredient from Norway and safely transport it back to 
     the resistance headquarters in Cuba, where the antidote can be manufactured. 
