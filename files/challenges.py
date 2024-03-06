@@ -209,7 +209,7 @@ def suspicious_employee(screen_name):
     answer = input(Fore.RESET + "What do you want to do? (Y/N): ").lower()
 
     if answer == "y":
-        print(Fore.GREEN + "You take out the trash and the clerk thanks you for your help.\n"
+        print(Fore.GREEN + "You take out the trash and the employee thanks you for your help.\n"
                            "You lose one distance point but gain x amount of currency.")
         currency_add(10, screen_name)
         distance_substract(1, screen_name)
@@ -224,7 +224,7 @@ def suspicious_employee(screen_name):
 def makeover_time(currency, x, y, screen_name):
     print(Fore.BLUE + f'''
     In the airport you come across makeover experts and they offer you opportunity to change your appearance 
-    for a small amount of currency. Let's see what they have to offer. 
+    for a small amount of currency. Makeover might help you fool aliens so let's see what they have to offer. 
     ''')
 
     print(Fore.RESET + "Welcome to the makeover studio!")
@@ -246,7 +246,7 @@ def makeover_time(currency, x, y, screen_name):
                 print(Fore.GREEN + "One thing changed, not sure if that helps...")
                 return  #Lopetetaan suoritus, kun yksi muutos on tehty.
             else:
-                print(Fore.RED + "You don't have enough money to change one thing.")
+                print(Fore.RED + "You are too poor to change one thing.")
         elif choice == "2":
             if currency >= 2 * x:
                 currency_subtract(20, screen_name)
@@ -254,7 +254,7 @@ def makeover_time(currency, x, y, screen_name):
                 print(Fore.GREEN + "Two things changed, that works pretty well!")
                 return  #Lopetetaan suoritus, kun kaksi muutosta on tehty.
             else:
-                print(Fore.RED + "You don't have enough money to change two things.")
+                print(Fore.RED + "You are too poor to change two things.")
         elif choice == "3":
             if currency >= y:
                 currency_subtract(50, screen_name)
@@ -262,7 +262,7 @@ def makeover_time(currency, x, y, screen_name):
                 print(Fore.GREEN + "Complete makeover done and Wow! You look like a completely different person!")
                 return  #Lopetetaan suoritus, kun täydellinen muodonmuutos on tehty.
             else:
-                print(Fore.RED + "You don't have enough money for a complete makeover.")
+                print(Fore.RED + "You are too poor for a complete makeover.")
         elif choice == "4":
             print(Fore.LIGHTYELLOW_EX + "Thanks for your visit!")
             return  #Lopetetaan suoritus, jos käyttäjä ei halua muuttaa mitään.
@@ -279,7 +279,7 @@ makeover_time(currency, x, y)
 
 def hiding_closet(screen_name):
     print(Fore.BLUE + f'''
-    You encounter a fugitive at the airport fleeing from aliens. 
+    You encounter a fugitive at the airport, who is fleeing from aliens. 
     He wants to hide in the airport janitor's closet, which is locked with a three-digit code. 
     You have three attempts to answer correctly, or the door will lock permanently. 
     If you manage to open the door, the fugitive might reward you for your help! 
@@ -312,13 +312,13 @@ def hiding_closet(screen_name):
         player_code.append(number3)
         attempts += 1
     if attempts == 3 and player_code != code:
-        print(Fore.RED + "NO! now look what you did! You locked the door!")
+        print(Fore.RED + "NO! now look what you did, You locked the door!")
     else:
         print(Fore.GREEN + "WOW! You did it! You managed to open the door and earned 20€!")
         currency_add(20, screen_name)
 
 
-def challenge_crazydice():
+def crazy_dice():
     print(Fore.BLUE + f'''
     You encounter a quirky street artist at the airport, 
     and he wants to challenge you to a dice roll for money. The one who gets the higher 
@@ -342,12 +342,12 @@ def challenge_crazydice():
         if street_artist_total < player_dice_total:
             print(Fore.GREEN + f"Congrats! you rolled a {player_dice1} and {player_dice2} making the total of {player_dice_total}! "
                   f"You won 10€!")
-            #challenge_currency_add(10)
+            #currency_add(10)
             break
         if street_artist_total > player_dice_total:
             print(Fore.RED + f"Oh no! You rolled {player_dice1} and {player_dice2} making the total {player_dice_total}. "
                   f"You lost your 10€!")
-            #challenge_currency_subtract(10)
+            #currency_subtract(10)
             break
         else:
             print(Fore.YELLOW + f"Oij! You rolled {player_dice1} and {player_dice2} making the total same {player_dice_total}. Let's try again!")
@@ -370,6 +370,6 @@ def resistance_test(screen_name):
                            "your new friend will help you forward. gain +1 distance")
         distance_add(1, screen_name)
     else:
-        print(Fore.RED + "That's not it! I guess you didn't read the lore in the beginning...\n"
+        print(Fore.RED + "That's not it! I guess you didn't read the lore properly...\n"
                          "Well, no help for you this time. Curry on.")
 
