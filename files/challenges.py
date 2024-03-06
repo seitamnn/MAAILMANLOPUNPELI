@@ -244,6 +244,14 @@ def makeover_time(currency, x, y, screen_name):
                 currency_subtract(20, screen_name)
                 distance_add(1, screen_name)
                 print(Fore.GREEN + "One thing changed, not sure if that helps...")
+                input("press enter to check: ")
+                onnistuu = 1
+                ei = 2
+                arvonta = random.randint(1, 2)
+                if arvonta == 1:
+                    print("onnistu")
+                else:
+                    print("ei")
                 return  #Lopetetaan suoritus, kun yksi muutos on tehty.
             else:
                 print(Fore.RED + "You are too poor to change one thing.")
@@ -274,8 +282,6 @@ currency = 100  #Pelaajan valuutta
 x = 10  #Yhden asian muutoksen hinta
 y = 50  #Täydellisen muodonmuutoksen hinta
 makeover_time(currency, x, y)
-
-
 
 def hiding_closet(screen_name):
     print(Fore.BLUE + f'''
