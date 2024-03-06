@@ -4,6 +4,7 @@ from connection import connect
 from game_functions import distance_add, distance_substract, currency_add, currency_subtract
 import random
 from countryinfo import CountryInfo
+from colorama import Fore
 
 def currency_converter(screen_name): # tehtävä valuutan vaihto
     print(Fore.BLUE + f'''
@@ -22,7 +23,7 @@ def currency_converter(screen_name): # tehtävä valuutan vaihto
         print(Fore. RED + "The traveler fooled you. He was a pickpocket who took some currency from you. You lost 20 $")
         currency_subtract(20, screen_name) # vähennetään valuuttaa -20
 
-def challenge_recognized(screen_name): # tehtävä sinut tunnistetaan
+def recognized(screen_name): # tehtävä sinut tunnistetaan
     print(Fore.BLUE + f'''
     At the airport check-in one of the employees recognizes you. He looks at you disapprovingly. 
     You notice a pin on his chest. where it says 'END TO PLANET EARTH' He probably recognizes you from the news...
@@ -104,8 +105,6 @@ def run_or_hide(screen_name):
                          "You lose 1 distance point")
         distance_substract(1, screen_name)
 
-#challenge_distance_alienraid()
-
 #Pelaajan seuraava kone perutaan, pitää valita menettääkö valuuttaa vai välimatkaa
 def flight_cancelled(screen_name):
     print(Fore.BLUE + f'''
@@ -124,9 +123,6 @@ def flight_cancelled(screen_name):
               "Because you decided to choose a new ticket from another airline,\n"
               "the previous company refuses to refund the old ticket. New tickets cost you 10€. ")
         currency_subtract(10, screen_name)
-
-
-#flight_cancelled()
 
 #Pitää muuttaa f --> C
 def fahrenheit_to_celsius(screen_name):
@@ -155,6 +151,28 @@ def fahrenheit_to_celsius(screen_name):
             print(Fore.RED + "That's not it...Try again.") #Pelaaja joutuu vastaamaan uudestaan
 
 def country_capital(screen_name):
+    def check_answer(country, answer, screen_name):
+        # Tarkistetaan vastaus ja annetaan vastauksen mukainen teksti
+        if answer.lower() == country[1]:
+            print(country[1])
+            print(Fore.GREEN + "Wow, you did it! child's family is rather quickly found.\n"
+                               "They are grateful to you and recognize you as a resistance soldier.\n"
+                               "The family wants to help you and they tell you that aliens are lurking\n"
+                               "at your next destination. Thanks to the tip, you can now take another route\n"
+                               "and avoid the encounter with the aliens. You get +1 distance point.")
+            distance_add(1, screen_name)
+        else:
+            print(country[1])
+            print(Fore.RED + "Wrong, your geography seems to be rusty! And because of that,\n"
+                             "you miss your next flight because it took too long to find the family.\n"
+                             "Aliens advance 1 distance point closer.")
+            distance_substract(1, screen_name)
+
+    def guess_the_capital(country_name):
+        # aloittaa itse pelin kysymällä pelaajalta satunnaisen maan pääkaupunkia ja tarkistaa vastauksen.
+        answer = input(Fore.RESET + f"What is the capital of {country_name}? ")
+        check_answer(country_name, answer, screen_name)
+
     print(Fore.BLUE + f'''
     Suddenly a child runs in front of you crying and asks for help. She tells you that she has lost her family 
     and can't find them anywhere. You don't have the heart to refuse and you decide to help her.
@@ -173,30 +191,11 @@ def country_capital(screen_name):
     ]
     country_name = random.choice(country_list)
     capital = CountryInfo(country_name).capital()
+    print(capital)
+    guess_the_capital(country_name)
+    check_answer(country_name, capital, screen_name)
+
     return country_name, capital
-
-
-def check_answer(country, answer, screen_name):
-    # Tarkistetaan vastaus ja annetaan vastauksen mukainen teksti
-    if answer.lower() == country[1].lower():
-        print(Fore.GREEN + "Wow, you did it! child's family is rather quickly found.\n"
-                           "They are grateful to you and recognize you as a resistance soldier.\n"
-                           "The family wants to help you and they tell you that aliens are lurking\n"
-                           "at your next destination. Thanks to the tip, you can now take another route\n"
-                           "and avoid the encounter with the aliens. You get +1 distance point.")
-        distance_add(1, screen_name)
-    else:
-        print(Fore.RED + "Wrong, your geography seems to be rusty! And because of that,\n"
-                         "you miss your next flight because it took too long to find the family.\n"
-                         "Aliens advance 1 distance point closer.")
-        distance_substract(1, screen_name)
-
-
-def guess_the_capital(screen_name):
-    #aloittaa itse pelin kysymällä pelaajalta satunnaisen maan pääkaupunkia ja tarkistaa vastauksen.
-    country = country_capital()
-    answer = input(Fore.RESET + f"What is the capital of {country[0]}? ")
-    check_answer(country, answer)
 
 
 def suspicious_employee(screen_name):
@@ -221,41 +220,44 @@ def suspicious_employee(screen_name):
         print(Fore.LIGHTYELLOW_EX + "Invalid choice. Select y or n.")
 
 
-def makeover_time(currency, x, y, screen_name):
+def makeover_time(screen_name):
     print(Fore.BLUE + f'''
     In the airport you come across makeover experts and they offer you opportunity to change your appearance 
     for a small amount of currency. Makeover might help you fool aliens so let's see what they have to offer. 
     ''')
 
     print(Fore.RESET + "Welcome to the makeover studio!")
-    print("Your currency:", currency)
 
     while True:
         print("\nMake your choice regarding the makeover:")
-        print("1. Change one thing (costs x currency)")
-        print("2. Change two things (costs 2 * x currency)")
-        print("3. Complete makeover (costs y currency)")
+        print("1. Change one thing (costs 10 currency)")
+        print("2. Change two things (costs 20 currency)")
+        print("3. Complete makeover (costs 50 currency)")
         print("4. Don't want to change anything\n")
 
         choice = input("Your choice (1-4): ")
 
+        sql = f"SELECT currency FROM game WHERE screen_name = '{screen_name}'"
+        cursor = connect.cursor()
+        cursor.execute(sql)
+        result = cursor.fetchall()
+
         if choice == "1":
-            if currency >= x:
+            if result[0][0] >= 10:
                 currency_subtract(20, screen_name)
-                distance_add(1, screen_name)
                 print(Fore.GREEN + "One thing changed, not sure if that helps...")
                 input("press enter to check: ")
                 check = random.randint(1, 2) #arvotaan auttaako muutos pelaajaa
                 if check == 1:
                     print("Change worked this time")
-                    distance_add(2, screen_name)
+                    distance_add(1, screen_name)
                 else:
                     print("Change didn't help this time")
                 return  #Lopetetaan suoritus, kun yksi muutos on tehty.
             else:
                 print(Fore.RED + "You are too poor to change one thing.")
         elif choice == "2":
-            if currency >= 2 * x:
+            if result[0][0] >= 20:
                 currency_subtract(20, screen_name)
                 distance_add(2, screen_name)
                 print(Fore.GREEN + "Two things changed, that works pretty well!")
@@ -263,7 +265,7 @@ def makeover_time(currency, x, y, screen_name):
             else:
                 print(Fore.RED + "You are too poor to change two things.")
         elif choice == "3":
-            if currency >= y:
+            if result[0][0] >= 50:
                 currency_subtract(50, screen_name)
                 distance_add(3, screen_name)
                 print(Fore.GREEN + "Complete makeover done and Wow! You look like a completely different person!")
@@ -275,12 +277,6 @@ def makeover_time(currency, x, y, screen_name):
             return  #Lopetetaan suoritus, jos käyttäjä ei halua muuttaa mitään.
         else:
             print(Fore.LIGHTYELLOW_EX + "Invalid choice. Try again and pick number 1-4.")
-
-# kutsutaan funktio ja testataan se
-currency = 100  #Pelaajan valuutta
-x = 10  #Yhden asian muutoksen hinta
-y = 50  #Täydellisen muodonmuutoksen hinta
-makeover_time(currency, x, y)
 
 def hiding_closet(screen_name):
     print(Fore.BLUE + f'''
