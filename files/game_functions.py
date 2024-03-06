@@ -2,6 +2,15 @@
 import random
 import mysql.connector
 from connection import connect
+from colorama import Fore
+
+def user_currency_distance(screen_name):
+    sql = (f"SELECT currency, alien_distance FROM game WHERE screen_name = '{screen_name}';")
+    cursor = connect.cursor()
+    cursor.execute(sql)
+    currency, distance = cursor.fetchall()
+    print(Fore.YELLOW + f"Currency: {currency} $")
+    print(Fore.LIGHTRED_EX + f"Distance: {distance} steps")
 
 #funktio lentokentältä toiselle lentämiseen
 def select_airport():
