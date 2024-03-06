@@ -15,12 +15,13 @@ def currency_converter(screen_name): # tehtävä valuutan vaihto
 
     answer = int(input(Fore. RESET + "How much is 10 euros in yens? "))
     if answer == 1630: # jos käyttäjän vastaus vastaa oikeaa vastausta
-        print(Fore.GREEN + "That's right! The traveler will be very grateful and give you currencyn\n"
+        print(Fore.GREEN + "That's right! The traveler is very grateful and gives you some currency\n"
                            "for the effort. You got 10 $, hooray!")
-        currency_add(10, screen_name) # lisätään valuuttaan 10 €
+        currency_add(10, screen_name) # lisätään valuuttaan 10
     else:
-        print(Fore.RED + "Oh no, you're not quite right...")
-        print(Fore. RED + "The traveler fooled you. He was a pickpocket who took some currency from you. You lost 20 $")
+        print(Fore.RED + "That's not not quite right...")
+        print(Fore. RED + "Oh no, the traveler fooled you. He was thief who took some currency from your pocket.\n"
+                          "By chance he didn't get your wallet though. You lost 20 $")
         currency_subtract(20, screen_name) # vähennetään valuuttaa -20
 
 def recognized(screen_name): # tehtävä sinut tunnistetaan
@@ -33,14 +34,13 @@ def recognized(screen_name): # tehtävä sinut tunnistetaan
     answer = int(input(Fore.RESET + "You can either 1. try to bribe him or 2. "
                        "Ignore the situation as if nothing had happened. Now Choose (1/2) "))
     if answer == 1: # jos lahjoo
-        currency_subtract(10, screen_name) #vähennetään -10
-        print(Fore.RED + "The bribes was useful and helps you keep a low profile. At the price "
-                         "that your wallet is now 10$ lighter")
+        currency_subtract(10, screen_name)
+        print(Fore.RED + "The bribes was useful and helps you keep a low profile."
+                         "But now your wallet is a little bit lighter. You lose 10 $")
     elif answer == 2:
         distance_substract(1, screen_name)
         print(Fore.RED + "You tried to ignore the situation completely.\nThe employee lets "
-                         "their anti-earth friends know about your location.\nNow aliens are one "
-                         "step closer to you.")
+                         "their anti-earth friends know about your location.\n Aliens are 1 step closer")
     else:
         print(Fore.LIGHTYELLOW_EX + "I believe that was not one of the options I gave you...")
     return
@@ -66,18 +66,18 @@ def fake_chemist(screen_name): # tehtävä huijaa olevasi kemisti
                 print(Fore.GREEN + f"Your answer: '{N}' is correct!\n")
                 print(Fore.GREEN + "Well done! Now they believe you and you can continue your journey.\n"
                                    "Luckily you made it to your next flight, even though it was close call!") # jos vastaa kaikkiin oikein
-            else: # kolmannen epäonnistuminen
+            else: # kolmas epäonnistuminen
                 currency_subtract(10, screen_name)
                 distance_substract(1, screen_name)
                 print(Fore.RED + "Your credibility vanished like ashes in the wind.\n"
                                  "Oh no, the aliens found and captured you!")
-        else: # tokan epäonnistuminen
+        else: # toinen epäonnistuminen
             currency_subtract(10, screen_name)
             distance_substract(1, screen_name)
             print(Fore.RED + "Your credibility has almost entirely vanished. There's no room for errors now!\n"
                              "And I don't want to worry you, but the aliens have taken another\nstep forward you and"
                              "are just around the corner!")
-    else: # ekan epäonnistuminen
+    else: # ensimmäinen epäonnistuminen
         currency_subtract(10, screen_name)
         distance_substract(1, screen_name)
         print(Fore.RED + "Your credibility begins to diminish. Carefully now!\n"
@@ -93,16 +93,16 @@ def run_or_hide(screen_name):
     hide in the nearby trash can.
     ''')
 
-    decision = input(Fore.RESET + "So are you going to run or hide? (run/hide) ") #Pelaaja valkkaa haluaako juosta koneeseen vai piiloutua ja odottaa seuraavaa.
+    decision = input(Fore.RESET + "So are you going to run or hide? (run/hide) ") #Pelaaja valitsee haluaako juosta koneeseen vai piiloutua ja odottaa seuraavaa.
     if decision == "run":
         print(Fore.RED + "Oh no! The aliens spotted you and now know exactly where you are.\n"
               "Good thing is that the aliens didn't catch you and that you made it to your flight.\n"
-              "Unfortunately you will lose 2 distance point\n")
+              "you lose 2 distance point\n")
         distance_substract(2, screen_name)
     elif decision == "hide":
         print(Fore.GREEN + "Hurry up, jump in the trash can now! Try to make yourself comfortable "
                          "and wait for the raid to end.\nAfter that you can catch the next flight. "
-                         "You lose 1 distance point")
+                         "You lose 1 distance ")
         distance_substract(1, screen_name)
 
 #Pelaajan seuraava kone perutaan, pitää valita menettääkö valuuttaa vai välimatkaa
@@ -116,12 +116,12 @@ def flight_cancelled(screen_name):
 
     decision = input("How about it? Do you wait or purchase a new ticket? (wait/new) ")
     if decision == "wait": #Menettää välimatkaa
-        print(Fore.RED + "It's a shame that this happened, hopefully this won't happen again. You lose 1 distance.")
+        print(Fore.RED + "Shame that this happened, but hopefully this won't happen again. You lose 1 distance step.")
         distance_substract(1, screen_name)
     elif decision == "new": #Menettää valuuttaa
         print(Fore.RED + "You bought a new ticket and got on the plane.\n"
-              "Because you decided to choose a new ticket from another airline,\n"
-              "the previous company refuses to refund the old ticket. New tickets cost you 10€. ")
+              "And because you decided to choose a new ticket from another airline,\n"
+              "the previous company refuses to refund the old ticket. You lose 10 $. ")
         currency_subtract(10, screen_name)
 
 #Pitää muuttaa f --> C
@@ -135,7 +135,7 @@ def fahrenheit_to_celsius(screen_name):
     Remember to be careful with the ingredient!...In fact, if I were you, I would check the ingredient right away!
     ''')
 
-    print(Fore.RESET + "Now you notice that you have broke the cold pack, when you took it with you!\n"
+    print(Fore.RESET + "You notice that you have broke the cold pack, when you took it with you!\n"
           "Miraculously you found a new cold pack, but now you have to make sure that the ingredient\n"
           "didn't warm up too much and become unusable.\n")
     print("Ingredient container's thermometer shows the temperature in fahrenheits and\n"
@@ -151,62 +151,65 @@ def fahrenheit_to_celsius(screen_name):
             print(Fore.RED + "That's not it...Try again.") #Pelaaja joutuu vastaamaan uudestaan
 
 
-def guess_the_capital(screen_name):
+def country_capital(screen_name):
     print(Fore.BLUE + '''
-        Suddenly a child runs in front of you crying and asks for help. She tells you that she has lost her family 
-        and can't find them anywhere. You don't have the heart to refuse and you decide to help her.
-        Following question will help you navigate in the airport. 
+        Suddenly a child runs in front of you crying and asks for help. 
+        She tells you that she has lost her family and can't find them anywhere. 
+        You don't have the heart to refuse and you decide to help her.
+        You notice an announcement device near by, but to use the device you must answer following question correctly. 
         ''')
-    def country_capital(): # valitsee satunnaisen maan ja palauttaa kyseisen maan nimen ja pääkaupungin.
+    def guess_capital(): # valitsee satunnaisen maan ja palauttaa kyseisen maan nimen ja pääkaupungin.
         country_list = [
             "Russia", "Canada", "China", "United States", "Brazil", "Australia", "India", "Argentina",
             "Denmark", "Algeria", "Finland", "Greenland", "Sweden", "Vietnam", "Switzerland", "Nepal",
-            "Italy", "Indonesia", "Belgium", "Bolivia", "Iran", "Mongolia", "Peru", "Spain", "Kazakhstan", "Germany",
-            "United Kingdom", "South Africa", "Colombia", "Ethiopia", "Thailand", "Poland", "Japan", "Norway",
-            "Egypt", "Greece", "Pakistan", "Chile", "South Korea", "Turkey", "New Zealand", "Zambia",
-            "Canada", "Afghanistan", "Iceland", "France", "Somalia", "North Korea",
-            "Ukraine", "Botswana", "Madagascar"
+            "Italy", "Indonesia", "Belgium", "Bolivia", "Iran", "Mongolia", "Peru", "Spain", "Kazakhstan",
+            "Germany", "United Kingdom", "South Africa", "Colombia", "Ethiopia", "Thailand", "Poland",
+            "Japan", "Norway", "Egypt", "Greece", "Pakistan", "Chile", "South Korea", "Turkey", "New Zealand",
+            "Zambia", "Canada", "Afghanistan", "Iceland", "France", "Somalia", "North Korea", "Ukraine",
+            "Botswana", "Madagascar", "Cuba"
         ]
         country_name = random.choice(country_list)
         capital = CountryInfo(country_name).capital()
         return country_name, capital
 
-    def check_answer(country, answer):# tarkistetaan vastaus
+    def check_answer(country, answer): # tarkistetaan vastaus
         if answer.lower() == country[1].lower(): #verrataan annettua ja oikeaa vastausta
-            print(Fore.GREEN + "Wow, you did it! The child's family is rather quickly found.\n"
-                               "They are grateful to you and recognize you as a resistance soldier.\n"
-                               "The family wants to help you and they tell you that aliens are lurking\n"
+            print(Fore.GREEN + "Yes, that's right! Child's family is rather quickly found through the announcement.\n"
+                               "They are grateful to you and recognize you as a resistance member.\n"
+                               "The family wants to help you and they warn you that aliens are lurking\n"
                                "at your next destination. Thanks to the tip, you can now take another route\n"
-                               "and avoid the encounter with the aliens. You get +1 distance point.")
+                               "and avoid the encounter with the aliens. You get 1 distance step.")
             distance_add(1, screen_name)
         else:
-            print(Fore.RED + "Wrong, your geography seems to be rusty! And because of that,\n"
-                             "you miss your next flight because it took too long to find the family.\n"
-                             "Aliens advance 1 distance point closer.")
+            print(Fore.RED + "Wrong, your geography seems to be rusty! And because of that \n"
+                             "you can't make the announcement and it takes very long time to find the child's family.\n"
+                             "Because it took so long, you missed your next flight. Aliens are 1 distance step closer.")
             distance_substract(1, screen_name)
 
-    country = country_capital()
+    country = guess_capital()
     answer = input(Fore.RESET + f"What is the capital of {country[0]}? ")
     check_answer(country, answer)
 
 
 def suspicious_employee(screen_name):
     print(Fore.BLUE + f'''
-    while walking to the next departure gate, one airport employee thinks you're an airport cleaner and 
-    they ask you to take out pile of trash. What you should do? Remember that helping may benefit you, 
-    while refusing may cause problems. Or it could be the other way around, who knows... Choose wisely.
+    while walking to the next departure gate, one of the airport employee thinks you're a cleaner and asks
+    you to take out pile of trash. You now have to decide whether to play along or tell her that you're not a cleaner.
+    Remember that helping may benefit you, while refusing may cause problems. Or it could be the other way around, 
+    who knows... Choose wisely.
     ''')
 
-    answer = input(Fore.RESET + "What do you want to do? (Y/N): ").lower()
+    answer = input(Fore.RESET + "So are you going to take the trash out? (Y/N): ").lower()
 
     if answer == "y":
-        print(Fore.GREEN + "You take out the trash and the employee thanks you for your help.\n"
-                           "You lose one distance point but gain x amount of currency.")
+        print(Fore.GREEN + "You take out the trash and the employee thanks you for your help and gives you a tip.\n"
+                           "You lose 1 distance step but gain 10$.")
         currency_add(10, screen_name)
         distance_substract(1, screen_name)
     elif answer == "n":
-        print(Fore.RED + "Employee becomes suspicious of you and wants to talk to you for a very long time\n"
-                         "before letting you continue your journey. You lose 2 distance points")
+        print(Fore.RED + "Employee apologizes for her mistake but becomes suspicious of you and\n "
+                         "wants to talk to you for a very long time, before letting you continue your journey.\n "
+                         "You lose 2 distance steps")
         distance_substract(2, screen_name)
     else:
         print(Fore.LIGHTYELLOW_EX + "Invalid choice. Select y or n.")
@@ -214,20 +217,21 @@ def suspicious_employee(screen_name):
 
 def makeover_time(screen_name):
     print(Fore.BLUE + f'''
-    In the airport you come across makeover experts and they offer you opportunity to change your appearance 
-    for a small amount of currency. Makeover might help you fool aliens so let's see what they have to offer. 
+    In this airport you come across makeover experts and they offer you opportunity to change your appearance 
+    for a some amount of currency. Makeover might help you fool aliens, giving you more distance to them. 
+    So let's take a look see what experts have to offer. 
     ''')
 
     print(Fore.RESET + "Welcome to the makeover studio!")
 
     while True:
         print("\nMake your choice regarding the makeover:")
-        print("1. Change one thing (costs 10 currency)")
-        print("2. Change two things (costs 20 currency)")
-        print("3. Complete makeover (costs 50 currency)")
-        print("4. Don't want to change anything\n")
+        print("1. Change one thing (costs 10 $, may or may not help)")
+        print("2. Change two things (costs 20 $, helps at least somewhat)")
+        print("3. Complete makeover (costs 50 $, definitely helps!)")
+        print("4. I'll settle for how I look now\n")
 
-        choice = input("Your choice (1-4): ")
+        choice = input("Which options sounds best? (1-4): ")
 
         sql = f"SELECT currency FROM game WHERE screen_name = '{screen_name}'"
         cursor = connect.cursor()
@@ -237,14 +241,14 @@ def makeover_time(screen_name):
         if choice == "1":
             if result[0][0] >= 10:
                 currency_subtract(20, screen_name)
-                print(Fore.GREEN + "One thing changed, not sure if that helps...")
+                print(Fore.GREEN + "One thing changed! not sure if that will help you...")
                 input("press enter to check: ")
                 check = random.randint(1, 2) #arvotaan auttaako muutos pelaajaa
                 if check == 1:
-                    print("Change worked this time")
+                    print("Change seems to have worked this time")
                     distance_add(1, screen_name)
                 else:
-                    print("Change didn't help this time")
+                    print("As suspected, the change didn't help")
                 return  #Lopetetaan suoritus, kun yksi muutos on tehty.
             else:
                 print(Fore.RED + "You are too poor to change one thing.")
@@ -268,15 +272,16 @@ def makeover_time(screen_name):
             print(Fore.LIGHTYELLOW_EX + "Thanks for your visit!")
             return  #Lopetetaan suoritus, jos käyttäjä ei halua muuttaa mitään.
         else:
-            print(Fore.LIGHTYELLOW_EX + "Invalid choice. Try again and pick number 1-4.")
+            print(Fore.LIGHTYELLOW_EX + "Not an option. Try again and pick number 1-4.")
+
 
 def hiding_closet(screen_name):
     print(Fore.BLUE + f'''
-    You encounter a fugitive at the airport, who is fleeing from aliens. 
-    He wants to hide in the airport janitor's closet, which is locked with a three-digit code. 
-    You have three attempts to answer correctly, or the door will lock permanently. 
-    If you manage to open the door, the fugitive might reward you for your help! 
-    Get to work! Hurry!
+    You encounter a fugitive at the airport, who is fleeing from security guard. 
+    He wants to hide in the janitor's closet, which is locked with a three-digit code. 
+    You have three attempts to answer correctly, or the door will be permanently locked. 
+    If you manage to open the door, the fugitive might reward you for your help. 
+    Oh and here's a little tip for you, the number can't be bigger than 5. Now get to work!
     ''')
     code = [1, 2, 4]
     player_code = []
@@ -305,17 +310,17 @@ def hiding_closet(screen_name):
         player_code.append(number3)
         attempts += 1
     if attempts == 3 and player_code != code:
-        print(Fore.RED + "NO! now look what you did, You locked the door!")
+        print(Fore.RED + "OH NO! look what you did, the door is now permanently locked and the fugitive got caught!\n "
+                         "No rewards for you!")
     else:
-        print(Fore.GREEN + "WOW! You did it! You managed to open the door and earned 20€!")
+        print(Fore.GREEN + "WOW! You did it! You managed to open the door and fugitive can now hide. He gives you 20$")
         currency_add(20, screen_name)
 
 
 def crazy_dice():
     print(Fore.BLUE + f'''
-    You encounter a quirky street artist at the airport, 
-    and he wants to challenge you to a dice roll for money. The one who gets the higher 
-    total of two dice wins and takes the loser's money. The bet is 10 euros.''')
+    You encounter a quirky street artist at the airport, and he wants to challenge you to a dice roll for money. 
+    The one who gets the higher total of two dice wins and takes the loser's money. The bet is 10$.''')
 
     input(f'''
     The quirky street artist won't let you go before you accept the challenge and the 
@@ -326,24 +331,25 @@ def crazy_dice():
         street_artist_dice1 = random.randint(1, 6)
         street_artist_dice2 = random.randint(1, 6)
         street_artist_total = street_artist_dice1 + street_artist_dice2
-        print(f"The quirky street artist got {street_artist_dice1} and {street_artist_dice2}"
-              f" making the total of {street_artist_total}")
+        print(f"The quirky street artist got {street_artist_dice1} and {street_artist_dice2}\n"
+              "making the total of {street_artist_total}")
         input("Now it's your turn. Press enter to roll! ")
         player_dice1 = random.randint(1, 6)
         player_dice2 = random.randint(1, 6)
         player_dice_total = player_dice1 + player_dice2
         if street_artist_total < player_dice_total:
-            print(Fore.GREEN + f"Congrats! you rolled a {player_dice1} and {player_dice2} making the total of {player_dice_total}! "
-                  f"You won 10€!")
+            print(Fore.GREEN + f"Congrats! you rolled a {player_dice1} and {player_dice2}\n "
+                               "making the total of {player_dice_total}! You won 10$!")
             #currency_add(10)
             break
         if street_artist_total > player_dice_total:
-            print(Fore.RED + f"Oh no! You rolled {player_dice1} and {player_dice2} making the total {player_dice_total}. "
-                  f"You lost your 10€!")
+            print(Fore.RED + f"Oh no! You rolled {player_dice1} and {player_dice2}\n "
+                             "making the total {player_dice_total}. You lost your 10$ !")
             #currency_subtract(10)
             break
         else:
-            print(Fore.YELLOW + f"Oij! You rolled {player_dice1} and {player_dice2} making the total same {player_dice_total}. Let's try again!")
+            print(Fore.YELLOW + f"Oij! You rolled {player_dice1} and {player_dice2}\n "
+                                "making the total same {player_dice_total}. Let's try again!")
 
 
 def resistance_test(screen_name):
@@ -352,6 +358,7 @@ def resistance_test(screen_name):
     and wants to make sure before helping you further. By answering his question correctly, you gain 
     more distance from the aliens. Hurry up! The question is:
     ''')
+
     correct_answer = "Dr Alex Zen"
     answer = input(Fore.RESET + "What is the name of the lead scientist of the resistance? ")
     if answer == correct_answer:
@@ -364,5 +371,5 @@ def resistance_test(screen_name):
         distance_add(1, screen_name)
     else:
         print(Fore.RED + "That's not it! I guess you didn't read the lore properly...\n"
-                         "Well, no help for you this time. Curry on.")
+                         "Well, no help for you this time. Carry on.")
 
