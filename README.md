@@ -1,6 +1,6 @@
 # 2586
 ## 1. Kuvaus pelistä
-Peli perustuu vuoteen 2586, jolloin Alienit ovat valtaamassa ihmiskunnan ja levittävät tappavaa virusta. Pelissä pelaajan täytyy hakea toiselta puolelta maailmaa muinainen ainesosa, jota voidaan käyttää vastalääkkeen valmistamiseen. Pelaaja liikkuu maasta toiseen lentämällä, mutta lentokentillä odottaa aina erilaisia ratkaistavia tehtäviä. Tehtävän suoritus määrittää, miten peli jatkuu. Pelaajalla on tietty määrä valuuttaa sekä välimatkaa perässä kulkeviin Alieneihin. Tarkoitus on päästä pelin alkupisteestä Kuubasta Norjaan ja takaisin niin, että Alienit eivät saa kiinni tai valuutta ei lopu kesken. 
+Peli perustuu vuoteen 2586, jolloin Alienit ovat valtaamassa maailman ja uhkaavat levittävät tappavaa virusta. Pelissä pelaajan täytyy hakea toiselta puolelta maailmaa muinainen ainesosa, jota voidaan käyttää vastalääkkeen valmistamiseen. Pelaaja liikkuu maasta toiseen lentämällä, mutta lentokentillä odottaa aina erilaisia ratkaistavia tehtäviä. Tehtävän suoritus määrittää, miten peli jatkuu. Pelaajalla on tietty määrä valuuttaa sekä välimatkaa perässä kulkeviin Alieneihin. Tarkoitus on päästä pelin alkupisteestä Kuubasta Norjaan ja takaisin niin, että Alienit eivät saa kiinni tai valuutta ei lopu kesken. 
 ## 2. Tarvittavat muutokset tietokannassa
 Peliä varten tarvitaan tietokantaa lentokonepelistä. Tietokanta kuitenkin sisältää turhaa infoa, sekä  sinne täytyy lisätä mm. taulukko välimatkaa ja valuuttaa varten. 
 Tarvittavat muutokset:
