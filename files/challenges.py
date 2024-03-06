@@ -150,52 +150,44 @@ def fahrenheit_to_celsius(screen_name):
         else:
             print(Fore.RED + "That's not it...Try again.") #Pelaaja joutuu vastaamaan uudestaan
 
-def country_capital(screen_name):
-    def check_answer(country, answer, screen_name):
-        # Tarkistetaan vastaus ja annetaan vastauksen mukainen teksti
-        if answer.lower() == country[1]:
-            print(country[1])
-            print(Fore.GREEN + "Wow, you did it! child's family is rather quickly found.\n"
+
+def guess_the_capital(screen_name):
+    print(Fore.BLUE + '''
+        Suddenly a child runs in front of you crying and asks for help. She tells you that she has lost her family 
+        and can't find them anywhere. You don't have the heart to refuse and you decide to help her.
+        Following question will help you navigate in the airport. 
+        ''')
+    def country_capital(): # valitsee satunnaisen maan ja palauttaa kyseisen maan nimen ja pääkaupungin.
+        country_list = [
+            "Russia", "Canada", "China", "United States", "Brazil", "Australia", "India", "Argentina",
+            "Denmark", "Algeria", "Finland", "Greenland", "Sweden", "Vietnam", "Switzerland", "Nepal",
+            "Italy", "Indonesia", "Belgium", "Bolivia", "Iran", "Mongolia", "Peru", "Spain", "Kazakhstan", "Germany",
+            "United Kingdom", "South Africa", "Colombia", "Ethiopia", "Thailand", "Poland", "Japan", "Norway",
+            "Egypt", "Greece", "Pakistan", "Chile", "South Korea", "Turkey", "New Zealand", "Zambia",
+            "Canada", "Afghanistan", "Iceland", "France", "Somalia", "North Korea",
+            "Ukraine", "Botswana", "Madagascar"
+        ]
+        country_name = random.choice(country_list)
+        capital = CountryInfo(country_name).capital()
+        return country_name, capital
+
+    def check_answer(country, answer):# tarkistetaan vastaus
+        if answer.lower() == country[1].lower(): #verrataan annettua ja oikeaa vastausta
+            print(Fore.GREEN + "Wow, you did it! The child's family is rather quickly found.\n"
                                "They are grateful to you and recognize you as a resistance soldier.\n"
                                "The family wants to help you and they tell you that aliens are lurking\n"
                                "at your next destination. Thanks to the tip, you can now take another route\n"
                                "and avoid the encounter with the aliens. You get +1 distance point.")
             distance_add(1, screen_name)
         else:
-            print(country[1])
             print(Fore.RED + "Wrong, your geography seems to be rusty! And because of that,\n"
                              "you miss your next flight because it took too long to find the family.\n"
                              "Aliens advance 1 distance point closer.")
             distance_substract(1, screen_name)
 
-    def guess_the_capital(country_name):
-        # aloittaa itse pelin kysymällä pelaajalta satunnaisen maan pääkaupunkia ja tarkistaa vastauksen.
-        answer = input(Fore.RESET + f"What is the capital of {country_name}? ")
-        check_answer(country_name, answer, screen_name)
-
-    print(Fore.BLUE + f'''
-    Suddenly a child runs in front of you crying and asks for help. She tells you that she has lost her family 
-    and can't find them anywhere. You don't have the heart to refuse and you decide to help her.
-    Following question will help you navigate in the airport. 
-    ''')
-
-#Valitaan satunnaisen maa listalta ja hakee sen pääkaupungin countryinfo-moduulin avulla.
-    country_list = [
-        "Russia", "Canada", "China", "United States", "Brazil", "Australia", "India", "Argentina",
-        "Denmark", "Algeria", "Finland", "Greenland", "Sweden", "Vietnam", "Switzerland", "Nepal",
-        "Italy", "Indonesia", "Belgium", "Bolivia", "Iran", "Mongolia", "Peru", "Spain", "Kazakhstan", "Germany",
-        "United Kingdom", "South Africa", "Colombia", "Ethiopia", "Thailand", "Poland", "Japan", "Norway",
-        "Egypt", "Greece", "Pakistan", "Chile", "South Korea", "Turkey", "New Zealand", "Zambia",
-        "Canada", "Afghanistan", "Iceland", "France", "Somalia", "North Korea",
-        "Ukraine", "Botswana", "Madagascar"
-    ]
-    country_name = random.choice(country_list)
-    capital = CountryInfo(country_name).capital()
-    print(capital)
-    guess_the_capital(country_name)
-    check_answer(country_name, capital, screen_name)
-
-    return country_name, capital
+    country = country_capital()
+    answer = input(Fore.RESET + f"What is the capital of {country[0]}? ")
+    check_answer(country, answer)
 
 
 def suspicious_employee(screen_name):
