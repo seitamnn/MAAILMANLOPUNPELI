@@ -245,13 +245,12 @@ def makeover_time(currency, x, y, screen_name):
                 distance_add(1, screen_name)
                 print(Fore.GREEN + "One thing changed, not sure if that helps...")
                 input("press enter to check: ")
-                onnistuu = 1
-                ei = 2
-                arvonta = random.randint(1, 2)
-                if arvonta == 1:
-                    print("onnistu")
+                check = random.randint(1, 2) #arvotaan auttaako muutos pelaajaa
+                if check == 1:
+                    print("Change worked this time")
+                    distance_add(2, screen_name)
                 else:
-                    print("ei")
+                    print("Change didn't help this time")
                 return  #Lopetetaan suoritus, kun yksi muutos on tehty.
             else:
                 print(Fore.RED + "You are too poor to change one thing.")
