@@ -2,10 +2,10 @@ import connection
 from connection import connect
 import time
 
-def start(player_name): #annetaan inputina saatu pelaajan nimi
+def start(screen_name): #annetaan inputina saatu pelaajan nimi
     mycursor = connect.cursor() # osotetaa tietokantaan
     sql = "INSERT INTO game (id, location, screen_name, currency, alien_distance, in_possession) VALUES (%s, %s, %s, %s, %s,%s)"
-    mycursor.execute(sql, (3, 'MUHA', player_name, 1000, 1000, False))  # MUHA = José Martí International Airport
+    mycursor.execute(sql, (3, 'MUHA', screen_name, 1000, 1000, False))  # MUHA = José Martí International Airport
     mycursor.fetchall() # palauttaa kaikki tulosjoukot, jotka vastaavat ylempään sql kyselyyn
     print("Great! Now let's start...\n")
 
