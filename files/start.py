@@ -20,7 +20,7 @@ def start(screen_name): #annetaan inputina saatu pelaajan nimi
     speed = 0.03 # nopeus tekstille
 
     lore = Fore.RED + '''
-    heiIt's year 2586. Earth faces a grim fate as evil aliens suddenly arrived. 
+    It's year 2586. Earth faces a grim fate as evil aliens suddenly arrived. 
     These terrifying aliens come with the intention of conquering and wiping 
     out humanity and all other living things from the face of the earth. 
     They threaten to unleash a deadly virus designed to wipe out mankind.
