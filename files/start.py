@@ -33,17 +33,17 @@ def start(screen_name): #annetaan inputina saatu pelaajan nimi
     Alex Zen, ingredient is found only in a super laboratory, located in an extremely 
     secretive location near Oslo Airport in Norway.
 
-   You have been chosen for the mission to retrieve this ingredient from Norway 
-   and safely transport it back to the resistance headquarters in Cuba, 
-   where the antidote can be manufactured. In this advanced era, humanity's main 
-   form of transportation between countries is electric powered airplanes, 
-   so to get the ingredient you have to fly from country to country and overcome 
-   various challenges. Your journey won't be easy. The aliens are intelligent they 
-   know about your plan regarding the antibody. They also have garnered supporters 
-   among humanity who are not keen on the resistance's plans and want to prevent 
-   your actions. You must take a circuitous route and deceive the aliens and 
-   their supporters along the way to succeed in your mission and save humanity 
-   from destruction. The fate of the world is in your hands. Good luck!
+    You have been chosen for the mission to retrieve this ingredient from Norway 
+    and safely transport it back to the resistance headquarters in Cuba, 
+    where the antidote can be manufactured. In this advanced era, humanity's main 
+    form of transportation between countries is electric powered airplanes, 
+    so to get the ingredient you have to fly from country to country and overcome 
+    various challenges. Your journey won't be easy. The aliens are intelligent they 
+    know about your plan regarding the antibody. They also have garnered supporters 
+    among humanity who are not keen on the resistance's plans and want to prevent 
+    your actions. You must take a circuitous route and deceive the aliens and 
+    their supporters along the way to succeed in your mission and save humanity 
+    from destruction. The fate of the world is in your hands. Good luck!
     '''
     for letter in lore: # kirjain kerrallaan
         print(letter, end='', flush=True) # end: estää uuden rivin tulostamisen jokaisen kirjaimen jälkeen, flush: pakottaa tulostuksen heti eli näkyy välittömästi ilman puskurointia
