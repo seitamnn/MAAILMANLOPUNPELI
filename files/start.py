@@ -17,26 +17,29 @@ def start(screen_name): #annetaan inputina saatu pelaajan nimi
 
     print("Great! Now let's start...\n")
 
-    speed = 0.05 # nopeus tekstille
+    speed = 0.03 # nopeus tekstille
 
     lore = Fore.RED + '''
     It's year 2586. Earth faces a grim fate as evil aliens suddenly arrived. 
-    These terrifying aliens come to conquer the world and destroy humanity. 
+    These terrifying aliens come with the intention of conquering and wiping 
+    out humanity and all other living things from the face of the earth. 
     They threaten to unleash a deadly virus designed to wipe out mankind.
 
-    You are part of a resistance movement whose goal is to prevent the aliens intentions and save humanity from destruction. 
-    Together with top scientists, you have developed an antidote to the aliens deadly virus in a secret laboratory near 
-    Jose Marti International Airport in Cuba. 
-    However, creating the antidote requires an ancient ingredient. According to the laboratory's lead scientist 
-    Alex Zen, ingredient is found only in a super laboratory, located in an extremely secretive location near 
-    Oslo Airport in Norway.
+    You are part of a resistance movement whose goal is to prevent the aliens 
+    intentions and save humanity from destruction. Together with top scientists, 
+    you have developed an antidote to the aliens deadly virus in a secret laboratory
+    near Jose Marti International Airport in Cuba. However, creating the antidote 
+    requires an ancient ingredient. According to the laboratory's lead scientist 
+    Alex Zen, ingredient is found only in a super laboratory, located in an extremely 
+    secretive location near Oslo Airport in Norway.
 
-    You have been chosen for the mission to retrieve this ingredient from Norway and safely transport it back to 
-    the resistance headquarters in Cuba, where the antidote can be manufactured. 
-    Your journey, however, will not be easy. 
+    You have been chosen for the mission to retrieve this ingredient from Norway 
+    and safely transport it back to the resistance headquarters in Cuba, 
+    where the antidote can be manufactured. Your journey, however, will not be easy. 
     The aliens are intelligent and have learned of your plans. 
-    Moreover, they have garnered supporters among humanity who are not keen on the resistance's plans and want to 
-    thwart your actions. You must take a circuitous route and deceive the aliens and their supporters 
+    Moreover, they have garnered supporters among humanity who are not keen on 
+    the resistance's plans and want to thwart your actions. 
+    You must take a circuitous route and deceive the aliens and their supporters 
     along the way to succeed in your mission and save humanity from destruction. 
     The fate of the world is in your hands. Good luck!
     '''
