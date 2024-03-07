@@ -114,7 +114,7 @@ def flight_cancelled(screen_name):
     for another airline which leaves in two hours.
     ''')
 
-    decision = input("How about it? Do you wait or purchase a new ticket? (wait/new) ")
+    decision = input(Fore.RESET + "How about it? Do you wait or purchase a new ticket? (wait/new) ")
     if decision == "wait": #Menettää välimatkaa
         print(Fore.RED + "Shame that this happened, but hopefully this won't happen again. You lose 1 distance step.")
         distance_substract(1, screen_name)
@@ -193,7 +193,7 @@ def country_capital(screen_name):
 
 def suspicious_employee(screen_name):
     print(Fore.BLUE + f'''
-    while walking to the next departure gate, one of the airport employee thinks you're a cleaner and asks
+    While walking to the next departure gate, one of the airport employee thinks you're a cleaner and asks
     you to take out pile of trash. You now have to decide whether to play along or tell her that you're not a cleaner.
     Remember that helping may benefit you, while refusing may cause problems. Or it could be the other way around, 
     who knows... Choose wisely.
@@ -207,8 +207,8 @@ def suspicious_employee(screen_name):
         currency_add(10, screen_name)
         distance_substract(1, screen_name)
     elif answer == "n":
-        print(Fore.RED + "Employee apologizes for her mistake but becomes suspicious of you and\n "
-                         "wants to talk to you for a very long time, before letting you continue your journey.\n "
+        print(Fore.RED + "Employee apologizes for her mistake but becomes suspicious of you and\n"
+                         "wants to talk to you for a very long time, before letting you continue your journey.\n"
                          "You lose 2 distance steps")
         distance_substract(2, screen_name)
     else:
@@ -338,7 +338,7 @@ def crazy_dice(screen_name):
         player_dice2 = random.randint(1, 6)
         player_dice_total = player_dice1 + player_dice2
         if street_artist_total < player_dice_total:
-            print(Fore.GREEN + f"Congrats! you rolled a {player_dice1} and {player_dice2}\n "
+            print(Fore.GREEN + f"Congrats! you rolled a {player_dice1} and {player_dice2}\n"
                                f"making the total of {player_dice_total}! You won 10$!")
             currency_add(10, screen_name)
             break

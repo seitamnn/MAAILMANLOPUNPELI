@@ -15,7 +15,7 @@ def start(screen_name): #annetaan inputina saatu pelaajan nimi
     mycursor.execute(sql, (generate_player_id(), 'MUHA', screen_name, 1000, 100, False))  # MUHA = José Martí International Airport
     mycursor.fetchall() # palauttaa kaikki tulosjoukot, jotka vastaavat ylempään sql kyselyyn
 
-    print("Great! Now let's start...\n")
+    print("Great! Now let's start...")
 
     speed = 0.03 # nopeus tekstille
 

@@ -10,12 +10,12 @@ def user_currency_distance(screen_name):
     cursor.execute(sql)
     userdata = cursor.fetchall()
     for data in userdata:
-        print(Fore.YELLOW + f"    Currency: {data[0]} $\n    Distance: {data[1]} steps\n")
+        print(Fore.YELLOW + f"    Currency: {data[0]} $\n    Distance: {data[1]} steps")
 
 #funktio lentokentältä toiselle lentämiseen
 def select_airport(screen_name):
     #Yhdistetään tietokantaan
-    sql = (f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country")
+    sql = (f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE country.name != 'Norway'")
     cursor = connect.cursor()
     cursor.execute(sql)
     airports = cursor.fetchall()
@@ -25,7 +25,7 @@ def select_airport(screen_name):
     selected_airports = random.sample(airports, 3)
 
     #pelaajan check-in ja funktio antaa kolme satunnaisesti arvottua lentokenttää ja tulostaa nämä l
-    print(Fore.RESET + "Welcome to check-in!")
+    print(Fore.RESET + "\nWelcome to check-in!")
     print("Choose from the following airports your next destination:\n")
     for i in range(len(selected_airports)):
         print(f"{i + 1}. {selected_airports[i][0]} in {selected_airports[i][1]}")
@@ -73,11 +73,30 @@ def select_airport_norway(screen_name):
     print(f"\nWelcome to {norway_airport}!\n")
     user_currency_distance(screen_name)
 
+def select_airport_norway(screen_name):
+    sql = (f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE country.name = 'Cuba'")
+    cursor = connect.cursor()
+    cursor.execute(sql)
+    cuba = cursor.fetchone()
+    cursor.close()
 
+    print(Fore.RESET + "Welcome to check-in!")
+    print(f"Choose from the following airports your next destination:\n")
+    print(f"1. {cuba[0]} in {cuba[1]}")
+    input("Valitse lentokenttä: ")
+
+    cuba_airport = cuba[0]
+    sql2 = f"UPDATE game SET location = (SELECT ident FROM airport WHERE name = '{cuba_airport}') WHERE screen_name = '{screen_name}';"
+    cursor = connect.cursor()
+    cursor.execute(sql2)
+    location_change = cursor.fetchall()
+    cursor.close()
+    currency_subtract(10, screen_name)
+    print(f"\nWelcome to {cuba_airport}!\n")
+    user_currency_distance(screen_name)
 
 #chosen_airport = select_airport()
 #print("have a safe flight to", chosen_airport + "!")
-
 def currency_add(add_amount, screen_name):
     currency_sql = f"UPDATE game SET currency = currency + '{add_amount}' WHERE screen_name = '{screen_name}'"
     cursor = connect.cursor()
