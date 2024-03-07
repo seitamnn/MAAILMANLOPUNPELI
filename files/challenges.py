@@ -359,13 +359,13 @@ def resistance_test(screen_name):
     more distance from the aliens. Hurry up! The question is:
     ''')
 
-    correct_answer = "Dr Alex Zen"
-    answer = input(Fore.RESET + "What is the name of the lead scientist of the resistance? ")
+    correct_answer = "dr alex zen"
+    answer = input(Fore.RESET + "What is the name of the lead scientist of the resistance? ").lower()
     if answer == correct_answer:
         print(Fore.GREEN + "That is correct! You have proved that you're true resistance member and\n"
                            "your new friend will help you forward. you gain +1 distance")
         distance_add(1, screen_name)
-    elif answer == "Alex Zen":
+    elif answer == "alex zen":
         print(Fore.GREEN + "That is correct! You have proved that you're true resistance member and\n"
                            "your new friend will help you forward. gain +1 distance")
         distance_add(1, screen_name)

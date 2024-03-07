@@ -25,19 +25,19 @@ def select_airport(screen_name):
     selected_airports = random.sample(airports, 3)
 
     #pelaajan check-in ja funktio antaa kolme satunnaisesti arvottua lentokenttää ja tulostaa nämä l
-    print("welcome to check-in!")
-    print("Choose from the following airports your next destination:")
+    print(Fore.RESET + "Welcome to check-in!")
+    print("Choose from the following airports your next destination:\n")
     for i in range(len(selected_airports)):
         print(f"{i + 1}. {selected_airports[i][0]} in {selected_airports[i][1]}")
 
     #pelaaja valitsee arvotuista lentokentistä seuraavan kohteen
     while True:
-        choice = input("select next airport. Enter number between (1-3): ")
+        choice = input("\nSelect next airport. Enter number between (1-3): ")
         if choice.isdigit():
             choice = int(choice)
             if 1 <= choice <= 3:
                 break
-        print("error in selection. enter number between 1-3.")
+        print("Error in selection. enter number between 1-3.")
 
     decided_airport = selected_airports[choice - 1][0]
     sql2 = f"UPDATE game SET location = (SELECT ident FROM airport WHERE name = '{decided_airport}') WHERE screen_name = '{screen_name}';"
