@@ -51,6 +51,30 @@ def select_airport(screen_name):
 
     return decided_airport
 
+def select_airport_norway(screen_name):
+    sql = (f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE country.name = 'Norway'")
+    cursor = connect.cursor()
+    cursor.execute(sql)
+    norway = cursor.fetchone()
+    cursor.close()
+
+    print(Fore.RESET + "Welcome to check-in!")
+    print(f"Choose from the following airports your next destination:\n")
+    print(f"1. {norway[0]} in {norway[1]}")
+    input("Valitse lentokenttä: ")
+
+    norway_airport = norway[0]
+    sql2 = f"UPDATE game SET location = (SELECT ident FROM airport WHERE name = '{norway_airport}') WHERE screen_name = '{screen_name}';"
+    cursor = connect.cursor()
+    cursor.execute(sql2)
+    location_change = cursor.fetchall()
+    cursor.close()
+    currency_subtract(10, screen_name)
+    print(f"\nWelcome to {norway_airport}!\n")
+    user_currency_distance(screen_name)
+
+
+
 #chosen_airport = select_airport()
 #print("have a safe flight to", chosen_airport + "!")
 

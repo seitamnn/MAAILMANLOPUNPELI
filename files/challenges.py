@@ -317,7 +317,7 @@ def hiding_closet(screen_name):
         currency_add(20, screen_name)
 
 
-def crazy_dice():
+def crazy_dice(screen_name):
     print(Fore.BLUE + f'''
     You encounter a quirky street artist at the airport, and he wants to challenge you to a dice roll for money. 
     The one who gets the higher total of two dice wins and takes the loser's money. The bet is 10$.''')
@@ -332,20 +332,20 @@ def crazy_dice():
         street_artist_dice2 = random.randint(1, 6)
         street_artist_total = street_artist_dice1 + street_artist_dice2
         print(f"The quirky street artist got {street_artist_dice1} and {street_artist_dice2}\n"
-              "making the total of {street_artist_total}")
+              f"making the total of {street_artist_total}")
         input("Now it's your turn. Press enter to roll! ")
         player_dice1 = random.randint(1, 6)
         player_dice2 = random.randint(1, 6)
         player_dice_total = player_dice1 + player_dice2
         if street_artist_total < player_dice_total:
             print(Fore.GREEN + f"Congrats! you rolled a {player_dice1} and {player_dice2}\n "
-                               "making the total of {player_dice_total}! You won 10$!")
-            #currency_add(10)
+                               f"making the total of {player_dice_total}! You won 10$!")
+            currency_add(10, screen_name)
             break
         if street_artist_total > player_dice_total:
             print(Fore.RED + f"Oh no! You rolled {player_dice1} and {player_dice2}\n "
                              "making the total {player_dice_total}. You lost your 10$ !")
-            #currency_subtract(10)
+            currency_subtract(10, screen_name)
             break
         else:
             print(Fore.YELLOW + f"Oij! You rolled {player_dice1} and {player_dice2}\n "
