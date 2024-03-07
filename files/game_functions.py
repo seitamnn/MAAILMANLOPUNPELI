@@ -73,7 +73,7 @@ def select_airport_norway(screen_name):
     print(f"\nWelcome to {norway_airport}!\n")
     user_currency_distance(screen_name)
 
-def select_airport_norway(screen_name):
+def select_airport_cuba(screen_name):
     sql = (f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE country.name = 'Cuba'")
     cursor = connect.cursor()
     cursor.execute(sql)

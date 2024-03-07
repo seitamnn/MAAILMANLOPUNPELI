@@ -8,7 +8,7 @@ import random
 from start import start
 from countryinfo import CountryInfo
 from win_or_loose import game_over, you_win
-from game_functions import user_currency_distance, distance_substract, currency_add, currency_subtract, select_airport, select_airport_norway
+from game_functions import user_currency_distance, distance_substract, currency_add, currency_subtract, select_airport, select_airport_norway, select_airport_cuba
 from challenges import crazy_dice, currency_converter, recognized, fake_chemist, run_or_hide, flight_cancelled, fahrenheit_to_celsius, country_capital, suspicious_employee, makeover_time, hiding_closet, resistance_test
 
 
