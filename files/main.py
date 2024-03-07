@@ -24,7 +24,7 @@ while True:
 
     start_choice = input("Would you like to start? (Y/N) \n").lower()
     if start_choice == 'y':
-        print("Welcome to our game!")
+        print(Fore.RESET + "Welcome to our game!")
         cursor = connection.connect
     else:
         print("GAME OVER")
@@ -34,7 +34,7 @@ while True:
     screen_name = str(input("Select a player name: \n"))
 
     start(screen_name) # start-funktio luotu start-tiedostossa
-    print(f"Haista paska {screen_name} tässä nää sun tietos idiootti\n")
+    print(Fore.RESET + f"Haista paska {screen_name} tässä nää sun tietos idiootti\n")
     user_currency_distance(screen_name) # tulostetaan käyttäjälle tieot
     select_airport(screen_name)
     suspicious_employee(screen_name)

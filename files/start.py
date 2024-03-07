@@ -2,6 +2,7 @@ import connection
 from connection import connect
 import time
 import uuid
+from colorama import Fore
 
 
 def start(screen_name): #annetaan inputina saatu pelaajan nimi
@@ -18,7 +19,7 @@ def start(screen_name): #annetaan inputina saatu pelaajan nimi
 
     speed = 0.05 # nopeus tekstille
 
-    lore = '''
+    lore = Fore.RED + '''
     It's year 2586. Earth faces a grim fate as evil aliens suddenly arrived. 
     These terrifying aliens come to conquer the world and destroy humanity. 
     They threaten to unleash a deadly virus designed to wipe out mankind.
