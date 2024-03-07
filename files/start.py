@@ -14,12 +14,9 @@ def start(screen_name): #annetaan inputina saatu pelaajan nimi
     mycursor.execute(sql, (generate_player_id(), 'MUHA', screen_name, 1000, 1000, False))  # MUHA = José Martí International Airport
     mycursor.fetchall() # palauttaa kaikki tulosjoukot, jotka vastaavat ylempään sql kyselyyn
 
-
-
-
     print("Great! Now let's start...\n")
 
-    #speed = 0.05 # nopeus tekstille
+    speed = 0.05 # nopeus tekstille
 
     lore = '''
     It's year 2586. Earth faces a grim fate as evil aliens suddenly arrived. 
@@ -42,7 +39,7 @@ def start(screen_name): #annetaan inputina saatu pelaajan nimi
     along the way to succeed in your mission and save humanity from destruction. 
     The fate of the world is in your hands. Good luck!
     '''
-    #for letter in lore: # kirjain kerrallaan
-    #    print(letter, end='', flush=True) # end: estää uuden rivin tulostamisen jokaisen kirjaimen jälkeen, flush: pakottaa tulostuksen heti eli näkyy välittömästi ilman puskurointia
-    #    time.sleep(speed) # aiheuttaa lyhyen viiveen jokaisen kirjaimen tulostuksen jälkeen
+    for letter in lore: # kirjain kerrallaan
+        print(letter, end='', flush=True) # end: estää uuden rivin tulostamisen jokaisen kirjaimen jälkeen, flush: pakottaa tulostuksen heti eli näkyy välittömästi ilman puskurointia
+        time.sleep(speed) # aiheuttaa lyhyen viiveen jokaisen kirjaimen tulostuksen jälkeen
     print()
