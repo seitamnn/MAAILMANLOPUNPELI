@@ -59,22 +59,22 @@ def currency_add(add_amount, screen_name):
     currency_sql = f"UPDATE game SET currency = currency + '{add_amount}' WHERE screen_name = '{screen_name}'"
     cursor = connect.cursor()
     cursor.execute(currency_sql)
-    reuslt = cursor.fetchall()
+    result = cursor.fetchall()
 
 def currency_subtract(subtract_amount, screen_name):
     currency_sql = f"UPDATE game SET currency = currency - '{subtract_amount}' WHERE screen_name = '{screen_name}'"
     cursor = connect.cursor()
     cursor.execute(currency_sql)
-    reuslt = cursor.fetchall()
+    result = cursor.fetchall()
 
 def distance_add(add_amount, screen_name):
     distance_sql = f"UPDATE game SET alien_distance = alien_distance + {add_amount} WHERE screen_name = '{screen_name}'"
     cursor = connect.cursor()
     cursor.execute(distance_sql)
-    reuslt = cursor.fetchall()
+    result = cursor.fetchall()
 
 def distance_substract(subtract_amount, screen_name):
     distance_sql = f"UPDATE game SET alien_distance = alien_distance - {subtract_amount} WHERE screen_name = '{screen_name}'"
     cursor = connect.cursor()
     cursor.execute(distance_sql)
-    reuslt = cursor.fetchall()
+    result = cursor.fetchall()
