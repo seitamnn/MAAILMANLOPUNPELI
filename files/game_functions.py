@@ -51,7 +51,6 @@ def select_airport(screen_name):
 
     return decided_airport
 
-#Testi
 #chosen_airport = select_airport()
 #print("have a safe flight to", chosen_airport + "!")
 
