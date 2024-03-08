@@ -3,6 +3,7 @@ import random
 import mysql.connector
 from connection import connect
 from colorama import Fore
+from win_or_loose import you_win, game_over
 
 def user_currency_distance(screen_name):
     sql = (f"SELECT currency, alien_distance FROM game WHERE screen_name = '{screen_name}';")
@@ -123,8 +124,8 @@ def distance_substract(subtract_amount, screen_name):
 
 def check_if_name_taken(screen_name):
     cursor = connect.cursor()
-    game_sql = f"SELECT COUNT(*) FROM game WHERE screen_name='{screen_name}'"
-    cursor.execute(game_sql)
+    name_sql = f"SELECT COUNT(*) FROM game WHERE screen_name='{screen_name}'"
+    cursor.execute(name_sql)
     result = cursor.fetchone()[0] # ilman [0] tulostaa '(0,)', eli otetaan tuplen ensimmäinen numero
     print(result)
     if result > 0:
@@ -133,3 +134,18 @@ def check_if_name_taken(screen_name):
     else:
         print('Username selected. Continue.')
         return True
+
+def check_if_game_over(screen_name):
+    cursor = connect.cursor()
+    game_sql = f"select location, currency, alien_distance, in_possession from game where screen_name='{screen_name}';"
+    cursor.execute(game_sql)
+    result = cursor.fetchall()
+    #print(result)
+    if result[0] == 'MUHA' and result[3] == True:
+        you_win()
+    elif result[1] == 0:
+        print("You ran out of money :(")
+        game_over()
+    elif result[2] == 0:
+        print("The aliens got you brooo wtf?!!?")
+        game_over()
