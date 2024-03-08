@@ -127,7 +127,6 @@ def check_if_name_taken(screen_name):
     name_sql = f"SELECT COUNT(*) FROM game WHERE screen_name='{screen_name}'" #lasketaan montako kertaa annettu nimi esiintyy game taulussa
     cursor.execute(name_sql)
     result = cursor.fetchone()[0] # ilman [0] tulostaa '(0,)', eli otetaan tuplen ensimmäinen numero
-    print(result)
     if result > 0: #jos samoja nimiä enemmän ku 0 -> palauttaa False. Mainissa While loopissa palataan takas pelaajan nimen kysymiseen
         print('Username already taken. Try something else.')
         return False
@@ -140,6 +139,7 @@ def check_if_game_over(screen_name):
     game_sql = f"SELECT location, currency, alien_distance, in_possession FROM game WHERE screen_name='{screen_name}';"
     cursor.execute(game_sql)
     result = cursor.fetchall()
+    print(result)
     if result[0] == 'MUHA' and result[3] == 1: # jos location on takas Kuubas ja ainesosa hallussa
         you_win()
     elif result[1] == 0: # jos currency on nollissa
