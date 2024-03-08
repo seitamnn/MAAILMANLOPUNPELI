@@ -31,8 +31,10 @@ while True:
         game_over()
         break
 
-    screen_name = str(input("Select a player name: \n"))
-    check_if_name_taken(screen_name)
+    while True:
+        screen_name = str(input("Select a player name: \n"))
+        if check_if_name_taken(screen_name):
+            break
 
     start(screen_name) # start-funktio luotu start-tiedostossa
     print(Fore.RESET + f"Haista paska {screen_name} tässä nää sun tietos idiootti\n")
