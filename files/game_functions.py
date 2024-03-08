@@ -145,6 +145,8 @@ def check_if_game_over(screen_name):
     elif result[1] == 0:
         print("You ran out of money... :(")
         game_over()
+        break
     elif result[2] == 0:
         print("The aliens got you brooo wtf?!!?")
         game_over()
+        break
