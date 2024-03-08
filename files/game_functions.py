@@ -140,7 +140,6 @@ def check_if_game_over(screen_name):
     game_sql = f"SELECT location, currency, alien_distance, in_possession FROM game WHERE screen_name='{screen_name}';"
     cursor.execute(game_sql)
     result = cursor.fetchall()
-    #print(result)
     if result[0] == 'MUHA' and result[3] == 1:
         you_win()
     elif result[1] == 0:
