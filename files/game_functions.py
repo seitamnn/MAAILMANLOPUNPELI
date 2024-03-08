@@ -120,3 +120,15 @@ def distance_substract(subtract_amount, screen_name):
     cursor = connect.cursor()
     cursor.execute(distance_sql)
     result = cursor.fetchall()
+
+def check_if_name_taken(screen_name):
+    cursor = connect.cursor()
+    game_sql = f"SELECT COUNT(*) FROM game WHERE screen_name='{screen_name}'"
+    cursor.execute(game_sql)
+    result = cursor.fetchone()[0]
+    if result > 0:
+        print('Username already taken. Try something else.')
+        return False
+    else:
+        print('Username selected. Continue.')
+        return True
