@@ -140,11 +140,11 @@ def check_if_game_over(screen_name):
     game_sql = f"SELECT location, currency, alien_distance, in_possession FROM game WHERE screen_name='{screen_name}';"
     cursor.execute(game_sql)
     result = cursor.fetchall()
-    if result[0] == 'MUHA' and result[3] == 1:
+    if result[0] == 'MUHA' and result[3] == 1: # jos location on takas Kuubas ja ainesosa hallussa
         you_win()
-    elif result[1] == 0:
+    elif result[1] == 0: # jos currency on nollissa
         print("You ran out of money... :(")
         game_over()
-    elif result[2] == 0:
+    elif result[2] == 0: # jos etäisyys alieneista nollassa
         print("The aliens got you brooo wtf?!!?")
         game_over()
