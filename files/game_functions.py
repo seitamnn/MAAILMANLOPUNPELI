@@ -125,7 +125,8 @@ def check_if_name_taken(screen_name):
     cursor = connect.cursor()
     game_sql = f"SELECT COUNT(*) FROM game WHERE screen_name='{screen_name}'"
     cursor.execute(game_sql)
-    result = cursor.fetchone()[0]
+    result = cursor.fetchone()[0] # ilman [0] tulostaa '(0,)', eli otetaan tuplen ensimmäinen numero
+    print(result)
     if result > 0:
         print('Username already taken. Try something else.')
         return False
