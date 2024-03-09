@@ -104,6 +104,8 @@ def run_or_hide(screen_name):
                          "and wait for the raid to end.\nAfter that you can catch the next flight. "
                          "You lose 1 distance ")
         distance_substract(1, screen_name)
+    else:
+        print(Fore.LIGHTYELLOW_EX + "I believe that was not one of the options I gave you...")
 
 #Pelaajan seuraava kone perutaan, pitää valita menettääkö valuuttaa vai välimatkaa
 def flight_cancelled(screen_name):
@@ -123,6 +125,8 @@ def flight_cancelled(screen_name):
               "And because you decided to choose a new ticket from another airline,\n"
               "the previous company refuses to refund the old ticket. You lose 10 $. ")
         currency_subtract(10, screen_name)
+    else:
+        print(Fore.LIGHTYELLOW_EX + "I believe that was not one of the options I gave you...")
 
 #Pitää muuttaa f --> C
 def fahrenheit_to_celsius(screen_name):
@@ -212,7 +216,7 @@ def suspicious_employee(screen_name):
                          "You lose 2 distance steps")
         distance_substract(2, screen_name)
     else:
-        print(Fore.LIGHTYELLOW_EX + "Invalid choice. Select y or n.")
+        print(Fore.LIGHTYELLOW_EX + "Invalid choice.")
 
 
 def makeover_time(screen_name):
