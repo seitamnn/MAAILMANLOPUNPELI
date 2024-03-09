@@ -49,6 +49,7 @@ def select_airport(screen_name):
     currency_subtract(10, screen_name)
     print(f"\nWelcome to {decided_airport}!\n")
     user_currency_distance(screen_name)
+    check_if_game_over(screen_name)
 
     return decided_airport
 
@@ -73,6 +74,7 @@ def select_airport_norway(screen_name):
     currency_subtract(10, screen_name)
     print(f"\nWelcome to {norway_airport}!\n")
     user_currency_distance(screen_name)
+    check_if_game_over(screen_name)
 
 def select_airport_cuba(screen_name):
     sql = (f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE country.name = 'Cuba'")
@@ -95,6 +97,7 @@ def select_airport_cuba(screen_name):
     currency_subtract(10, screen_name)
     print(f"\nWelcome to {cuba_airport}!\n")
     user_currency_distance(screen_name)
+    check_if_game_over(screen_name)
 
 #chosen_airport = select_airport()
 #print("have a safe flight to", chosen_airport + "!")
