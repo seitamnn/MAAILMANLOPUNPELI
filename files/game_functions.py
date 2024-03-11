@@ -6,7 +6,7 @@ from colorama import Fore
 from win_or_loose import you_win, game_over
 
 def user_currency_distance(screen_name):
-    sql = (f"SELECT currency, alien_distance FROM game WHERE screen_name = '{screen_name}';")
+    sql = (f"SELECT currency, alien_distance FROM game WHERE screen_name = '{screen_name}'")
     cursor = connect.cursor()
     cursor.execute(sql)
     userdata = cursor.fetchall()
@@ -51,7 +51,7 @@ def select_airport(screen_name):
     user_currency_distance(screen_name)
     check_if_game_over(screen_name)
 
-    return decided_airport
+    #return decided_airport
 
 def select_airport_norway(screen_name):
     sql = (f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE country.name = 'Norway'")
@@ -99,8 +99,6 @@ def select_airport_cuba(screen_name):
     user_currency_distance(screen_name)
     check_if_game_over(screen_name)
 
-#chosen_airport = select_airport()
-#print("have a safe flight to", chosen_airport + "!")
 def currency_add(add_amount, screen_name):
     currency_sql = f"UPDATE game SET currency = currency + '{add_amount}' WHERE screen_name = '{screen_name}'"
     cursor = connect.cursor()
@@ -142,7 +140,7 @@ def check_if_game_over(screen_name):
     game_sql = f"SELECT location, currency, alien_distance, in_possession FROM game WHERE screen_name='{screen_name}';"
     cursor.execute(game_sql)
     result = cursor.fetchall()
-    if result[0][0] == 'MUHA' and result[3] == 1: # jos location on takas Kuubas ja ainesosa hallussa
+    if result[0][0] == 'MUHA': # jos location on takas Kuubas ja ainesosa hallussa
         you_win()
     elif result[0][1] == 0: # jos currency on nollissa
         print("You ran out of money... :(")
@@ -150,5 +148,4 @@ def check_if_game_over(screen_name):
     elif result[0][2] == 0: # jos etäisyys alieneista nollassa
         print("The aliens got you brooo wtf?!!?")
         game_over()
-
 
