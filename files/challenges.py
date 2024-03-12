@@ -5,6 +5,7 @@ from game_functions import distance_add, distance_substract, currency_add, curre
 import random
 from countryinfo import CountryInfo
 from colorama import Fore
+import time
 
 
 
@@ -36,16 +37,19 @@ def recognized(screen_name): # tehtävä sinut tunnistetaan
 
     answer = int(input(Fore.RESET + "You can either 1. try to bribe him or 2. "
                        "Ignore the situation as if nothing had happened. Now Choose (1/2) "))
-    if answer == 1: # jos lahjoo
-        currency_subtract(10, screen_name)
-        print(Fore.RED + "The bribes was useful and helps you keep a low profile."
+    while True:
+        if answer == 1: # jos lahjoo
+            currency_subtract(10, screen_name)
+            print(Fore.RED + "The bribes was useful and helps you keep a low profile."
                          "But now your wallet is a little bit lighter. You lose 10 $")
-    elif answer == 2:
-        distance_substract(1, screen_name)
-        print(Fore.RED + "You tried to ignore the situation completely.\nThe employee lets "
+            break
+        elif answer == 2:
+            distance_substract(1, screen_name)
+            print(Fore.RED + "You tried to ignore the situation completely.\nThe employee lets "
                          "their anti-earth friends know about your location.\n Aliens are 1 step closer")
-    else:
-        print(Fore.LIGHTYELLOW_EX + "I believe that was not one of the options I gave you...")
+            break
+        else:
+            print(Fore.LIGHTYELLOW_EX + "I believe that was not one of the options I gave you...")
     return check_if_game_over(screen_name)
 
 
@@ -62,30 +66,30 @@ def fake_chemist(screen_name): # tehtävä huijaa olevasi kemisti
     Fe = str(input(Fore.RESET + "What is the chemical symbol of iron? ")).lower() # eka testin kysymys
     if Fe == 'fe':
         print(Fore.GREEN + f"Your answer: '{Fe}' is correct!")
-        Au = str(input(Fore.RESET + "What is the chemical symbol of gold? ")).lower() # toka testin kysymys
-        if Au == 'au':
-            print(Fore.GREEN + f"Your answer: '{Au}' is correct!")
-            N = str(input(Fore.RESET + "What is the chemical symbol of nitrogen? ")).lower() # vika testin kysymys
-            if N == 'n':
-                print(Fore.GREEN + f"Your answer: '{N}' is correct!\n")
-                print(Fore.GREEN + "Well done! Now they believe you and you can continue your journey.\n"
-                                   "Luckily you made it to your next flight, even though it was close call!") # jos vastaa kaikkiin oikein
-            else: # kolmas epäonnistuminen
-                currency_subtract(10, screen_name)
-                distance_substract(1, screen_name)
-                print(Fore.RED + "Your credibility vanished like ashes in the wind.\n"
-                                 "Oh no, the aliens found and captured you!")
-        else: # toinen epäonnistuminen
-            currency_subtract(10, screen_name)
-            distance_substract(1, screen_name)
-            print(Fore.RED + "Your credibility has almost entirely vanished. There's no room for errors now!\n"
-                             "And I don't want to worry you, but the aliens have taken another\nstep forward you and"
-                             "are just around the corner!")
-    else: # ensimmäinen epäonnistuminen
+    else:
         currency_subtract(10, screen_name)
         distance_substract(1, screen_name)
         print(Fore.RED + "Your credibility begins to diminish. Carefully now!\n"
                          "By the way, just so you know the aliens are one step closer now!")
+    Au = str(input(Fore.RESET + "What is the chemical symbol of gold? ")).lower() # toka testin kysymys
+    if Au == 'au':
+        print(Fore.GREEN + f"Your answer: '{Au}' is correct!")
+    else:
+        currency_subtract(10, screen_name)
+        distance_substract(1, screen_name)
+        print(Fore.RED + "Your credibility has almost entirely vanished. There's no room for errors now!\n"
+                         "And I don't want to worry you, but the aliens have taken another\nstep forward you and"
+                         "are just around the corner!")
+    N = str(input(Fore.RESET + "What is the chemical symbol of nitrogen? ")).lower() # vika testin kysymys
+    if N == 'n':
+        print(Fore.GREEN + f"Your answer: '{N}' is correct!\n")
+        print(Fore.GREEN + "Well done! Now they believe you and you can continue your journey.\n"
+                           "Luckily you made it to your next flight, even though it was close call!") # jos vastaa kaikkiin oikein
+    else:
+        currency_subtract(10, screen_name)
+        distance_substract(1, screen_name)
+        print(Fore.RED + "Your credibility vanished like ashes in the wind.\n"
+                         "Oh no, the aliens found and captured you!")
     return check_if_game_over(screen_name)
 
 #Alienratsia
@@ -96,24 +100,25 @@ def run_or_hide(screen_name):
     There is very little you can do about in this situation, you can either try to run like a madman or 
     hide in the nearby trash can.
     ''')
-
-    decision = input(Fore.RESET + "So are you going to run or hide? (run/hide) ") #Pelaaja valitsee haluaako juosta koneeseen vai piiloutua ja odottaa seuraavaa.
-    if decision == "run":
-        print(Fore.RED + "Oh no! The aliens spotted you and now know exactly where you are.\n"
-              "Good thing is that the aliens didn't catch you and that you made it to your flight.\n"
-              "you lose 2 distance point\n")
-        distance_substract(2, screen_name)
-    elif decision == "hide":
-        print(Fore.GREEN + "Hurry up, jump in the trash can now! Try to make yourself comfortable "
-                         "and wait for the raid to end.\nAfter that you can catch the next flight. "
-                         "You lose 1 distance ")
-        distance_substract(1, screen_name)
-    else:
-        print(Fore.LIGHTYELLOW_EX + "I believe that was not one of the options I gave you...")
+    while True:
+        decision = input(Fore.RESET + "So are you going to run or hide? (run/hide) ") #Pelaaja valitsee haluaako juosta koneeseen vai piiloutua ja odottaa seuraavaa.
+        if decision == "run":
+            print(Fore.RED + "Oh no! The aliens spotted you and now know exactly where you are.\n"
+                            "Good thing is that the aliens didn't catch you and that you made it to your flight.\n"
+                            "you lose 2 distance point\n")
+            distance_substract(2, screen_name)
+            break
+        elif decision == "hide":
+            print(Fore.GREEN + "Hurry up, jump in the trash can now! Try to make yourself comfortable "
+                               "and wait for the raid to end.\nAfter that you can catch the next flight. "
+                               "You lose 1 distance ")
+            distance_substract(1, screen_name)
+            break
+        else:
+            print(Fore.LIGHTYELLOW_EX + "I believe that was not one of the options I gave you...")
     return check_if_game_over(screen_name)
 
-#Pelaajan seuraava kone perutaan, pitää valita menettääkö valuuttaa vai välimatkaa
-# Miia ylös soffe alas!!!!!!!!!!!!!
+
 def flight_cancelled(screen_name):
     print(Fore.BLUE + f'''
     You notice at the airport that your next flight has been cancelled! 
@@ -122,29 +127,37 @@ def flight_cancelled(screen_name):
     for another airline which leaves in two hours.
     ''')
 
-    decision = input(Fore.RESET + "How about it? Do you wait or purchase a new ticket? (wait/new) ")
-    if decision == "wait": #Menettää välimatkaa
-        print(Fore.RED + "Shame that this happened, but hopefully this won't happen again. You lose 1 distance step.")
-        distance_substract(1, screen_name)
-    elif decision == "new": #Menettää valuuttaa
-        print(Fore.RED + "You bought a new ticket and got on the plane.\n"
-              "And because you decided to choose a new ticket from another airline,\n"
-              "the previous company refuses to refund the old ticket. You lose 10 $. ")
-        currency_subtract(10, screen_name)
-    else:
-        print(Fore.LIGHTYELLOW_EX + "I believe that was not one of the options I gave you...")
+    while True:
+        decision = input(Fore.RESET + "How about it? Do you wait or purchase a new ticket? (wait/new) ")
+        if decision == "wait": #Menettää välimatkaa
+            print(Fore.RED + "Shame that this happened, but hopefully this won't happen again. You lose 1 distance step.")
+            distance_substract(1, screen_name)
+            break
+        elif decision == "new": #Menettää valuuttaa
+            print(Fore.RED + "You bought a new ticket and got on the plane.\n"
+                             "And because you decided to choose a new ticket from another airline,\n"
+                             "the previous company refuses to refund the old ticket. You lose 10 $. ")
+            currency_subtract(10, screen_name)
+            break
+        else:
+            print(Fore.LIGHTYELLOW_EX + "I believe that was not one of the options I gave you...")
     return check_if_game_over(screen_name)
 
 #Pitää muuttaa f --> C
 def fahrenheit_to_celsius(screen_name):
-    print(Fore.BLUE + f'''
+    norway = Fore.BLUE + f'''
     You've finally found the ancient ingredient! But danger is not over yet, and it's not time to celebrate. 
     Next, you still need to transport it back to the laboratory to save humanity from certain doom. 
     Remember that the Scientists in Cuba reminded you when you left that the ancient ingredient must be stored in 
     a cold pack all the time. They told you that under no circumstances should the temperature of the container rise 
     above +4 Celsius, otherwise the ingredient will be ruined. So now it's time to go back to cuba!
     Remember to be careful with the ingredient!...In fact, if I were you, I would check the ingredient right away!
-    ''')
+    '''
+
+    for letter in norway:  # kirjain kerrallaan
+        print(letter, end='', flush=True) # end: estää uuden rivin tulostamisen jokaisen kirjaimen jälkeen, flush: pakottaa tulostuksen heti eli näkyy välittömästi ilman puskurointia
+        time.sleep(0.03) # aiheuttaa lyhyen viiveen jokaisen kirjaimen tulostuksen jälkeen
+    print()
 
     print(Fore.RESET + "You notice that you have broke the cold pack, when you took it with you!\n"
           "Miraculously you found a new cold pack, but now you have to make sure that the ingredient\n"
@@ -157,19 +170,21 @@ def fahrenheit_to_celsius(screen_name):
         celsius = float(input(Fore.RESET + "What is the temperature in Celsius?: "))
         if celsius == 3.0: #Oikea vastaus
             print(Fore.GREEN + "Amazing! The ingredient looks fine and didn't warm up too much.")
-
+            break
         else:
-            print(Fore.RED + "That's not it...Try again.") #Pelaaja joutuu vastaamaan uudestaan
+            print(Fore.RED + "That's not it...Try again. Menetit just välimatkaa pönttö.") #Pelaaja joutuu vastaamaan uudestaan'
+            distance_substract(1, screen_name)
+
     return check_if_game_over(screen_name)
 
 
 def country_capital(screen_name):
     print(Fore.BLUE + '''
-        Suddenly a child runs in front of you crying and asks for help. 
-        She tells you that she has lost her family and can't find them anywhere. 
-        You don't have the heart to refuse and you decide to help her.
-        You notice an announcement device near by, but to use the device you must answer following question correctly. 
-        ''')
+    Suddenly a child runs in front of you crying and asks for help. 
+    She tells you that she has lost her family and can't find them anywhere. 
+    You don't have the heart to refuse and you decide to help her.
+    You notice an announcement device near by, but to use the device you must answer following question correctly. 
+    ''')
     def guess_capital(): # valitsee satunnaisen maan ja palauttaa kyseisen maan nimen ja pääkaupungin.
         country_list = [
             "Russia", "Canada", "China", "United States", "Brazil", "Australia", "India", "Argentina",
@@ -213,20 +228,23 @@ def suspicious_employee(screen_name):
     who knows... Choose wisely.
     ''')
 
-    answer = input(Fore.RESET + "So are you going to take the trash out? (Y/N): ").lower()
+    while True:
+        answer = input(Fore.RESET + "So are you going to take the trash out? (Y/N): ").lower()
 
-    if answer == "y":
-        print(Fore.GREEN + "You take out the trash and the employee thanks you for your help and gives you a tip.\n"
-                           "You lose 1 distance step but gain 10$.")
-        currency_add(10, screen_name)
-        distance_substract(1, screen_name)
-    elif answer == "n":
-        print(Fore.RED + "Employee apologizes for her mistake but becomes suspicious of you and\n"
-                         "wants to talk to you for a very long time, before letting you continue your journey.\n"
-                         "You lose 2 distance steps")
-        distance_substract(2, screen_name)
-    else:
-        print(Fore.LIGHTYELLOW_EX + "Invalid choice.")
+        if answer == "y":
+            print(Fore.GREEN + "You take out the trash and the employee thanks you for your help and gives you a tip.\n"
+                               "You lose 1 distance step but gain 10$.")
+            currency_add(10, screen_name)
+            distance_substract(1, screen_name)
+            break
+        elif answer == "n":
+            print(Fore.RED + "Employee apologizes for her mistake but becomes suspicious of you and\n"
+                             "wants to talk to you for a very long time, before letting you continue your journey.\n"
+                             "You lose 2 distance steps")
+            distance_substract(2, screen_name)
+            break
+        else:
+            print(Fore.LIGHTYELLOW_EX + "Invalid choice.")
     return check_if_game_over(screen_name)
 
 
@@ -360,13 +378,13 @@ def crazy_dice(screen_name):
             currency_add(10, screen_name)
             break
         if street_artist_total > player_dice_total:
-            print(Fore.RED + f"Oh no! You rolled {player_dice1} and {player_dice2}\n "
-                             "making the total {player_dice_total}. You lost your 10$ !")
+            print(Fore.RED + f"Oh no! You rolled {player_dice1} and {player_dice2}\n"
+                             f"making the total {player_dice_total}. You lost your 10$ !")
             currency_subtract(10, screen_name)
             break
         else:
             print(Fore.YELLOW + f"Oij! You rolled {player_dice1} and {player_dice2}\n "
-                                "making the total same {player_dice_total}. Let's try again!")
+                                f"making the total same {player_dice_total}. Let's try again!")
     return check_if_game_over(screen_name)
 
 

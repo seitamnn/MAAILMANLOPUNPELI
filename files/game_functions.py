@@ -51,7 +51,7 @@ def select_airport(screen_name):
         location_change = cursor.fetchall()
         cursor.close()
         currency_subtract(10, screen_name)
-        print(f"\nWelcome to {decided_airport}!\n")
+        print(Fore.LIGHTMAGENTA_EX + f"\nWelcome to {decided_airport}!\n")
         user_currency_distance(screen_name)
         return check_if_game_over(screen_name)
     #return decided_airport
@@ -75,7 +75,7 @@ def select_airport_norway(screen_name):
     location_change = cursor.fetchall()
     cursor.close()
     currency_subtract(10, screen_name)
-    print(f"\nWelcome to {norway_airport}!\n")
+    print(Fore.LIGHTMAGENTA_EX + f"\nWelcome to {norway_airport}!\n")
     user_currency_distance(screen_name)
     return check_if_game_over(screen_name)
 
@@ -98,7 +98,7 @@ def select_airport_cuba(screen_name):
     location_change = cursor.fetchall()
     cursor.close()
     currency_subtract(10, screen_name)
-    print(f"\nWelcome to {cuba_airport}!\n")
+    print(Fore.LIGHTMAGENTA_EX + f"\nWelcome to {cuba_airport}!\n")
     user_currency_distance(screen_name)
     return check_if_game_over(screen_name)
 
