@@ -12,7 +12,7 @@ def start(screen_name): #annetaan inputina saatu pelaajan nimi
 
     mycursor = connect.cursor() # osotetaa tietokantaan
     sql = f"INSERT INTO game (id, location, screen_name, currency, alien_distance, in_possession) VALUES (%s, %s, %s, %s, %s,%s)" #noihin laitetaa arvot jotka annetaa seuraavalla rivillä
-    mycursor.execute(sql, (generate_player_id(), 'MUHA', screen_name, 10, 5, False))  # MUHA = José Martí International Airport
+    mycursor.execute(sql, (generate_player_id(), 'MUHA', screen_name, 120, 5, False))  # MUHA = José Martí International Airport
     mycursor.fetchall() # palauttaa kaikki tulosjoukot, jotka vastaavat ylempään sql kyselyyn
 
     print("Great! Now let's start...")

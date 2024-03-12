@@ -5,7 +5,7 @@ from connection import connect
 from colorama import Fore
 from win_or_loose import you_win, game_over
 
-game_on = True
+#game_on = True
 
 def user_currency_distance(screen_name):
         sql = (f"SELECT currency, alien_distance FROM game WHERE screen_name = '{screen_name}'")
@@ -131,7 +131,7 @@ def check_if_name_taken(screen_name):
     name_sql = f"SELECT COUNT(*) FROM game WHERE screen_name='{screen_name}'" #lasketaan montako kertaa annettu nimi esiintyy game taulussa
     cursor.execute(name_sql)
     result = cursor.fetchone()[0] # ilman [0] tulostaa '(0,)', eli otetaan tuplen ensimmäinen numero
-    if result > 0: #jos samoja nimiä enemmän ku 0 -> palauttaa False. Mainissa While loopissa palataan takas pelaajan nimen kysymiseen
+    if result > 0: # jos samoja nimiä enemmän ku 0 -> palauttaa False. Mainissa While loopissa palataan takas pelaajan nimen kysymiseen
         print('Username already taken. Try something else.')
         return False
     else: # kaikki ok ei oo samoja nimiä
@@ -139,7 +139,7 @@ def check_if_name_taken(screen_name):
         return True
 
 def check_if_game_over(screen_name):
-    global game_on
+    #global game_on
     cursor = connect.cursor()
     game_sql = f"SELECT location, currency, alien_distance, in_possession FROM game WHERE screen_name='{screen_name}';"
     cursor.execute(game_sql)

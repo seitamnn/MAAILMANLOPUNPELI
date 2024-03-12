@@ -11,9 +11,8 @@ from win_or_loose import game_over, you_win
 from game_functions import user_currency_distance, distance_substract, currency_add, currency_subtract, select_airport, select_airport_norway, select_airport_cuba, check_if_name_taken, check_if_game_over
 from challenges import crazy_dice, currency_converter, recognized, fake_chemist, run_or_hide, flight_cancelled, fahrenheit_to_celsius, country_capital, suspicious_employee, makeover_time, hiding_closet, resistance_test
 
-game_on = True
 
-while game_on:
+while True:
     print(Fore.RED + '''
     ██████╗     ███████╗     █████╗      ██████╗ 
     ╚════██╗    ██╔════╝    ██╔══██╗    ██╔════╝ 
@@ -40,51 +39,107 @@ while game_on:
     start(screen_name) # start-funktio luotu start-tiedostossa
     print(Fore.RESET + f"Haista paska {screen_name} tässä nää sun tietos idiootti\n")
     user_currency_distance(screen_name)
-    print(game_on)
-    juu = select_airport(screen_name)
-    game_on = juu
-    print(game_on)
-    suspicious_employee(screen_name)
+
+    # 1. maa ja tehtävä
+    boolean_game_on = select_airport(screen_name)
+    if boolean_game_on == False:
+        break
+    boolean_game_on = suspicious_employee(screen_name)
+    if boolean_game_on == False:
+        break
+    print(boolean_game_on)
     input(Fore.RESET + f"\nSuoritit tehtävän. Nyt voit jatkaa matkaa seuraavalle kentälle.")
-    print(game_on)
-    select_airport(screen_name)
-    juu = check_if_game_over(screen_name)
-    game_on = juu
-    print(game_on)
-    select_airport(screen_name)
-    print(game_on)
-    select_airport(screen_name)
-    juu = check_if_game_over(screen_name)
-    game_on = juu
-    print(game_on)
-    crazy_dice(screen_name)
+
+    # 2. maa ja tehtävä
+    boolean_game_on = select_airport(screen_name)
+    if boolean_game_on == False:
+        break
+    boolean_game_on = crazy_dice(screen_name)
+    if boolean_game_on == False:
+        break
     input(Fore.RESET + f"\nSuoritit tehtävän. Nyt voit jatkaa matkaa seuraavalle kentälle.")
-    select_airport(screen_name)
-    currency_converter(screen_name)
+
+    # 3. maa ja tehtävä
+    boolean_game_on = select_airport(screen_name)
+    if boolean_game_on == False:
+        break
+    boolean_game_on = currency_converter(screen_name)
+    if boolean_game_on == False:
+        break
     input(Fore.RESET + f"\nSuoritit tehtävän. Nyt voit jatkaa matkaa seuraavalle kentälle.")
-    select_airport(screen_name)
-    country_capital(screen_name)
+
+    # 4. maa ja tehtävä
+    boolean_game_on = select_airport(screen_name)
+    if boolean_game_on == False:
+        break
+    boolean_game_on = country_capital(screen_name)
+    if boolean_game_on == False:
+        break
     input(Fore.RESET + f"\nSuoritit tehtävän. Nyt voit jatkaa matkaa seuraavalle kentälle.")
-    select_airport(screen_name)
-    hiding_closet(screen_name)
+
+    # 5. maa ja tehtävä
+    boolean_game_on = select_airport(screen_name)
+    if boolean_game_on == False:
+        break
+    boolean_game_on = hiding_closet(screen_name)
+    if boolean_game_on == False:
+        break
     input(Fore.RESET + f"\nSuoritit tehtävän. Nyt voit jatkaa matkaa seuraavalle kentälle.")
-    select_airport(screen_name)
-    flight_cancelled(screen_name)
+
+    # 6. maa ja tehtävä
+    boolean_game_on = select_airport(screen_name)
+    if boolean_game_on == False:
+        break
+    boolean_game_on = flight_cancelled(screen_name)
+    if boolean_game_on == False:
+        break
     input(Fore.RESET + f"\nSuoritit tehtävän. Nyt voit jatkaa matkaa seuraavalle kentälle.")
-    select_airport_norway(screen_name)
-    fahrenheit_to_celsius(screen_name)
+
+    # NORJA 7. maa ja tehtävä
+    boolean_game_on = select_airport_norway(screen_name)
+    if boolean_game_on == False:
+        break
+    boolean_game_on = fahrenheit_to_celsius(screen_name)
+    if boolean_game_on == False:
+        break
     input(Fore.RESET + f"\nSuoritit tehtävän. Nyt voit jatkaa matkaa seuraavalle kentälle.")
-    select_airport(screen_name)
-    run_or_hide(screen_name)
+
+    # 8. maa ja tehtävä
+    boolean_game_on = select_airport(screen_name)
+    if boolean_game_on == False:
+        break
+    boolean_game_on = run_or_hide(screen_name)
+    if boolean_game_on == False:
+        break
     input(Fore.RESET + f"\nSuoritit tehtävän. Nyt voit jatkaa matkaa seuraavalle kentälle.")
-    select_airport(screen_name)
-    makeover_time(screen_name)
+
+    # 9. maa ja tehtävä
+    boolean_game_on = select_airport(screen_name)
+    if boolean_game_on == False:
+        break
+    boolean_game_on = makeover_time(screen_name)
+    if boolean_game_on == False:
+        break
     input(Fore.RESET + f"\nSuoritit tehtävän. Nyt voit jatkaa matkaa seuraavalle kentälle.")
-    select_airport(screen_name)
-    fake_chemist(screen_name)
+
+    # 10. maa ja tehtävä
+    boolean_game_on = select_airport(screen_name)
+    if boolean_game_on == False:
+        break
+    boolean_game_on = fake_chemist(screen_name)
+    if boolean_game_on == False:
+        break
     input(Fore.RESET + f"\nSuoritit tehtävän. Nyt voit jatkaa matkaa seuraavalle kentälle.")
-    select_airport(screen_name)
-    resistance_test(screen_name)
+
+    # 11. maa ja tehtävä
+    boolean_game_on = select_airport(screen_name)
+    if boolean_game_on == False:
+        break
+    boolean_game_on = resistance_test(screen_name)
+    if boolean_game_on == False:
+        break
     input(Fore.RESET + f"\nSuoritit tehtävän. Nyt voit jatkaa matkaa seuraavalle kentälle.")
+
+    # 12. maa, takaisin Kuubaan
     select_airport_cuba(screen_name)
     break
