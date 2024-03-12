@@ -20,10 +20,14 @@ def start(screen_name): #annetaan inputina saatu pelaajan nimi
 #    speed = 0.03 # nopeus tekstille
 
     lore = Fore.RED + '''
-    It's year 2586. Earth faces a grim fate as evil aliens suddenly arrived. 
-    These terrifying aliens come with the intention of conquering and wiping 
-    out humanity and all other living things from the face of the earth. 
-    They threaten to unleash a deadly virus designed to wipe out mankind.
+    It's the year 2586, and humanity has developed its technology to the highest
+    level, overcoming a long battle against climate change. Life thrives in harmony
+    as all countries have banned and ultimately forgotten environmentally harmful 
+    energy sources, replaced by eco-friendly alternatives championed by top advocates. 
+    However, Earth now faces an even darker fate as evil aliens suddenly arrive. 
+    These terrifying aliens come with the intention of conquering the world and 
+    annihilating humanity. They threaten to unleash a deadly virus designed to wipe
+    out mankind.
 
     You are part of a resistance movement whose goal is to prevent the aliens 
     intentions and save humanity from destruction. Together with top scientists, 
@@ -35,15 +39,13 @@ def start(screen_name): #annetaan inputina saatu pelaajan nimi
 
     You have been chosen for the mission to retrieve this ingredient from Norway 
     and safely transport it back to the resistance headquarters in Cuba, 
-    where the antidote can be manufactured. In this advanced era, humanity's main 
-    form of transportation between countries is electric powered airplanes, 
-    so to get the ingredient you have to fly from country to country and overcome 
-    various challenges. Your journey won't be easy. The aliens are intelligent they 
-    know about your plan regarding the antibody. They also have garnered supporters 
-    among humanity who are not keen on the resistance's plans and want to prevent 
-    your actions. You must take a circuitous route and deceive the aliens and 
-    their supporters along the way to succeed in your mission and save humanity 
-    from destruction. The fate of the world is in your hands. Good luck!
+    where the antidote can be manufactured. Your journey won't be easy. 
+    The aliens are intelligent they know about your plan regarding the antibody. 
+    They also have garnered supporters among humanity who are not keen on the 
+    resistance's plans and want to prevent your actions. You must take a circuitous 
+    route, overcome various challenges and deceive the aliens and their supporters 
+    along the way to succeed in your mission and save humanity from destruction. 
+    The fate of the world is in your hands. Good luck!
     '''
 #    for letter in lore: # kirjain kerrallaan
 #        print(letter, end='', flush=True) # end: estää uuden rivin tulostamisen jokaisen kirjaimen jälkeen, flush: pakottaa tulostuksen heti eli näkyy välittömästi ilman puskurointia

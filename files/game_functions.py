@@ -64,9 +64,9 @@ def select_airport_norway(screen_name):
     cursor.close()
 
     print(Fore.RESET + "Welcome to check-in!")
-    print(f"Choose from the following airports your next destination:\n")
+    print(f"Oh look! There is a direct flight to Norway from here. The flight would also seem to be safe to do now\n")
     print(f"1. {norway[0]} in {norway[1]}")
-    input("Valitse lentokenttä: ")
+    input("Enter 1 to continue: ")
 
     norway_airport = norway[0]
     sql2 = f"UPDATE game SET location = (SELECT ident FROM airport WHERE name = '{norway_airport}') WHERE screen_name = '{screen_name}';"
@@ -87,9 +87,9 @@ def select_airport_cuba(screen_name):
     cursor.close()
 
     print(Fore.RESET + "Welcome to check-in!")
-    print(f"Choose from the following airports your next destination:\n")
+    print(f"Finally! There is a direct and safe flight to cuba from here! It's time for your last flight\n")
     print(f"1. {cuba[0]} in {cuba[1]}")
-    input("Valitse lentokenttä: ")
+    input("Enter 1 to continue: ")
 
     cuba_airport = cuba[0]
     sql2 = f"UPDATE game SET location = (SELECT ident FROM airport WHERE name = '{cuba_airport}') WHERE screen_name = '{screen_name}';"
@@ -146,14 +146,33 @@ def check_if_game_over(screen_name):
     result = cursor.fetchall()
     if result[0][0] == 'MUHA': # jos location on takas Kuubas ja ainesosa hallussa
         you_win()
-        print("lopputeksti tähän")
+        print(f"As you step into the resistance laboratory in Cuba, carrying the ancient ingredient\n "
+              f"that holds the key to humanity's survival, a wave of relief washes over you.\n "
+              f"The journey has been long and exhausting, and dangerous situations were not avoided,\n "
+              f"but you overcame all adversity.\n "
+              f"The antidote can now be made, thanks to your bravery and determination.\n "
+              f"As the scientists begin their work, you take a moment to reflect on the magnitude of what\n "
+              f"you've accomplished. Against the backdrop of an alien invasion and the looming threat of\n "
+              f"annihilation, you have stood firm, a beacon of hope in humanity's darkest hour.\n "
+              f"Word of your success spreads quickly, igniting a spark of hope in the hearts of people\n "
+              f"around the world. With the understanding that they're now closer to winning,\n "
+              f"the resistance becomes even stronger and more determined.\n "
+              f"But the fight is far from over. The aliens still pose a formidable threat, and the struggle\n "
+              f"for survival continues. Yet, as long as there are those willing to stand up and fight,\n "
+              f"humanity will never surrender.\n"
+              f"You may have won this battle, but the war rages on. And as long as there are heroes like you,\n "
+              f"humanity will endure, resilient and unyielding in the face of any challenge that may come its way.")
         return False
     elif result[0][1] == 0: # jos currency on nollissa
-        print("You ran out of money... :(")
+        print(f"You ran out of currency! Now you are stuck at the current airport and can't move forward.\n"
+              f"because you got stuck, no antidote could be made on time and the aliens were able to\n "
+              f"spread their virus and wipe out all living things from the face of the earth.")
         game_over()
         return False
     elif result[0][2] == 0: # jos etäisyys alieneista nollassa
-        print("The aliens got you brooo wtf?!!?")
+        print(f"The aliens caught you! And you are now their prisoner. Because you got caught,\n "
+              f"no antidote could be made on time and the aliens were able to spread their virus\n "
+              f"and wipe out all living things from the face of the earth.")
         game_over()
         return False
     else:
