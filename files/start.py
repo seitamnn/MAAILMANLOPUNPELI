@@ -11,8 +11,8 @@ def start(screen_name): #annetaan inputina saatu pelaajan nimi
         return str(uuid.uuid4())
 
     mycursor = connect.cursor() # osotetaa tietokantaan
-    sql = "INSERT INTO game (id, location, screen_name, currency, alien_distance, in_possession) VALUES (%s, %s, %s, %s, %s,%s)" #noihin laitetaa arvot jotka annetaa seuraavalla rivillä
-    mycursor.execute(sql, (generate_player_id(), 'MUHA', screen_name, 1000, 100, False))  # MUHA = José Martí International Airport
+    sql = f"INSERT INTO game (id, location, screen_name, currency, alien_distance, in_possession) VALUES (%s, %s, %s, %s, %s,%s)" #noihin laitetaa arvot jotka annetaa seuraavalla rivillä
+    mycursor.execute(sql, (generate_player_id(), 'MUHA', screen_name, 120, 5, False))  # MUHA = José Martí International Airport
     mycursor.fetchall() # palauttaa kaikki tulosjoukot, jotka vastaavat ylempään sql kyselyyn
 
     print("Great! Now let's start...")
