@@ -11,8 +11,9 @@ from win_or_loose import game_over, you_win
 from game_functions import user_currency_distance, distance_substract, currency_add, currency_subtract, select_airport, select_airport_norway, select_airport_cuba, check_if_name_taken, check_if_game_over
 from challenges import crazy_dice, currency_converter, recognized, fake_chemist, run_or_hide, flight_cancelled, fahrenheit_to_celsius, country_capital, suspicious_employee, makeover_time, hiding_closet, resistance_test
 
+game_on = True
 
-while True:
+while game_on:
     print(Fore.RED + '''
     ██████╗     ███████╗     █████╗      ██████╗ 
     ╚════██╗    ██╔════╝    ██╔══██╗    ██╔════╝ 
@@ -39,10 +40,23 @@ while True:
     start(screen_name) # start-funktio luotu start-tiedostossa
     print(Fore.RESET + f"Haista paska {screen_name} tässä nää sun tietos idiootti\n")
     user_currency_distance(screen_name)
-    select_airport(screen_name)
+    print(game_on)
+    juu = select_airport(screen_name)
+    game_on = juu
+    print(game_on)
     suspicious_employee(screen_name)
     input(Fore.RESET + f"\nSuoritit tehtävän. Nyt voit jatkaa matkaa seuraavalle kentälle.")
+    print(game_on)
     select_airport(screen_name)
+    juu = check_if_game_over(screen_name)
+    game_on = juu
+    print(game_on)
+    select_airport(screen_name)
+    print(game_on)
+    select_airport(screen_name)
+    juu = check_if_game_over(screen_name)
+    game_on = juu
+    print(game_on)
     crazy_dice(screen_name)
     input(Fore.RESET + f"\nSuoritit tehtävän. Nyt voit jatkaa matkaa seuraavalle kentälle.")
     select_airport(screen_name)

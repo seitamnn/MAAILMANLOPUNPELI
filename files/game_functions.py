@@ -5,56 +5,59 @@ from connection import connect
 from colorama import Fore
 from win_or_loose import you_win, game_over
 
+game_on = True
+
 def user_currency_distance(screen_name):
-    sql = (f"SELECT currency, alien_distance FROM game WHERE screen_name = '{screen_name}'")
-    cursor = connect.cursor()
-    cursor.execute(sql)
-    userdata = cursor.fetchall()
-    for data in userdata:
-        print(Fore.YELLOW + f"    Currency: {data[0]} $\n    Distance: {data[1]} steps")
+        sql = (f"SELECT currency, alien_distance FROM game WHERE screen_name = '{screen_name}'")
+        cursor = connect.cursor()
+        cursor.execute(sql)
+        userdata = cursor.fetchall()
+        for data in userdata:
+            print(Fore.YELLOW + f"    Currency: {data[0]} $\n    Distance: {data[1]} steps")
 
 #funktio lentokentältä toiselle lentämiseen
 def select_airport(screen_name):
-    #Yhdistetään tietokantaan
-    sql = (f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE country.name != 'Norway'")
-    cursor = connect.cursor()
-    cursor.execute(sql)
-    airports = cursor.fetchall()
-    cursor.close()
+    while True:
+
+        #Yhdistetään tietokantaan
+        sql = (f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE country.name != 'Norway'")
+        cursor = connect.cursor()
+        cursor.execute(sql)
+        airports = cursor.fetchall()
+        cursor.close()
 
     # Valitaan satunnaisesti kolme lentokenttää
-    selected_airports = random.sample(airports, 3)
+        selected_airports = random.sample(airports, 3)
 
     #pelaajan check-in ja funktio antaa kolme satunnaisesti arvottua lentokenttää ja tulostaa nämä l
-    print(Fore.RESET + "\nWelcome to check-in!")
-    print("Choose from the following airports your next destination:\n")
-    for i in range(len(selected_airports)):
-        print(f"{i + 1}. {selected_airports[i][0]} in {selected_airports[i][1]}")
+        print(Fore.RESET + "\nWelcome to check-in!")
+        print("Choose from the following airports your next destination:\n")
+        for i in range(len(selected_airports)):
+            print(f"{i + 1}. {selected_airports[i][0]} in {selected_airports[i][1]}")
 
-    #pelaaja valitsee arvotuista lentokentistä seuraavan kohteen
-    while True:
-        choice = input("\nSelect next airport. Enter number between (1-3): ")
-        if choice.isdigit():
-            choice = int(choice)
-            if 1 <= choice <= 3:
-                break
-        print("Error in selection. enter number between 1-3.")
+        #pelaaja valitsee arvotuista lentokentistä seuraavan kohteen
+        while True:
+            choice = input("\nSelect next airport. Enter number between (1-3): ")
+            if choice.isdigit():
+                choice = int(choice)
+                if 1 <= choice <= 3:
+                    break
+            print("Error in selection. enter number between 1-3.")
 
-    decided_airport = selected_airports[choice - 1][0]
-    sql2 = f"UPDATE game SET location = (SELECT ident FROM airport WHERE name = '{decided_airport}') WHERE screen_name = '{screen_name}';"
-    cursor = connect.cursor()
-    cursor.execute(sql2)
-    location_change = cursor.fetchall()
-    cursor.close()
-    currency_subtract(10, screen_name)
-    print(f"\nWelcome to {decided_airport}!\n")
-    user_currency_distance(screen_name)
-    check_if_game_over(screen_name)
-
+        decided_airport = selected_airports[choice - 1][0]
+        sql2 = f"UPDATE game SET location = (SELECT ident FROM airport WHERE name = '{decided_airport}') WHERE screen_name = '{screen_name}';"
+        cursor = connect.cursor()
+        cursor.execute(sql2)
+        location_change = cursor.fetchall()
+        cursor.close()
+        currency_subtract(10, screen_name)
+        print(f"\nWelcome to {decided_airport}!\n")
+        user_currency_distance(screen_name)
+        return check_if_game_over(screen_name)
     #return decided_airport
 
 def select_airport_norway(screen_name):
-    sql = (f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE country.name = 'Norway'")
+    sql = f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE country.name = 'Norway'"
     cursor = connect.cursor()
     cursor.execute(sql)
     norway = cursor.fetchone()
@@ -74,10 +77,10 @@ def select_airport_norway(screen_name):
     currency_subtract(10, screen_name)
     print(f"\nWelcome to {norway_airport}!\n")
     user_currency_distance(screen_name)
-    check_if_game_over(screen_name)
+    #check_if_game_over(screen_name)
 
 def select_airport_cuba(screen_name):
-    sql = (f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE country.name = 'Cuba'")
+    sql = f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE country.name = 'Cuba'"
     cursor = connect.cursor()
     cursor.execute(sql)
     cuba = cursor.fetchone()
@@ -136,16 +139,22 @@ def check_if_name_taken(screen_name):
         return True
 
 def check_if_game_over(screen_name):
+    global game_on
     cursor = connect.cursor()
     game_sql = f"SELECT location, currency, alien_distance, in_possession FROM game WHERE screen_name='{screen_name}';"
     cursor.execute(game_sql)
     result = cursor.fetchall()
     if result[0][0] == 'MUHA': # jos location on takas Kuubas ja ainesosa hallussa
         you_win()
+        print("lopputeksti tähän")
+        return False
     elif result[0][1] == 0: # jos currency on nollissa
         print("You ran out of money... :(")
         game_over()
+        return False
     elif result[0][2] == 0: # jos etäisyys alieneista nollassa
         print("The aliens got you brooo wtf?!!?")
         game_over()
-
+        return False
+    else:
+        return True

@@ -7,6 +7,7 @@ from countryinfo import CountryInfo
 from colorama import Fore
 
 
+
 def currency_converter(screen_name): # tehtävä valuutan vaihto
     print(Fore.BLUE + f'''
     You are in your own thoughts when accidentally bump into strange looking world traveler at the airport. 
@@ -113,6 +114,7 @@ def run_or_hide(screen_name):
     check_if_game_over(screen_name)
 
 #Pelaajan seuraava kone perutaan, pitää valita menettääkö valuuttaa vai välimatkaa
+# Miia ylös soffe alas!!!!!!!!!!!!!
 def flight_cancelled(screen_name):
     print(Fore.BLUE + f'''
     You notice at the airport that your next flight has been cancelled! 
