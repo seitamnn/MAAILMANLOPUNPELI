@@ -1,13 +1,10 @@
-# Tehtävät lolleroiset
 import mysql.connector
 from connection import connect
-from game_functions import distance_add, distance_substract, currency_add, currency_subtract, check_if_game_over
+from game_functions import distance_add, distance_substract, currency_add, currency_subtract, check_if_game_over, user_currency_distance
 import random
 from countryinfo import CountryInfo
 from colorama import Fore
 import time
-
-
 
 def currency_converter(screen_name): # tehtävä valuutan vaihto
     print(Fore.BLUE + f'''
@@ -27,6 +24,7 @@ def currency_converter(screen_name): # tehtävä valuutan vaihto
                           "By chance he didn't get your wallet though. You lost 20 $")
         currency_subtract(20, screen_name) # vähennetään valuuttaa -20
     return check_if_game_over(screen_name)
+
 
 def recognized(screen_name): # tehtävä sinut tunnistetaan
     print(Fore.BLUE + f'''
@@ -51,7 +49,6 @@ def recognized(screen_name): # tehtävä sinut tunnistetaan
         else:
             print(Fore.LIGHTYELLOW_EX + "I believe that was not one of the options I gave you...")
     return check_if_game_over(screen_name)
-
 
 
 def fake_chemist(screen_name): # tehtävä huijaa olevasi kemisti
@@ -153,7 +150,6 @@ def fahrenheit_to_celsius(screen_name):
     above +4 Celsius, otherwise the ingredient will be ruined. So now it's time to go back to cuba!
     Remember to be careful with the ingredient!...In fact, if I were you, I would check the ingredient right away!
     '''
-
     for letter in norway:  # kirjain kerrallaan
         print(letter, end='', flush=True) # end: estää uuden rivin tulostamisen jokaisen kirjaimen jälkeen, flush: pakottaa tulostuksen heti eli näkyy välittömästi ilman puskurointia
         time.sleep(0.03) # aiheuttaa lyhyen viiveen jokaisen kirjaimen tulostuksen jälkeen
@@ -166,15 +162,16 @@ def fahrenheit_to_celsius(screen_name):
           "you don't understand them at all, so you have to convert them into celsius so that you\n"
           "understand something about the meter.\n")
     print("According to the thermometer, the temperature is now 39 fahrenheits") #Pelaajalle kerrotaan valmiiksi F, jolloin hänen täytyy itse laskea mitä se on Celsiuksina
+
     while True:
-        celsius = float(input(Fore.RESET + "What is the temperature in Celsius?: "))
-        if celsius == 3.0: #Oikea vastaus
+        celsius = int(input(Fore.RESET + "What is the temperature in Celsius?\nHOX! Integers only!\n39 Fahrenheits: "))
+        if celsius == 3: #Oikea vastaus
             print(Fore.GREEN + "Amazing! The ingredient looks fine and didn't warm up too much.")
             break
         else:
             print(Fore.RED + "That's not it...Try again. Menetit just välimatkaa pönttö.") #Pelaaja joutuu vastaamaan uudestaan'
             distance_substract(1, screen_name)
-
+            user_currency_distance(screen_name)
     return check_if_game_over(screen_name)
 
 
@@ -282,7 +279,7 @@ def makeover_time(screen_name):
                     distance_add(1, screen_name)
                 else:
                     print("As suspected, the change didn't help")
-                return  #Lopetetaan suoritus, kun yksi muutos on tehty.
+                return check_if_game_over(screen_name) # Lopetetaan suoritus, kun yksi muutos on tehty.
             else:
                 print(Fore.RED + "You are too poor to change one thing.")
         elif choice == "2":
@@ -290,7 +287,7 @@ def makeover_time(screen_name):
                 currency_subtract(20, screen_name)
                 distance_add(2, screen_name)
                 print(Fore.GREEN + "Two things changed, that works pretty well!")
-                return  #Lopetetaan suoritus, kun kaksi muutosta on tehty.
+                return check_if_game_over(screen_name) # Lopetetaan suoritus, kun kaksi muutosta on tehty.
             else:
                 print(Fore.RED + "You are too poor to change two things.")
         elif choice == "3":
@@ -298,16 +295,14 @@ def makeover_time(screen_name):
                 currency_subtract(50, screen_name)
                 distance_add(3, screen_name)
                 print(Fore.GREEN + "Complete makeover done and Wow! You look like a completely different person!")
-                return  #Lopetetaan suoritus, kun täydellinen muodonmuutos on tehty.
+                return check_if_game_over(screen_name) # Lopetetaan suoritus, kun täydellinen muodonmuutos on tehty.
             else:
                 print(Fore.RED + "You are too poor for a complete makeover.")
         elif choice == "4":
             print(Fore.LIGHTYELLOW_EX + "Thanks for your visit!")
-            return  #Lopetetaan suoritus, jos käyttäjä ei halua muuttaa mitään.
+            return check_if_game_over(screen_name) # Lopetetaan suoritus, jos käyttäjä ei halua muuttaa mitään.
         else:
             print(Fore.LIGHTYELLOW_EX + "Not an option. Try again and pick number 1-4.")
-    return check_if_game_over(screen_name)
-
 
 def hiding_closet(screen_name):
     print(Fore.BLUE + f'''
@@ -346,10 +341,11 @@ def hiding_closet(screen_name):
     if attempts == 3 and player_code != code:
         print(Fore.RED + "OH NO! look what you did, the door is now permanently locked and the fugitive got caught!\n "
                          "No rewards for you!")
+        return check_if_game_over(screen_name)
     else:
         print(Fore.GREEN + "WOW! You did it! You managed to open the door and fugitive can now hide. He gives you 20$")
         currency_add(20, screen_name)
-    return check_if_game_over(screen_name)
+        return check_if_game_over(screen_name)
 
 
 def crazy_dice(screen_name):
@@ -376,17 +372,15 @@ def crazy_dice(screen_name):
             print(Fore.GREEN + f"Congrats! you rolled a {player_dice1} and {player_dice2}\n"
                                f"making the total of {player_dice_total}! You won 10$!")
             currency_add(10, screen_name)
-            break
+            return check_if_game_over(screen_name)
         if street_artist_total > player_dice_total:
             print(Fore.RED + f"Oh no! You rolled {player_dice1} and {player_dice2}\n"
                              f"making the total {player_dice_total}. You lost your 10$ !")
             currency_subtract(10, screen_name)
-            break
+            return check_if_game_over(screen_name)
         else:
             print(Fore.YELLOW + f"Oij! You rolled {player_dice1} and {player_dice2}\n "
                                 f"making the total same {player_dice_total}. Let's try again!")
-    return check_if_game_over(screen_name)
-
 
 def resistance_test(screen_name):
     print(Fore.BLUE + f'''
