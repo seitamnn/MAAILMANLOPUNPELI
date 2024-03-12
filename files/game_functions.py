@@ -77,7 +77,7 @@ def select_airport_norway(screen_name):
     currency_subtract(10, screen_name)
     print(f"\nWelcome to {norway_airport}!\n")
     user_currency_distance(screen_name)
-    #check_if_game_over(screen_name)
+    return check_if_game_over(screen_name)
 
 def select_airport_cuba(screen_name):
     sql = f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE country.name = 'Cuba'"
@@ -100,7 +100,7 @@ def select_airport_cuba(screen_name):
     currency_subtract(10, screen_name)
     print(f"\nWelcome to {cuba_airport}!\n")
     user_currency_distance(screen_name)
-    check_if_game_over(screen_name)
+    return check_if_game_over(screen_name)
 
 def currency_add(add_amount, screen_name):
     currency_sql = f"UPDATE game SET currency = currency + '{add_amount}' WHERE screen_name = '{screen_name}'"
