@@ -44,11 +44,9 @@ while True:
 
     # 1. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     boolean_game_on = suspicious_employee(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     input(Fore.BLUE + f"\nThat was unexpected...and time consuming. Maybe it's better to hurry.\n"
@@ -56,11 +54,9 @@ while True:
 
     # 2. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     boolean_game_on = crazy_dice(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     input(Fore.BLUE + f"\nWhat an interesting game! But now it's time to move on.\n"
@@ -68,11 +64,9 @@ while True:
 
     # 3. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     boolean_game_on = currency_converter(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     input(Fore.BLUE + f"\nThat traveller was really weird?! let's go and see where you can go next.\n"
@@ -80,11 +74,9 @@ while True:
 
     # 4. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     boolean_game_on = country_capital(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     input(Fore.BLUE + f"\nHow kind of you to help that child, but can you now focus on continuing the journey.\n"
@@ -92,11 +84,9 @@ while True:
 
     # 5. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     boolean_game_on = hiding_closet(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     input(Fore.BLUE + f"\nI wonder why that fugitive was on the run? Oh well, it's not our business,\n"
@@ -104,11 +94,9 @@ while True:
 
     # 6. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     boolean_game_on = flight_cancelled(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     input(Fore.BLUE + f"\nFlight cancellations are always so unfortunate. But it is what it is so keep going.\n"
@@ -116,11 +104,9 @@ while True:
 
     # NORJA 7. maa ja tehtävä
     boolean_game_on = select_airport_norway(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     boolean_game_on = fahrenheit_to_celsius(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     input(Fore.BLUE + f"\nThat almost gave me a heart attack! Fortunately you got the situation fixed\n"
@@ -128,11 +114,9 @@ while True:
 
     # 8. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     boolean_game_on = run_or_hide(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     input(Fore.RESET + f"That was a big raid! I'm surprised you didn't get caught?!\n"
@@ -140,22 +124,18 @@ while True:
 
     # 9. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     boolean_game_on = makeover_time(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     input(Fore.BLUE + f"\nWhat a fun group that was! But now, carry on. Press enter to open check-in.")
 
     # 10. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     boolean_game_on = fake_chemist(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     input(Fore.BLUE + f"\nNext time try not to panic and think before you open your mouth.\n"
@@ -163,11 +143,9 @@ while True:
 
     # 11. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     boolean_game_on = resistance_test(screen_name)
-    print(boolean_game_on)
     if boolean_game_on == False:
         break
     input(Fore.BLUE + f"\nWell, did you answer your new friend's question correctly? Actually I don't really care.\n"

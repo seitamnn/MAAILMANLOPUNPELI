@@ -1,6 +1,6 @@
 import mysql.connector
 from connection import connect
-from game_functions import distance_add, distance_substract, currency_add, currency_subtract, check_if_game_over, user_currency_distance
+from game_functions import check_if_game_over_fahrenheit, distance_add, distance_substract, currency_add, currency_subtract, check_if_game_over, user_currency_distance
 import random
 from countryinfo import CountryInfo
 from colorama import Fore
@@ -141,6 +141,11 @@ def flight_cancelled(screen_name):
 
 #Pitää muuttaa f --> C
 def fahrenheit_to_celsius(screen_name):
+    cursor = connect.cursor()
+    game_sql = f"SELECT location, currency, alien_distance, in_possession FROM game WHERE screen_name='{screen_name}';"
+    cursor.execute(game_sql)
+    result = cursor.fetchall()
+
     norway = Fore.BLUE + f'''
     You finally got to Norway and found the ancient ingredient! But the journey is not over yet.
     Next, you have to transport it back to the laboratory in cuba. 
@@ -170,7 +175,7 @@ def fahrenheit_to_celsius(screen_name):
             print(Fore.RED + "Nope...Try again. oh by the way, for every wrong answer you lose 1 distance step.") #Pelaaja joutuu vastaamaan uudestaan
             distance_substract(1, screen_name)
             user_currency_distance(screen_name)
-            if check_if_game_over(screen_name) == False:
+            if check_if_game_over_fahrenheit(screen_name) == False:
                 break
 
     return check_if_game_over(screen_name)
@@ -189,7 +194,7 @@ def country_capital(screen_name):
             "Russia", "Canada", "China", "United States", "Brazil", "Australia", "India", "Argentina",
             "Denmark", "Algeria", "Finland", "Greenland", "Sweden", "Vietnam", "Switzerland", "Nepal",
             "Italy", "Indonesia", "Belgium", "Bolivia", "Iran", "Mongolia", "Peru", "Spain", "Kazakhstan",
-            "Germany", "United Kingdom", "South Africa", "Colombia", "Ethiopia", "Thailand", "Poland",
+            "Germany", "United Kingdom", "Colombia", "Ethiopia", "Thailand", "Poland",
             "Japan", "Norway", "Egypt", "Greece", "Pakistan", "Chile", "South Korea", "Turkey", "New Zealand",
             "Zambia", "Canada", "Afghanistan", "Iceland", "France", "Somalia", "North Korea", "Ukraine",
             "Botswana", "Madagascar", "Cuba"
