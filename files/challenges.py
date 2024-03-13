@@ -170,6 +170,9 @@ def fahrenheit_to_celsius(screen_name):
             print(Fore.RED + "Nope...Try again. oh by the way, for every wrong answer you lose 1 distance step.") #Pelaaja joutuu vastaamaan uudestaan
             distance_substract(1, screen_name)
             user_currency_distance(screen_name)
+            if check_if_game_over(screen_name) == False:
+                break
+
     return check_if_game_over(screen_name)
 
 
