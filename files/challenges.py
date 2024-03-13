@@ -148,7 +148,7 @@ def fahrenheit_to_celsius(screen_name):
 
     norway = Fore.BLUE + f'''
     You finally got to Norway and found the ancient ingredient! But the journey is not over yet.
-    Next, you have to transport it back to the laboratory in cuba. 
+    Next, you have to transport it back to the laboratory in Cuba. 
     Remember that the Scientists in Cuba reminded you, when you left that the ancient ingredient 
     must be stored in a cold pack all the time. They told you that under no circumstances should 
     the temperature of the container rise above +4 Celsius, else the ingredient will be ruined.
@@ -403,14 +403,14 @@ def resistance_test(screen_name):
     answer = input(Fore.RESET + "What is the name of the lead scientist of the resistance? ").lower()
     if answer == correct_answer:
         print(Fore.GREEN + "That is correct! You have proved that you're true resistance member and\n"
-                           "your new friend will help you forward. you gain 1 distance step")
+                           "your new friend will help you forward. You gain 1 distance step\n")
         distance_add(1, screen_name)
     elif answer == "alex zen":
         print(Fore.GREEN + "That is correct! You have proved that you're true resistance member and\n"
-                           "your new friend will help you forward. gain 1 distance step")
+                           "your new friend will help you forward. You gain 1 distance step\n")
         distance_add(1, screen_name)
     else:
         print(Fore.RED + "That's not it! I guess you didn't read the lore properly...\n"
-                         "Well, no help for you this time. Carry on.")
+                         "Well, no help for you this time. Carry on.\n")
     return check_if_game_over(screen_name)
 

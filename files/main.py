@@ -152,7 +152,7 @@ while True:
     if boolean_game_on == False:
         break
     input(Fore.CYAN + f"\nWell, did you answer your new friend's question correctly? Actually I don't really care.\n"
-                       f"Hurry up and keep going! Press enter to open check-in.")
+                       f"Hurry up and keep going! Press enter to open check-in.\n")
 
     # 12. maa, takaisin Kuubaan
     select_airport_cuba(screen_name)
