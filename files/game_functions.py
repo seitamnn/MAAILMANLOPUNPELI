@@ -7,9 +7,6 @@ from win_or_loose import you_win, game_over
 import time
 from help import help_command, help_center
 
-#game_on = True
-
-
 def user_currency_distance(screen_name):
         sql = (f"SELECT currency, alien_distance FROM game WHERE screen_name = '{screen_name}'")
         cursor = connect.cursor()
@@ -17,7 +14,6 @@ def user_currency_distance(screen_name):
         userdata = cursor.fetchall()
         for data in userdata:
             print(Fore.YELLOW + f"    Currency: {data[0]} $\n    Distance: {data[1]} steps")
-
 
 #funktio lentokentältä toiselle lentämiseen
 def select_airport(screen_name):
@@ -176,6 +172,7 @@ def check_if_game_over(screen_name):
         print()
         return False
     elif result[0][1] == 0: # jos currency on nollissa
+        game_over()
         game_over_currency = Fore.RED + f'''
     You ran out of currency! Now you are stuck at the current airport and can't move forward.
     Because you got stuck, no antidote could be made on time and the aliens were able to 
@@ -185,9 +182,9 @@ def check_if_game_over(screen_name):
                   flush=True)
             time.sleep(0.03)
         print()
-        game_over()
         return False
     elif result[0][2] == 0: # jos etäisyys alieneista nollassa
+        game_over()
         game_over_distance = Fore.RED + f'''
     The aliens caught you! And you are now their prisoner. Because you got caught,
     no antidote could be made on time and the aliens were able to spread their virus
@@ -197,7 +194,6 @@ def check_if_game_over(screen_name):
                   flush=True)
             time.sleep(0.03)
         print()
-        game_over()
         return False
     else:
         return True
