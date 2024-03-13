@@ -365,7 +365,7 @@ def crazy_dice(screen_name):
 
     input(f'''
     The quirky street artist won't let you go before you accept the challenge and the 
-    aliens are catching up. \nHurry and accept the challenge by pressing enter!\n ''')
+    aliens are catching up. \n    Hurry and accept the challenge by pressing enter!\n ''')
 
     while True:
         print(Fore.RESET + "The quirky street artist begins...")
