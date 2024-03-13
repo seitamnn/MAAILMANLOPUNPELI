@@ -7,6 +7,7 @@ from win_or_loose import you_win, game_over
 import time
 from help import help_command, help_center
 
+# Funktio pelaajan tietojen tulostamiseen
 def user_currency_distance(screen_name):
         sql = (f"SELECT currency, alien_distance FROM game WHERE screen_name = '{screen_name}'")
         cursor = connect.cursor()
@@ -55,23 +56,25 @@ def select_airport(screen_name):
         print(Fore.GREEN + f"\nWelcome to {decided_airport}!\n")
         user_currency_distance(screen_name)
         return check_if_game_over(screen_name)
-    #return decided_airport
 
+# Norja kenttään pääsemiseksi oma funktio
 def select_airport_norway(screen_name):
     sql = f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE country.name = 'Norway'"
     cursor = connect.cursor()
     cursor.execute(sql)
-    norway = cursor.fetchone()
+    norway = cursor.fetchone() # airport, country
     cursor.close()
 
+    # Pelaajalle annetaan vaihtoehdoksi ainoastaan Norja
     print(Fore.RESET + "Welcome to check-in!")
     print(f"Oh look! There is a direct flight to Norway from here. The flight would also seem to be safe to do now\n")
     print(f"1. {norway[0]} in {norway[1]}")
     answer = input("Enter 1 to continue: ")
     help_command(screen_name, answer)
 
+
     norway_airport = norway[0]
-    sql2 = f"UPDATE game SET location = (SELECT ident FROM airport WHERE name = '{norway_airport}') WHERE screen_name = '{screen_name}';"
+    sql2 = f"UPDATE game SET in_possession = TRUE, location = (SELECT ident FROM airport WHERE name = '{norway_airport}') WHERE screen_name = '{screen_name}';"
     cursor = connect.cursor()
     cursor.execute(sql2)
     location_change = cursor.fetchall()
@@ -81,11 +84,12 @@ def select_airport_norway(screen_name):
     user_currency_distance(screen_name)
     return check_if_game_over(screen_name)
 
+# Kuuba kentälle pääsemiseksi oma funktio
 def select_airport_cuba(screen_name):
     sql = f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE country.name = 'Cuba'"
     cursor = connect.cursor()
     cursor.execute(sql)
-    cuba = cursor.fetchone()
+    cuba = cursor.fetchone() # airport, country
     cursor.close()
 
     print(Fore.RESET + "Welcome to check-in!")
@@ -104,30 +108,35 @@ def select_airport_cuba(screen_name):
     user_currency_distance(screen_name)
     return check_if_game_over(screen_name)
 
+# Funktio valuutan lisäämiseksi
 def currency_add(add_amount, screen_name):
     currency_sql = f"UPDATE game SET currency = currency + '{add_amount}' WHERE screen_name = '{screen_name}'"
     cursor = connect.cursor()
     cursor.execute(currency_sql)
     result = cursor.fetchall()
 
+# Funktio valuutan vähentämiseksi
 def currency_subtract(subtract_amount, screen_name):
     currency_sql = f"UPDATE game SET currency = currency - '{subtract_amount}' WHERE screen_name = '{screen_name}'"
     cursor = connect.cursor()
     cursor.execute(currency_sql)
     result = cursor.fetchall()
 
+# Funktio etäisyyden lisäämiseksi
 def distance_add(add_amount, screen_name):
     distance_sql = f"UPDATE game SET alien_distance = alien_distance + {add_amount} WHERE screen_name = '{screen_name}'"
     cursor = connect.cursor()
     cursor.execute(distance_sql)
     result = cursor.fetchall()
 
+# Funktio etäisyyden vähentämiseksi
 def distance_substract(subtract_amount, screen_name):
     distance_sql = f"UPDATE game SET alien_distance = alien_distance - {subtract_amount} WHERE screen_name = '{screen_name}'"
     cursor = connect.cursor()
     cursor.execute(distance_sql)
     result = cursor.fetchall()
 
+# Funktio, joka tarkastaa onko annettu nimi pelaajalle jo käytössä.
 def check_if_name_taken(screen_name):
     cursor = connect.cursor()
     name_sql = f"SELECT COUNT(*) FROM game WHERE screen_name='{screen_name}'" #lasketaan montako kertaa annettu nimi esiintyy game taulussa
@@ -140,13 +149,14 @@ def check_if_name_taken(screen_name):
         print('Username selected. Continue.')
         return True
 
+# Funktio, joka tarkastaa onko peli vielä käynnissä jokaisen mahdollisesti tietokannan dataa muokkaavan tilanteen kohdalle
 def check_if_game_over(screen_name):
     #global game_on
     cursor = connect.cursor()
     game_sql = f"SELECT location, currency, alien_distance, in_possession FROM game WHERE screen_name='{screen_name}';"
     cursor.execute(game_sql)
     result = cursor.fetchall()
-    if result[0][0] == 'MUHA': # jos location on takas Kuubas ja ainesosa hallussa
+    if result[0][0] == 'MUHA': # jos sijainti on takas Kuubas ja ainesosa pelaajan hallussa
         you_win()
         win_end_text = (Fore.GREEN + f'''
     As you step into the resistance laboratory in Cuba, carrying the ancient ingredient
