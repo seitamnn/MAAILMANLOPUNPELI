@@ -159,6 +159,8 @@ def fahrenheit_to_celsius(screen_name):
         time.sleep(0.03) # aiheuttaa lyhyen viiveen jokaisen kirjaimen tulostuksen jälkeen
     print()
 
+    input("Press enter to continue.")
+
     print(Fore.RESET + "You notice that the cold pack is broken. it must have broken when you took it with you\n"
                        "Miraculously you found a new cold pack, but now you have to make sure that the ingredient\n"
                        "didn't warm up too much and become unusable.\n")
@@ -347,7 +349,7 @@ def hiding_closet(screen_name):
         player_code.append(number3)
         attempts += 1
     if attempts == 3 and player_code != code:
-        print(Fore.RED + "OH NO! look what you did, the door is now permanently locked and the fugitive got caught!\n "
+        print(Fore.RED + "OH NO! look what you did, the door is now permanently locked and the fugitive got caught!\n"
                          "No rewards for you!")
         return check_if_game_over(screen_name)
     else:
