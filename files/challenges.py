@@ -382,7 +382,7 @@ def crazy_dice(screen_name):
             currency_subtract(10, screen_name)
             return check_if_game_over(screen_name)
         else:
-            print(Fore.YELLOW + f"Oij! You rolled {player_dice1} and {player_dice2}\n "
+            print(Fore.YELLOW + f"Oij! You rolled {player_dice1} and {player_dice2}\n"
                                 f"making the total same {player_dice_total}. Let's try again!")
 
 def resistance_test(screen_name):
