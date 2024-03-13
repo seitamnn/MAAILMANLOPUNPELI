@@ -5,6 +5,7 @@ import random
 from countryinfo import CountryInfo
 from colorama import Fore
 import time
+from help import help_command, help_center
 
 def currency_converter(screen_name): # tehtävä valuutan vaihto
     print(Fore.BLUE + f'''
@@ -159,7 +160,7 @@ def fahrenheit_to_celsius(screen_name):
         time.sleep(0.03) # aiheuttaa lyhyen viiveen jokaisen kirjaimen tulostuksen jälkeen
     print()
 
-    input("Press enter to continue.")
+    input(Fore.CYAN + "Press enter to continue.\n")
 
     print(Fore.RESET + "You notice that the cold pack is broken. it must have broken when you took it with you\n"
                        "Miraculously you found a new cold pack, but now you have to make sure that the ingredient\n"

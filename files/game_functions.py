@@ -5,6 +5,7 @@ from connection import connect
 from colorama import Fore
 from win_or_loose import you_win, game_over
 import time
+from help import help_command, help_center
 
 #game_on = True
 
@@ -23,7 +24,7 @@ def select_airport(screen_name):
     while True:
 
         #Yhdistetään tietokantaan
-        sql = (f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE country.name != 'Norway'")
+        sql = f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE country.name != 'Norway'"
         cursor = connect.cursor()
         cursor.execute(sql)
         airports = cursor.fetchall()

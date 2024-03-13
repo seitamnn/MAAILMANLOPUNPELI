@@ -9,6 +9,7 @@ from countryinfo import CountryInfo
 from win_or_loose import game_over, you_win
 from game_functions import user_currency_distance, distance_substract, currency_add, currency_subtract, select_airport, select_airport_norway, select_airport_cuba, check_if_name_taken, check_if_game_over
 from challenges import crazy_dice, currency_converter, recognized, fake_chemist, run_or_hide, flight_cancelled, fahrenheit_to_celsius, country_capital, suspicious_employee, makeover_time, hiding_closet, resistance_test
+from help import help_command, help_center
 
 while True:
     print(Fore.RED + '''
@@ -38,9 +39,11 @@ while True:
     start(screen_name) # start-funktio luotu start-tiedostossa
     print(Fore.RESET + f"Hello {screen_name}! Below you can see the amount of currency you have\n"
                        f"and your distance to the aliens."
-                       f"Don't let either of them run out or your mission will fail!\n")
+                       f"Don't let either of them run out or your mission will fail!\n"
+                       f"You can access help center for helpful commands by writing 'help' on the terminal\n")
     user_currency_distance(screen_name)
-    input(Fore.CYAN + "\nTime to start the journey. Press enter to open check-in for your first flight.")
+    user_input = input(Fore.CYAN + "\nTime to start the journey. Press enter to open check-in for your first flight.")
+    help_command(screen_name, user_input)
 
     # 1. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
