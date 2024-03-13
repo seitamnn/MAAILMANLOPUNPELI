@@ -173,8 +173,6 @@ def fahrenheit_to_celsius(screen_name):
             if check_if_game_over(screen_name) == False:
                 break
 
-    return check_if_game_over(screen_name)
-
 
 def country_capital(screen_name):
     print(Fore.BLUE + '''
