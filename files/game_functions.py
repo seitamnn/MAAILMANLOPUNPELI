@@ -16,11 +16,11 @@ def user_currency_distance(screen_name):
         for data in userdata:
             print(Fore.YELLOW + f"    Currency: {data[0]} $\n    Distance: {data[1]} steps")
 
-#funktio lentokentältä toiselle lentämiseen
+# Funktio lentokentältä toiselle lentämiseen
 def select_airport(screen_name):
     while True:
 
-        #Yhdistetään tietokantaan
+        # Yhdistetään tietokantaan
         sql = f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE country.name != 'Norway'"
         cursor = connect.cursor()
         cursor.execute(sql)
@@ -36,11 +36,11 @@ def select_airport(screen_name):
         for i in range(len(selected_airports)):
             print(f"{i + 1}. {selected_airports[i][0]} in {selected_airports[i][1]}") # Tulostetaan 1., 2. ja 3. yksitellen
 
-        #pelaaja valitsee arvotuista lentokentistä seuraavan kohteen
+        # Pelaaja valitsee arvotuista lentokentistä seuraavan kohteen
         while True:
             choice = input("\nSelect next airport. Enter number between (1-3): ")
-            help_command(screen_name, choice)
-            if choice.isdigit():
+            help_command(screen_name, choice) # Mahdollisuus tietojen tarkistukseen
+            if choice.isdigit(): # Tarkistetaan onko merkki numero
                 choice = int(choice)
                 if 1 <= choice <= 3:
                     break
