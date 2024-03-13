@@ -1,11 +1,14 @@
 # 2586
 
+![IMG_0431](https://github.com/seitamnn/MAAILMANLOPUNPELI/assets/156774906/508dca66-5d7b-4000-8f25-84fcb951e3eb)
+
+
 ## 1. Pelin kehitys
 2586 on Metropolian tieto- ja viestintätekniikan ensimmäisen vuoden opiskelijoiden suunnittelema ja itse koodaama peli valmiista tietokannasta.
 Pelin tekijät:
 Miia Laaksonen, 
 Sofia Järvelä, 
-Anni Saarelma, 
+Anni Saarelma 
 ja Rosamari Hautala
 
 ## 2. Kuvaus pelistä
@@ -35,5 +38,6 @@ Alla kuva muokatusta game- taulusta.
 
 ## 4. Miten peli toimii?
 Peli toteutetaan Python-kielellä, sekä se käyttää muokattua relaatiotietokantaa. Se on tehty pelattavaksi näppäimistöllä.
-Liikkuminen lentokenttien välillä toimii niin, että ohjelma arpoo pelaajalle kolme eri lentokenttää, joista pelaaja valitsee mieluisimman vaihtoehdon. 
+Liikkuminen lentokenttien välillä toimii niin, että ohjelma arpoo pelaajalle kolme eri lentokenttää, joista pelaaja valitsee mieluisimman vaihtoehdon. Pelaajalla on myös käytössään "help"- toiminto, jolla saa tarkistettua esimerkiksi valuutan ja maan jossa on sillä hetkellä.
+
 Tietokantaan on määrätty tietty määrä etäisyyttä sekä valuuttaa, jotka lisääntyvät tai vähenevät pelin edetessä. Jokaisen tehtävän jälkeen tietokanta päivittyy pelaajan suorituksen mukaan. Osassa tehtävissä pelaajalla on mahdollisuus valita kahden vaihtoehdon väliltä, mutta joissakin lopputulos määräytyy sen mukaan, vastaako pelaaja oikein vai väärin esimerkiksi laskutehtäviin. 
