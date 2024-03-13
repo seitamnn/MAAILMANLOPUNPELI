@@ -292,17 +292,17 @@ def makeover_time(screen_name):
         elif choice == "2":
             if result[0][0] >= 20:
                 currency_subtract(20, screen_name)
-                distance_add(2, screen_name)
-                print(Fore.GREEN + "Two things changed, that works pretty well! you get 2 distance steps")
+                distance_add(1, screen_name)
+                print(Fore.GREEN + "Two things changed, that works pretty well! you get 1 distance step")
                 return check_if_game_over(screen_name) # Lopetetaan suoritus, kun kaksi muutosta on tehty.
             else:
                 print(Fore.RED + "You are too poor to change two things.")
         elif choice == "3":
             if result[0][0] >= 50:
                 currency_subtract(50, screen_name)
-                distance_add(3, screen_name)
+                distance_add(2, screen_name)
                 print(Fore.GREEN + "Complete makeover done and Wow! You look like a completely different person!\n "
-                                   "you get 3 distance steps.")
+                                   "you get 2 distance steps.")
                 return check_if_game_over(screen_name) # Lopetetaan suoritus, kun täydellinen muodonmuutos on tehty.
             else:
                 print(Fore.RED + "You are too poor for a complete makeover.")
