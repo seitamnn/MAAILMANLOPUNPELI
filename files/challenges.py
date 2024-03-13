@@ -152,11 +152,11 @@ def fahrenheit_to_celsius(screen_name): # tarkistetaan onko ainesosa kunnossa ->
     Remember that the Scientists in Cuba reminded you, when you left that the ancient ingredient 
     must be stored in a cold pack all the time. They told you that under no circumstances should 
     the temperature of the container rise above +4 Celsius, else the ingredient will be ruined.
-    So be careful with the ingredient!...In fact, if I were you, I would check the ingredient right away!
+    So be careful with the ingredient!... In fact, if I were you, I would check the ingredient right away!
     '''
     for letter in norway:  # kirjain kerrallaan
         print(letter, end='', flush=True) # end: estää uuden rivin tulostamisen jokaisen kirjaimen jälkeen, flush: pakottaa tulostuksen heti eli näkyy välittömästi ilman puskurointia
-        time.sleep(0.03) # aiheuttaa lyhyen viiveen jokaisen kirjaimen tulostuksen jälkeen
+        time.sleep(0.03) # aiheuttaa lyhyen viiveen (0.03 sekuntia) jokaisen kirjaimen tulostuksen jälkeen
     print()
 
     input(Fore.CYAN + "Press enter to continue.\n")

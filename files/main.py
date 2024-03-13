@@ -46,8 +46,8 @@ while True:
     help_command(screen_name, user_input)
 
     # 1. maa ja tehtävä
-    boolean_game_on = select_airport(screen_name)
-    if boolean_game_on == False:
+    boolean_game_on = select_airport(screen_name) # Jokainen main:in funktio palauttaa booleanin True tai False
+    if boolean_game_on == False: # Booleanin avulla joko katkaistaan tai pidetään käynnissä main:in While-loop
         break
     boolean_game_on = suspicious_employee(screen_name)
     if boolean_game_on == False:

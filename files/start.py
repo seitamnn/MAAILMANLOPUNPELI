@@ -17,7 +17,7 @@ def start(screen_name): #annetaan inputina saatu pelaajan nimi
 
     print("Great! Now let's start...")
 
-#    speed = 0.03 # nopeus tekstille
+    speed = 0.03 # nopeus tekstille
 
     lore = Fore.RED + '''
     It's the year 2586, and humanity has developed its technology to the highest
@@ -47,7 +47,7 @@ def start(screen_name): #annetaan inputina saatu pelaajan nimi
     along the way to succeed in your mission and save humanity from destruction. 
     The fate of the world is in your hands. Good luck!
     '''
-#    for letter in lore: # kirjain kerrallaan
-#        print(letter, end='', flush=True) # end: estää uuden rivin tulostamisen jokaisen kirjaimen jälkeen, flush: pakottaa tulostuksen heti eli näkyy välittömästi ilman puskurointia
-#        time.sleep(speed) # aiheuttaa lyhyen viiveen jokaisen kirjaimen tulostuksen jälkeen
+    for letter in lore: # kirjain kerrallaan
+        print(letter, end='', flush=True) # end: estää uuden rivin tulostamisen jokaisen kirjaimen jälkeen, flush: pakottaa tulostuksen heti eli näkyy välittömästi ilman puskurointia
+        time.sleep(speed) # aiheuttaa lyhyen viiveen jokaisen kirjaimen tulostuksen jälkeen
     print()

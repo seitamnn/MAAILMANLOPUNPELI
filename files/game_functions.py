@@ -215,7 +215,6 @@ def check_if_game_over_fahrenheit(screen_name):
         cursor.execute(game_sql)
         result = cursor.fetchall()
         if result[0][2] == 0:  # jos etäisyys alieneista nollassa
-
             return False
         else:
             return True
