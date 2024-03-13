@@ -40,7 +40,7 @@ while True:
     print(Fore.RESET + f"Hello {screen_name}! Below you can see the amount of currency you have\n"
                        f"and your distance to the aliens."
                        f"Don't let either of them run out or your mission will fail!\n"
-                       f"You can access help center for helpful commands by writing 'help' on the terminal\n")
+                       f"You can access help center during check-in for helpful commands by writing 'help' on the terminal\n")
     user_currency_distance(screen_name)
     user_input = input(Fore.CYAN + "\nTime to start the journey. Press enter to open check-in for your first flight.")
     help_command(screen_name, user_input)

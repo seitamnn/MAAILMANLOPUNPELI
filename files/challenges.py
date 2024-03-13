@@ -100,7 +100,7 @@ def run_or_hide(screen_name):
         decision = input(Fore.RESET + "So are you going to run or hide? (run/hide) ") #Pelaaja valitsee haluaako juosta koneeseen vai piiloutua ja odottaa seuraavaa.
         if decision == "run":
             print(Fore.RED + "Oh no! The aliens spotted you and now know exactly where you are.\n"
-                             "Good thing is that the aliens didn't catch you. You lose 2 distance steps.\n")
+                             "You lose 2 distance steps.\n")
             distance_substract(2, screen_name)
             break
         elif decision == "hide":
@@ -169,7 +169,7 @@ def fahrenheit_to_celsius(screen_name):
     print("According to the thermometer, the temperature is now 39 fahrenheits") #Pelaajalle kerrotaan valmiiksi F, jolloin hänen täytyy itse laskea mitä se on Celsiuksina
 
     while True:
-        celsius = int(input(Fore.RESET + "What is the temperature in Celsius?\nHOX! Integers only!\n39 Fahrenheits: "))
+        celsius = int(input(Fore.RESET + "What is the temperature in Celsius? You can only give the answer in integers.\n39 Fahrenheits: "))
         if celsius == 3: #Oikea vastaus
             print(Fore.GREEN + "What a relief! The ingredient looks fine and didn't warm up too much.")
             break
@@ -365,7 +365,7 @@ def crazy_dice(screen_name):
 
     input(f'''
     The quirky street artist won't let you go before you accept the challenge and the 
-    aliens are catching up. Hurry and accept the challenge by pressing enter!\n ''')
+    aliens are catching up. \nHurry and accept the challenge by pressing enter!\n ''')
 
     while True:
         print(Fore.RESET + "The quirky street artist begins...")
