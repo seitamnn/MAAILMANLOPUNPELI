@@ -1,7 +1,7 @@
 from connection import connect
 from colorama import Fore
 
-def help_center():
+def help_center(screen_name, user_input):
         print(Fore.LIGHTMAGENTA_EX + 20*'-' + 'HELP CENTER' + 20*'-')
         print(Fore.BLUE + 'CURRENCY:')
         print(Fore.LIGHTMAGENTA_EX + '    How much currency do you have in your wallet\n')
@@ -9,12 +9,11 @@ def help_center():
         print(Fore.LIGHTMAGENTA_EX + '    How many steps until the alien get u\n')
         print(Fore.BLUE + 'LOCATION:')
         print(Fore.LIGHTMAGENTA_EX + '    Where are you now our little world traveler uwu\n')
-        print(Fore.BLUE + 'WHAT NOW:')
-        print(Fore.LIGHTMAGENTA_EX + '    Repeat what I should do next\n')
         print(Fore.BLUE + 'LORE:')
         print(Fore.LIGHTMAGENTA_EX + "    Remind me what's going on\n")
         print(Fore.LIGHTMAGENTA_EX + 51*'-')
-        input(Fore.CYAN + 'Press enter to continue')
+        user_input = input(Fore.CYAN + 'Press enter to continue\n')
+        help_command(screen_name, user_input)
 
 def help_command(screen_name, input):
         if input == 'CURRENCY' or input == 'currency':
@@ -22,21 +21,21 @@ def help_command(screen_name, input):
                 cursor = connect.cursor()
                 cursor.execute(currency_sql)
                 currency = cursor.fetchone()
-                print(f'CURRENCY: {currency[0]}')
+                print(Fore.LIGHTMAGENTA_EX + f'\nCURRENCY: {currency[0]}\n')
         elif input == 'DISTANCE' or input == 'distance':
                 distance_sql = f"SELECT alien_distance FROM game WHERE screen_name='{screen_name}'"
                 cursor = connect.cursor()
                 cursor.execute(distance_sql)
                 distance = cursor.fetchone()
-                print(f'DISTANCE: {distance[0]} steps')
+                print(Fore.LIGHTMAGENTA_EX + f'\nDISTANCE: {distance[0]} steps\n')
         elif input == 'LOCATION' or input == 'location':
                 location_sql = f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE airport.ident IN(SELECT location FROM game WHERE screen_name='{screen_name}')"
                 cursor = connect.cursor()
                 cursor.execute(location_sql)
                 location = cursor.fetchone()
-                print(f'LOCATION: {location[0]} in {location[1]}')
+                print(Fore.LIGHTMAGENTA_EX + f'\nLOCATION: {location[0]} in {location[1]}\n')
         elif input == 'lore' or input == 'LORE':
-                lore = Fore.RED + '''
+                lore = Fore.LIGHTMAGENTA_EX + '''
                 It's the year 2586, and humanity has developed its technology to the highest
                 level, overcoming a long battle against climate change. Life thrives in harmony
                 as all countries have banned and ultimately forgotten environmentally harmful 
@@ -66,4 +65,4 @@ def help_command(screen_name, input):
                 '''
                 print(lore)
         elif input == 'help' or input == 'HELP':
-                help_center()
+                help_center(screen_name, input)

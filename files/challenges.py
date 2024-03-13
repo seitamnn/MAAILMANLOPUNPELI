@@ -5,7 +5,6 @@ import random
 from countryinfo import CountryInfo
 from colorama import Fore
 import time
-from help import help_command, help_center
 
 def currency_converter(screen_name): # tehtävä valuutan vaihto
     print(Fore.BLUE + f'''

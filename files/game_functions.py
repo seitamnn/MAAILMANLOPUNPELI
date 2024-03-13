@@ -42,11 +42,12 @@ def select_airport(screen_name):
         #pelaaja valitsee arvotuista lentokentistä seuraavan kohteen
         while True:
             choice = input("\nSelect next airport. Enter number between (1-3): ")
+            help_command(screen_name, choice)
             if choice.isdigit():
                 choice = int(choice)
                 if 1 <= choice <= 3:
                     break
-            print("Error in selection. enter number between 1-3.")
+            print(Fore.RESET + "Error in selection. enter number between 1-3.")
 
         decided_airport = selected_airports[choice - 1][0]
         sql2 = f"UPDATE game SET location = (SELECT ident FROM airport WHERE name = '{decided_airport}') WHERE screen_name = '{screen_name}';"
@@ -70,7 +71,8 @@ def select_airport_norway(screen_name):
     print(Fore.RESET + "Welcome to check-in!")
     print(f"Oh look! There is a direct flight to Norway from here. The flight would also seem to be safe to do now\n")
     print(f"1. {norway[0]} in {norway[1]}")
-    input("Enter 1 to continue: ")
+    answer = input("Enter 1 to continue: ")
+    help_command(screen_name, answer)
 
     norway_airport = norway[0]
     sql2 = f"UPDATE game SET location = (SELECT ident FROM airport WHERE name = '{norway_airport}') WHERE screen_name = '{screen_name}';"
