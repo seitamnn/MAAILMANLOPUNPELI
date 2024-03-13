@@ -6,7 +6,8 @@ from countryinfo import CountryInfo
 from colorama import Fore
 import time
 
-def currency_converter(screen_name): # tehtävä valuutan vaihto
+# Valuutan vaihto
+def currency_converter(screen_name):
     print(Fore.BLUE + f'''
     You are in your own thoughts when accidentally bump into strange looking world traveler at the airport. 
     He asks for your help with the currency conversion and you decide to help him. 
@@ -14,19 +15,19 @@ def currency_converter(screen_name): # tehtävä valuutan vaihto
     ''')
 
     answer = int(input(Fore. RESET + "How much is 10 euros in yens? "))
-    if answer == 1630: # jos käyttäjän vastaus vastaa oikeaa vastausta
+    if answer == 1630: # Jos käyttäjän vastaus vastaa oikeaa vastausta
         print(Fore.GREEN + "That's right! The traveler is very grateful and gives you some currency\n"
                            "for the effort. You got 10$, hooray!")
-        currency_add(10, screen_name) # lisätään valuuttaan 10
+        currency_add(10, screen_name) # Lisätään valuuttaan add-funktion avulla + 10
     else:
         print(Fore.RED + "That's not not quite right...")
         print(Fore. RED + "Oh no, the traveler fooled you. He was thief who took some currency from your pocket.\n"
                           "By chance he didn't get your wallet though. You lost 20$")
-        currency_subtract(20, screen_name) # vähennetään valuuttaa -20
-    return check_if_game_over(screen_name)
+        currency_subtract(20, screen_name) # Vähennetään valuuttaa substract-funktion avulla - 20
+    return check_if_game_over(screen_name) # Palauttaa True tai False
 
-
-def recognized(screen_name): # tehtävä sinut tunnistetaan
+# Sinut tunnistetaan
+def recognized(screen_name):
     print(Fore.BLUE + f'''
     At the airport check-in one of the employees recognizes you. He looks at you disapprovingly. 
     You notice a pin on his chest. where it says 'END TO PLANET EARTH' He probably recognizes you from the news...
@@ -36,12 +37,12 @@ def recognized(screen_name): # tehtävä sinut tunnistetaan
     answer = int(input(Fore.RESET + "You can either 1. try to bribe him or 2. "
                        "Ignore the situation as if nothing had happened. Now Choose (1/2) "))
     while True:
-        if answer == 1: # jos lahjoo
+        if answer == 1: # Jos lahjoo
             currency_subtract(10, screen_name)
             print(Fore.RED + "The bribes was useful and helps you keep a low profile."
                          "But now your wallet is a little bit lighter. You lose 10$")
             break
-        elif answer == 2:
+        elif answer == 2: # Play it cool
             distance_substract(1, screen_name)
             print(Fore.RED + "You tried to ignore the situation completely.\nThe employee lets "
                          "their anti-earth friends know about your location.\n Aliens are 1 step closer")
@@ -50,8 +51,8 @@ def recognized(screen_name): # tehtävä sinut tunnistetaan
             print(Fore.LIGHTYELLOW_EX + "I believe that was not one of the options I gave you...")
     return check_if_game_over(screen_name)
 
-
-def fake_chemist(screen_name): # tehtävä huijaa olevasi kemisti
+# Huijaa olevasi kemisti
+def fake_chemist(screen_name):
     print(Fore.BLUE + f'''
     At the airport security check, the metal part of the ingredient container causes problems.
     Container arouses the interest of employees and they start asking you questions about it.
@@ -59,8 +60,8 @@ def fake_chemist(screen_name): # tehtävä huijaa olevasi kemisti
     container with you. The employees don't fully believe you and they decide to test you. 
     ''')
 
-    mycursor = connect.cursor() # osotetaa tietokantaa
-    Fe = str(input(Fore.RESET + "What is the chemical symbol of iron? ")).lower() # eka testin kysymys
+    mycursor = connect.cursor()
+    Fe = str(input(Fore.RESET + "What is the chemical symbol of iron? ")).lower() # Eka testin kysymys
     if Fe == 'fe':
         print(Fore.GREEN + f"Your answer: '{Fe}' is correct!")
     else:
@@ -68,7 +69,7 @@ def fake_chemist(screen_name): # tehtävä huijaa olevasi kemisti
         distance_substract(1, screen_name)
         print(Fore.RED + "Your credibility begins to diminish. Carefully now!\n"
                          "This is taking too much time! Aliens are 1 distance step closer now!")
-    Au = str(input(Fore.RESET + "What is the chemical symbol of gold? ")).lower() # toka testin kysymys
+    Au = str(input(Fore.RESET + "What is the chemical symbol of gold? ")).lower() # Toka testin kysymys
     if Au == 'au':
         print(Fore.GREEN + f"Your answer: '{Au}' is correct!")
     else:
@@ -76,11 +77,11 @@ def fake_chemist(screen_name): # tehtävä huijaa olevasi kemisti
         distance_substract(1, screen_name)
         print(Fore.RED + "Your credibility has almost entirely vanished. There's no room or time for errors now!\n"
                          "Aliens are yet another 1 distance step closer!")
-    N = str(input(Fore.RESET + "What is the chemical symbol of nitrogen? ")).lower() # vika testin kysymys
+    N = str(input(Fore.RESET + "What is the chemical symbol of nitrogen? ")).lower() # Kolmas testin kysymys
     if N == 'n':
         print(Fore.GREEN + f"Your answer: '{N}' is correct!\n")
         print(Fore.GREEN + "Well done! Now they believe you and you can continue your journey.\n"
-                           "Although that was close call!") # jos vastaa kaikkiin oikein
+                           "Although that was close call!") # Jos vastaa kaikkiin oikein
     else:
         currency_subtract(10, screen_name)
         distance_substract(1, screen_name)
@@ -88,8 +89,8 @@ def fake_chemist(screen_name): # tehtävä huijaa olevasi kemisti
                          "I hope you have some distance left, because aliens are again 1 distance step closer!")
     return check_if_game_over(screen_name)
 
-
-def run_or_hide(screen_name): # Alienratsia
+# Alienratsia
+def run_or_hide(screen_name):
     print(Fore.BLUE + f'''
     Your previous flight landed late due to weather conditions and there's only 15 minutes 
     before your next flight leaves. You are rushing to the next departure gate when you suddenly 
@@ -101,20 +102,20 @@ def run_or_hide(screen_name): # Alienratsia
         if decision == "run":
             print(Fore.RED + "Oh no! The aliens spotted you and now know exactly where you are.\n"
                              "You lose 2 distance steps.\n")
-            distance_substract(2, screen_name)
+            distance_substract(2, screen_name) # Enemmän vahinkoa
             break
         elif decision == "hide":
             print(Fore.GREEN + "Hurry up, jump in the trash can now! Try to make yourself comfortable\n"
                                "and wait for the raid to end.\nAfter that you can catch the next flight.\n"
                                "You lose 1 distance step. ")
-            distance_substract(1, screen_name)
+            distance_substract(1, screen_name) # Vähemmän vahinkoa
             break
         else:
             print(Fore.LIGHTYELLOW_EX + "I believe that was not one of the options I gave you...")
     return check_if_game_over(screen_name)
 
-
-def flight_cancelled(screen_name): # lento peruttu
+# Lento peruttu
+def flight_cancelled(screen_name):
     print(Fore.BLUE + f'''
     You notice at the airport that your next flight has been cancelled! 
     the ticket seller at the airport tells you that you have two options to choose from! 
@@ -124,12 +125,12 @@ def flight_cancelled(screen_name): # lento peruttu
 
     while True:
         decision = input(Fore.RESET + "How about it? Do you wait or purchase a new ticket? (wait/new) ")
-        if decision == "wait": # jää odottamaan seuraavaa -> menettää välimatkaa -1
+        if decision == "wait": # Jää odottamaan seuraavaa -> menettää välimatkaa -1
             print(Fore.RED + "You spend the night sleeping uncomfortably on the airport floor.\n"
                              "You lose 1 distance step.")
             distance_substract(1, screen_name)
             break
-        elif decision == "new": # ostaa uuden lipun -> menettää rahaa -10
+        elif decision == "new": # Ostaa uuden lipun -> menettää rahaa -10
             print(Fore.RED + "You got your new ticket. But because you decided to bought a new ticket\n"
                              "from another airline, the previous company refuses to refund the old ticket.\n"
                              "You lose 10$. ")
@@ -139,8 +140,8 @@ def flight_cancelled(screen_name): # lento peruttu
             print(Fore.LIGHTYELLOW_EX + "I believe that was not one of the options I gave you...")
     return check_if_game_over(screen_name)
 
-
-def fahrenheit_to_celsius(screen_name): # tarkistetaan onko ainesosa kunnossa -> muutetaan lämpötila fahrenheiteista celsius-asteihin
+# Tarkistetaan onko ainesosa kunnossa -> muutetaan lämpötila fahrenheiteista celsius-asteihin
+def fahrenheit_to_celsius(screen_name):
     cursor = connect.cursor()
     game_sql = f"SELECT location, currency, alien_distance, in_possession FROM game WHERE screen_name='{screen_name}';"
     cursor.execute(game_sql)
@@ -154,36 +155,36 @@ def fahrenheit_to_celsius(screen_name): # tarkistetaan onko ainesosa kunnossa ->
     the temperature of the container rise above +4 Celsius, else the ingredient will be ruined.
     So be careful with the ingredient!... In fact, if I were you, I would check the ingredient right away!
     '''
-    for letter in norway:  # kirjain kerrallaan
+    for letter in norway:  # Kirjain kerrallaan
         print(letter, end='', flush=True) # end: estää uuden rivin tulostamisen jokaisen kirjaimen jälkeen, flush: pakottaa tulostuksen heti eli näkyy välittömästi ilman puskurointia
-        time.sleep(0.03) # aiheuttaa lyhyen viiveen (0.03 sekuntia) jokaisen kirjaimen tulostuksen jälkeen
+        time.sleep(0.03) # Aiheuttaa lyhyen viiveen (0.03 sekuntia) jokaisen kirjaimen tulostuksen jälkeen
     print()
 
-    input(Fore.CYAN + "Press enter to continue.\n")
+    input(Fore.CYAN + "Press enter to continue.\n") # Animaation jälkeen, jotta seuraava tehtävä tulostuu siistimmin
 
     print(Fore.RESET + "You notice that the cold pack is broken. it must have broken when you took it with you\n"
                        "Miraculously you found a new cold pack, but now you have to make sure that the ingredient\n"
                        "didn't warm up too much and become unusable.\n")
     print("Ingredient container's thermometer shows the temperature in Fahrenheit, but you don't understand them,\n"
           "so you have to convert them to Celsius to understand the current temperature.\n")
-    print("According to the thermometer, the temperature is now 39 fahrenheits") #Pelaajalle kerrotaan valmiiksi F, jolloin hänen täytyy itse laskea mitä se on Celsiuksina
+    print("According to the thermometer, the temperature is now 39 fahrenheits") # Pelaajalle kerrotaan valmiiksi F, jolloin hänen täytyy itse laskea mitä se on Celsiuksina
 
-    while True:
+    while True: # Jatketaan niin kauan kun etäisyyttä riittää
         celsius = int(input(Fore.RESET + "What is the temperature in Celsius? You can only give the answer in integers.\n39 Fahrenheits: "))
         if celsius == 3: #Oikea vastaus
             print(Fore.GREEN + "What a relief! The ingredient looks fine and didn't warm up too much.")
             break
         else:
             print(Fore.RED + "Nope...Try again. oh by the way, for every wrong answer you lose 1 distance step.") #Pelaaja joutuu vastaamaan uudestaan
-            distance_substract(1, screen_name) # pelaajalta lähtee väärästä vastauksesta välimatkaa -1
-            user_currency_distance(screen_name) # pelaajalle tulostetaan väärän vastauksen jälkeen välimatka
+            distance_substract(1, screen_name) # Pelaajalta lähtee väärästä vastauksesta välimatkaa -1
+            user_currency_distance(screen_name) # Pelaajalle tulostetaan väärän vastauksen jälkeen välimatka
             if check_if_game_over_fahrenheit(screen_name) == False:
                 break
 
     return check_if_game_over(screen_name)
 
-
-def country_capital(screen_name): # tehtävä auta lasta ja tienaa
+# Auta lasta ja tienaa
+def country_capital(screen_name):
     print(Fore.BLUE + '''
     Suddenly a child runs in front of you crying and asks for help. She tells you that 
     she has lost her family and can't find them anywhere. You don't have the heart to 
@@ -191,7 +192,7 @@ def country_capital(screen_name): # tehtävä auta lasta ja tienaa
     would make it easier to find the child's family. But to use the device you must answer 
     following question correctly. 
     ''')
-    def guess_capital(): # valitsee satunnaisen maan ja palauttaa kyseisen maan nimen ja pääkaupungin.
+    def guess_capital(): # Valitsee satunnaisen maan
         country_list = [
             "Russia", "Canada", "China", "United States", "Brazil", "Australia", "India", "Argentina",
             "Denmark", "Algeria", "Finland", "Greenland", "Sweden", "Vietnam", "Switzerland", "Nepal",
@@ -202,11 +203,11 @@ def country_capital(screen_name): # tehtävä auta lasta ja tienaa
             "Botswana", "Madagascar", "Cuba"
         ]
         country_name = random.choice(country_list)
-        capital = CountryInfo(country_name).capital()
-        return country_name, capital
+        capital = CountryInfo(country_name).capital() # Hyödynnetään CountryInfon capital()-funktio
+        return country_name, capital # Palauttaa kyseisen maan nimen ja pääkaupungin
 
-    def check_answer(country, answer): # tarkistetaan käyttäjän antama vastaus
-        if answer.lower() == country[1].lower(): #verrataan annettua ja oikeaa vastausta
+    def check_answer(country, answer): # Tarkistetaan käyttäjän antama vastaus
+        if answer.lower() == country[1].lower(): # Verrataan annettua ja oikeaa vastausta
             print(Fore.GREEN + "Yes, that's right! Child's family is rather quickly found through the announcement.\n"
                                "They are grateful to you and recognize you as a resistance member.\n"
                                "The family wants to help you and they warn you that aliens are lurking\n"
@@ -225,8 +226,8 @@ def country_capital(screen_name): # tehtävä auta lasta ja tienaa
     check_answer(country, answer)
     return check_if_game_over(screen_name)
 
-
-def suspicious_employee(screen_name): # tehtävä epäileväinen lentokenttätyöntekijä
+# Epäileväinen lentokenttätyöntekijä
+def suspicious_employee(screen_name):
     print(Fore.BLUE + f'''
     While walking to the next departure gate, one of the airport employee thinks you're a cleaner and asks
     you to take out pile of trash. You now have to decide whether to play along or tell her that you're not a cleaner.
@@ -240,20 +241,20 @@ def suspicious_employee(screen_name): # tehtävä epäileväinen lentokenttäty�
         if answer == "y":
             print(Fore.GREEN + "You take out the trash and the employee thanks you for your help and gives you a tip.\n"
                                "You lose 1 distance step but gain 10$.")
-            currency_add(10, screen_name) # saa lisää valuuttaa +10
-            distance_substract(1, screen_name) # välimatka vähenee -1
+            currency_add(10, screen_name) # Saa lisää valuuttaa +10
+            distance_substract(1, screen_name) # Välimatka vähenee -1
             break
         elif answer == "n":
             print(Fore.RED + "Employee apologizes for her mistake but becomes suspicious of you and\n"
                              "wants to talk to you for a very long time, before letting you continue your journey.\n"
                              "You lose 2 distance steps")
-            distance_substract(2, screen_name) # välimatka vähenee -2
+            distance_substract(2, screen_name) # Välimatka vähenee -2
             break
         else:
-            print(Fore.LIGHTYELLOW_EX + "Invalid choice.") # käyttäjä yrittää syöttää jotain muuta kuin y tai n
+            print(Fore.LIGHTYELLOW_EX + "Invalid choice.") # Pelaaja yrittää syöttää jotain muuta kuin y tai n
     return check_if_game_over(screen_name)
 
-
+# Muodonmuutos
 def makeover_time(screen_name):
     print(Fore.BLUE + f'''
     In this airport you come across makeover experts and they offer you opportunity to change 
@@ -278,11 +279,11 @@ def makeover_time(screen_name):
         result = cursor.fetchall()
 
         if choice == "1":
-            if result[0][0] >= 10: # tarkistetaan riittääkö pelaajan rahat
+            if result[0][0] >= 10: # Tarkistetaan riittääkö pelaajan rahat
                 currency_subtract(20, screen_name)
                 print(Fore.GREEN + "One thing changed! I'm not sure if that will help you...")
                 input("press enter to check: ")
-                check = random.randint(1, 2) # arvotaan auttaako muutos pelaajaa
+                check = random.randint(1, 2) # Arvotaan auttaako muutos pelaajaa
                 if check == 1:
                     print("Change seems to have worked this time. you get 1 distance step")
                     distance_add(1, screen_name)
@@ -314,6 +315,7 @@ def makeover_time(screen_name):
         else:
             print(Fore.LIGHTYELLOW_EX + "That's not an option. Try again and pick number 1-4.")
 
+# Kaappiin piiloon
 def hiding_closet(screen_name):
     print(Fore.BLUE + f'''
     You encounter a fugitive at the airport, who is fleeing from security guard. 
@@ -322,25 +324,25 @@ def hiding_closet(screen_name):
     If you manage to open the door, the fugitive might reward you for your help. 
     Oh and here's a little tip for you, the number can't be bigger than 5. Now get to work!
     ''')
-    code = [1, 2, 4] # oikea koodi
-    player_code = [] # luodaan tyhjä lista, mihin lisätään käyttäjän syöttämiä numeroita
+    code = [1, 2, 4] # Oikea koodi
+    player_code = [] # Luodaan tyhjä lista, mihin lisätään käyttäjän syöttämiä numeroita
     attempts = 1 # yritykset
-    number1 = int(input(Fore.RESET + "Enter the first number: ")) # kysytään pelaajalta koodi numero kerrallaan
+    number1 = int(input(Fore.RESET + "Enter the first number: ")) # Kysytään pelaajalta koodi numero kerrallaan
     player_code.append(number1)
     number2 = int(input(Fore.RESET + "Enter the second number: "))
     player_code.append(number2)
     number3 = int(input(Fore.RESET + "Enter the third number: "))
     player_code.append(number3)
 
-    while player_code != code and attempts < 3: # kysytään koodia numero kerrallaan niin kauan kun yritykset on max 3
+    while player_code != code and attempts < 3: # Kysytään koodia numero kerrallaan niin kauan kun yritykset on max 3
         print(Fore.RED + "Invalid code! Try again!")
         if number1 == code[0]:
-            print(Fore.GREEN + "First number is correct!") # ilmoitetaan, mikäli numero on oikein
+            print(Fore.GREEN + "First number is correct!") # Ilmoitetaan, mikäli numero on oikein
         if number2 == code[1]:
             print(Fore.GREEN + "Second number is correct!")
         if number3 == code[2]:
             print(Fore.GREEN + "Third number is correct!")
-        player_code.clear() # tyjennetään lista, jolloin käyttäjä syöttää numerot listaan uudelleen numero kerrallaan
+        player_code.clear() # Tyjennetään lista, jolloin käyttäjä syöttää numerot listaan uudelleen numero kerrallaan
         number1 = int(input(Fore.RESET + "Enter the first number: "))
         player_code.append(number1)
         number2 = int(input("Enter the second number: "))
@@ -348,16 +350,16 @@ def hiding_closet(screen_name):
         number3 = int(input("Enter the third number: "))
         player_code.append(number3)
         attempts += 1
-    if attempts == 3 and player_code != code: # kun yrityksiä on ollut kolme ja koodi on edelleen väärin
+    if attempts == 3 and player_code != code: # Kun yrityksiä on ollut kolme ja koodi on edelleen väärin
         print(Fore.RED + "OH NO! look what you did, the door is now permanently locked and the fugitive got caught!\n"
                          "No rewards for you!")
         return check_if_game_over(screen_name)
     else:
         print(Fore.GREEN + "WOW! You did it! You managed to open the door and fugitive can now hide. He gives you 20$")
-        currency_add(20, screen_name) # jos käyttäjä onnistuu arvaamaan koodin hän saa valuuttaa +20
+        currency_add(20, screen_name) # Jos käyttäjä onnistuu arvaamaan koodin hän saa valuuttaa +20
         return check_if_game_over(screen_name)
 
-
+# Uhkapeli
 def crazy_dice(screen_name):
     print(Fore.BLUE + f'''
     You encounter a quirky street artist at the airport, and he wants to challenge you to a dice roll for money. 
@@ -369,29 +371,30 @@ def crazy_dice(screen_name):
 
     while True:
         print(Fore.RESET + "The quirky street artist begins...")
-        street_artist_dice1 = random.randint(1, 6) # katuartistin ensimmäinen heitto
-        street_artist_dice2 = random.randint(1, 6) # katuartistin toinen heitto
-        street_artist_total = street_artist_dice1 + street_artist_dice2 # katuartistin yhteenlaskettu summa
+        street_artist_dice1 = random.randint(1, 6) # Katuartistin ensimmäinen heitto
+        street_artist_dice2 = random.randint(1, 6) # Katuartistin toinen heitto
+        street_artist_total = street_artist_dice1 + street_artist_dice2 # Katuartistin yhteenlaskettu summa
         print(f"The quirky street artist got {street_artist_dice1} and {street_artist_dice2}\n"
               f"making the total of {street_artist_total}")
         input("Now it's your turn. Press enter to roll! ")
-        player_dice1 = random.randint(1, 6) # pelaajan ensimmäinen heitto
-        player_dice2 = random.randint(1, 6) # pelaajan toinen heitto
-        player_dice_total = player_dice1 + player_dice2 # pelaajan yhteenlaskettu summa
-        if street_artist_total < player_dice_total: # verrataan yhteenlasketut summat
+        player_dice1 = random.randint(1, 6) # Pelaajan ensimmäinen heitto
+        player_dice2 = random.randint(1, 6) # Pelaajan toinen heitto
+        player_dice_total = player_dice1 + player_dice2 # Pelaajan yhteenlaskettu summa
+        if street_artist_total < player_dice_total: # Verrataan yhteenlasketut summat
             print(Fore.GREEN + f"Congrats! you rolled a {player_dice1} and {player_dice2}\n"
                                f"making the total of {player_dice_total}! You won 10$!")
             currency_add(10, screen_name)
             return check_if_game_over(screen_name)
-        if street_artist_total > player_dice_total: # verrataan yhteenlasketut summat toisin päin
+        if street_artist_total > player_dice_total: # Verrataan yhteenlasketut summat toisin päin
             print(Fore.RED + f"Oh no! You rolled {player_dice1} and {player_dice2}\n"
                              f"making the total {player_dice_total}. You lost your 10$ !")
             currency_subtract(10, screen_name)
             return check_if_game_over(screen_name)
-        else: # jos katuartisti ja pelaaja saa saman yhteenlasketun summan heittävät he uudelleen
+        else: # Jos katuartisti ja pelaaja saa saman yhteenlasketun summan heittävät he uudelleen
             print(Fore.YELLOW + f"Oij! You rolled {player_dice1} and {player_dice2}\n"
                                 f"making the total same {player_dice_total}. Let's try again!")
 
+# Vastarinta testi
 def resistance_test(screen_name):
     print(Fore.BLUE + f'''
     You bump into another resistance member. He is skeptical if you are truly part of the 
@@ -413,4 +416,3 @@ def resistance_test(screen_name):
         print(Fore.RED + "That's not it! I guess you didn't read the lore properly...\n"
                          "Well, no help for you this time. Carry on.\n")
     return check_if_game_over(screen_name)
-

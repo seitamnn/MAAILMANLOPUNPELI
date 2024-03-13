@@ -4,20 +4,20 @@ import time
 import uuid
 from colorama import Fore
 
-
 def start(screen_name): #annetaan inputina saatu pelaajan nimi
 
     def generate_player_id():
-        return str(uuid.uuid4())
+        return str(uuid.uuid4()) # Käytetään uuid4() komentoa uuid-kirjastosta. Generoi turvallisen ID:n
 
-    mycursor = connect.cursor() # osotetaa tietokantaan
-    sql = f"INSERT INTO game (id, location, screen_name, currency, alien_distance, in_possession) VALUES (%s, %s, %s, %s, %s,%s)" #noihin laitetaa arvot jotka annetaa seuraavalla rivillä
-    mycursor.execute(sql, (generate_player_id(), 'MUHA', screen_name, 140, 6, False))  # MUHA = José Martí International Airport
-    mycursor.fetchall() # palauttaa kaikki tulosjoukot, jotka vastaavat ylempään sql kyselyyn
+    mycursor = connect.cursor()
+    sql = f"INSERT INTO game (id, location, screen_name, currency, alien_distance, in_possession) VALUES (%s, %s, %s, %s, %s,%s)"
+    mycursor.execute(sql, (generate_player_id(), 'MUHA', screen_name, 140, 6, False))  # Annetaan sql lauseessa annettuihin kolumneihin halutut arvot
+    # MUHA = José Martí International Airport
+    mycursor.fetchall()
 
     print("Great! Now let's start...")
 
-    speed = 0.03 # nopeus tekstille
+    speed = 0.03 # Nopeus lore-tekstille
 
     lore = Fore.RED + '''
     It's the year 2586, and humanity has developed its technology to the highest
@@ -49,5 +49,5 @@ def start(screen_name): #annetaan inputina saatu pelaajan nimi
     '''
     for letter in lore: # kirjain kerrallaan
         print(letter, end='', flush=True) # end: estää uuden rivin tulostamisen jokaisen kirjaimen jälkeen, flush: pakottaa tulostuksen heti eli näkyy välittömästi ilman puskurointia
-        time.sleep(speed) # aiheuttaa lyhyen viiveen jokaisen kirjaimen tulostuksen jälkeen
+        time.sleep(speed) # Aiheuttaa lyhyen viiveen jokaisen kirjaimen tulostuksen jälkeen, muuttujalle annettu arvo ylempänä
     print()

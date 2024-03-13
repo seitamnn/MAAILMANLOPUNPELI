@@ -15,21 +15,22 @@ def help_center(screen_name, user_input):
         user_input = input(Fore.CYAN + 'Press enter to continue\n')
         help_command(screen_name, user_input)
 
+# Funktio, jolla tarkistetaan haluttu data
 def help_command(screen_name, input):
         if input == 'CURRENCY' or input == 'currency':
-                currency_sql = f"SELECT currency FROM game WHERE screen_name='{screen_name}'"
+                currency_sql = f"SELECT currency FROM game WHERE screen_name='{screen_name}'" # Haetaan currency-kolumnin data
                 cursor = connect.cursor()
                 cursor.execute(currency_sql)
                 currency = cursor.fetchone()
                 print(Fore.LIGHTMAGENTA_EX + f'\nCURRENCY: {currency[0]}\n')
         elif input == 'DISTANCE' or input == 'distance':
-                distance_sql = f"SELECT alien_distance FROM game WHERE screen_name='{screen_name}'"
+                distance_sql = f"SELECT alien_distance FROM game WHERE screen_name='{screen_name}'" # Haetaan alien_distance-kolumnin data
                 cursor = connect.cursor()
                 cursor.execute(distance_sql)
                 distance = cursor.fetchone()
                 print(Fore.LIGHTMAGENTA_EX + f'\nDISTANCE: {distance[0]} steps\n')
         elif input == 'LOCATION' or input == 'location':
-                location_sql = f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE airport.ident IN(SELECT location FROM game WHERE screen_name='{screen_name}')"
+                location_sql = f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE airport.ident IN(SELECT location FROM game WHERE screen_name='{screen_name}')" # Haetaan location-kolumnin data
                 cursor = connect.cursor()
                 cursor.execute(location_sql)
                 location = cursor.fetchone()
@@ -63,6 +64,6 @@ def help_command(screen_name, input):
                 along the way to succeed in your mission and save humanity from destruction. 
                 The fate of the world is in your hands. Good luck!
                 '''
-                print(lore)
+                print(lore) # Tulostetaan lore
         elif input == 'help' or input == 'HELP':
-                help_center(screen_name, input)
+                help_center(screen_name, input) # Kutsutaan help_center-funktiota, joka tulostaa mahdolliset komennot

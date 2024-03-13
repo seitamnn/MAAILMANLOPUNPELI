@@ -31,6 +31,3 @@ def you_win():
         print(word, end='', flush=True)
         time.sleep(0.002)
     print()
-
-
-

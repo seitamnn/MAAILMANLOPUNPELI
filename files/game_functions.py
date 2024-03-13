@@ -12,7 +12,7 @@ def user_currency_distance(screen_name):
         sql = (f"SELECT currency, alien_distance FROM game WHERE screen_name = '{screen_name}'")
         cursor = connect.cursor()
         cursor.execute(sql)
-        userdata = cursor.fetchall()
+        userdata = cursor.fetchall() # [(currency, alien_distance)]
         for data in userdata:
             print(Fore.YELLOW + f"    Currency: {data[0]} $\n    Distance: {data[1]} steps")
 
@@ -24,17 +24,17 @@ def select_airport(screen_name):
         sql = f"SELECT airport.name, country.name FROM airport JOIN country ON airport.iso_country = country.iso_country WHERE country.name != 'Norway'"
         cursor = connect.cursor()
         cursor.execute(sql)
-        airports = cursor.fetchall()
+        airports = cursor.fetchall() # lentokentän nimi, maan nimi
         cursor.close()
 
-    # Valitaan satunnaisesti kolme lentokenttää
+        # Valitaan satunnaisesti kolme lentokenttää
         selected_airports = random.sample(airports, 3)
 
-    #pelaajan check-in ja funktio antaa kolme satunnaisesti arvottua lentokenttää ja tulostaa nämä l
+        # Pelaajan check-in ja funktio antaa kolme satunnaisesti arvottua lentokenttää ja tulostaa nämä l
         print(Fore.RESET + "\nWelcome to check-in!")
         print("Choose from the following airports your next destination:\n")
         for i in range(len(selected_airports)):
-            print(f"{i + 1}. {selected_airports[i][0]} in {selected_airports[i][1]}")
+            print(f"{i + 1}. {selected_airports[i][0]} in {selected_airports[i][1]}") # Tulostetaan 1., 2. ja 3. yksitellen
 
         #pelaaja valitsee arvotuista lentokentistä seuraavan kohteen
         while True:
@@ -73,7 +73,7 @@ def select_airport_norway(screen_name):
     help_command(screen_name, answer)
 
 
-    norway_airport = norway[0]
+    norway_airport = norway[0] # airport
     sql2 = f"UPDATE game SET in_possession = TRUE, location = (SELECT ident FROM airport WHERE name = '{norway_airport}') WHERE screen_name = '{screen_name}';"
     cursor = connect.cursor()
     cursor.execute(sql2)
