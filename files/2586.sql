@@ -15,3 +15,13 @@ ALTER TABLE game DROP COLUMN co2_consumed, DROP COLUMN co2_budget;
 
 -- Add columns to game table
 ALTER TABLE game ADD COLUMN currency INT, ADD COLUMN alien_distance INT, ADD COLUMN in_possession BOOLEAN;
+
+-- From Norway & Cuba remove all but Oslo & Jose Marti airports
+
+-- Norway
+DELETE FROM airport WHERE ident = 'ENBR';
+DELETE FROM airport WHERE ident = 'ENTC';
+DELETE FROM airport WHERE ident = 'ENVA';
+DELETE FROM airport WHERE ident = 'ENZV';
+-- Cuba
+DELETE FROM airport WHERE ident = 'MUVR';
