@@ -104,8 +104,8 @@ def run_or_hide(screen_name):
             distance_substract(2, screen_name)
             break
         elif decision == "hide":
-            print(Fore.GREEN + "Hurry up, jump in the trash can now! Try to make yourself comfortable\n "
-                               "and wait for the raid to end.\nAfter that you can catch the next flight.\n "
+            print(Fore.GREEN + "Hurry up, jump in the trash can now! Try to make yourself comfortable\n"
+                               "and wait for the raid to end.\nAfter that you can catch the next flight.\n"
                                "You lose 1 distance step. ")
             distance_substract(1, screen_name)
             break
@@ -125,13 +125,13 @@ def flight_cancelled(screen_name):
     while True:
         decision = input(Fore.RESET + "How about it? Do you wait or purchase a new ticket? (wait/new) ")
         if decision == "wait": #Menettää välimatkaa
-            print(Fore.RED + "You spend the night sleeping uncomfortably on the airport floor.\n "
+            print(Fore.RED + "You spend the night sleeping uncomfortably on the airport floor.\n"
                              "You lose 1 distance step.")
             distance_substract(1, screen_name)
             break
         elif decision == "new": #Menettää valuuttaa
-            print(Fore.RED + "You got your new ticket. But because you decided to bought a new ticket\n "
-                             "from another airline, the previous company refuses to refund the old ticket.\n "
+            print(Fore.RED + "You got your new ticket. But because you decided to bought a new ticket\n"
+                             "from another airline, the previous company refuses to refund the old ticket.\n"
                              "You lose 10$. ")
             currency_subtract(10, screen_name)
             break
@@ -157,7 +157,7 @@ def fahrenheit_to_celsius(screen_name):
     print(Fore.RESET + "You notice that the cold pack is broken. it must have broken when you took it with you\n"
                        "Miraculously you found a new cold pack, but now you have to make sure that the ingredient\n"
                        "didn't warm up too much and become unusable.\n")
-    print("Ingredient container's thermometer shows the temperature in Fahrenheit, but you don't understand them,\n "
+    print("Ingredient container's thermometer shows the temperature in Fahrenheit, but you don't understand them,\n"
           "so you have to convert them to Celsius to understand the current temperature.\n")
     print("According to the thermometer, the temperature is now 39 fahrenheits") #Pelaajalle kerrotaan valmiiksi F, jolloin hänen täytyy itse laskea mitä se on Celsiuksina
 

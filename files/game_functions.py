@@ -4,6 +4,7 @@ import mysql.connector
 from connection import connect
 from colorama import Fore
 from win_or_loose import you_win, game_over
+import time
 
 #game_on = True
 
@@ -51,7 +52,7 @@ def select_airport(screen_name):
         location_change = cursor.fetchall()
         cursor.close()
         currency_subtract(10, screen_name)
-        print(Fore.LIGHTMAGENTA_EX + f"\nWelcome to {decided_airport}!\n")
+        print(Fore.GREEN + f"\nWelcome to {decided_airport}!\n")
         user_currency_distance(screen_name)
         return check_if_game_over(screen_name)
     #return decided_airport
@@ -75,7 +76,7 @@ def select_airport_norway(screen_name):
     location_change = cursor.fetchall()
     cursor.close()
     currency_subtract(10, screen_name)
-    print(Fore.LIGHTMAGENTA_EX + f"\nWelcome to {norway_airport}!\n")
+    print(Fore.GREEN + f"\nWelcome to {norway_airport}!\n")
     user_currency_distance(screen_name)
     return check_if_game_over(screen_name)
 
@@ -98,7 +99,7 @@ def select_airport_cuba(screen_name):
     location_change = cursor.fetchall()
     cursor.close()
     currency_subtract(10, screen_name)
-    print(Fore.LIGHTMAGENTA_EX + f"\nWelcome to {cuba_airport}!\n")
+    print(Fore.GREEN + f"\nWelcome to {cuba_airport}!\n")
     user_currency_distance(screen_name)
     return check_if_game_over(screen_name)
 
@@ -146,33 +147,51 @@ def check_if_game_over(screen_name):
     result = cursor.fetchall()
     if result[0][0] == 'MUHA': # jos location on takas Kuubas ja ainesosa hallussa
         you_win()
-        print(f"As you step into the resistance laboratory in Cuba, carrying the ancient ingredient\n "
-              f"that holds the key to humanity's survival, a wave of relief washes over you.\n "
-              f"The journey has been long and exhausting, and dangerous situations were not avoided,\n "
-              f"but you overcame all adversity.\n "
-              f"The antidote can now be made, thanks to your bravery and determination.\n "
-              f"As the scientists begin their work, you take a moment to reflect on the magnitude of what\n "
-              f"you've accomplished. Against the backdrop of an alien invasion and the looming threat of\n "
-              f"annihilation, you have stood firm, a beacon of hope in humanity's darkest hour.\n "
-              f"Word of your success spreads quickly, igniting a spark of hope in the hearts of people\n "
-              f"around the world. With the understanding that they're now closer to winning,\n "
-              f"the resistance becomes even stronger and more determined.\n "
-              f"But the fight is far from over. The aliens still pose a formidable threat, and the struggle\n "
-              f"for survival continues. Yet, as long as there are those willing to stand up and fight,\n "
-              f"humanity will never surrender.\n"
-              f"You may have won this battle, but the war rages on. And as long as there are heroes like you,\n "
-              f"humanity will endure, resilient and unyielding in the face of any challenge that may come its way.")
+        win_end_text = (Fore.GREEN + f'''
+    As you step into the resistance laboratory in Cuba, carrying the ancient ingredient
+    that holds the key to humanity's survival, a wave of relief washes over you.
+    The journey has been long and exhausting, and dangerous situations were not avoided,
+    but you overcame all adversity.
+    The antidote can now be made, thanks to your bravery and determination.\n
+    As the scientists begin their work, you take a moment to reflect on the magnitude of what 
+    you've accomplished. Against the backdrop of an alien invasion and the looming threat of 
+    annihilation, you have stood firm, a beacon of hope in humanity's darkest hour.\n
+    Word of your success spreads quickly, igniting a spark of hope in the hearts of people
+    around the world. With the understanding that they're now closer to winning,
+    the resistance becomes even stronger and more determined.\n
+    But the fight is far from over. The aliens still pose a formidable threat, and the struggle
+    for survival continues. Yet, as long as there are those willing to stand up and fight,
+    humanity will never surrender.\n
+    You may have won this battle, but the war rages on. And as long as there are heroes like you,
+    humanity will endure, resilient and unyielding in the face of any challenge that may come its way.''')
+        for letter in win_end_text:
+            print(letter, end='',
+                  flush=True)
+            time.sleep(0.03)
+        print()
         return False
     elif result[0][1] == 0: # jos currency on nollissa
-        print(f"You ran out of currency! Now you are stuck at the current airport and can't move forward.\n"
-              f"because you got stuck, no antidote could be made on time and the aliens were able to\n "
-              f"spread their virus and wipe out all living things from the face of the earth.")
+        game_over_currency = Fore.RED + f'''
+    You ran out of currency! Now you are stuck at the current airport and can't move forward.
+    Because you got stuck, no antidote could be made on time and the aliens were able to 
+    spread their virus and wipe out all living things from the face of the earth.'''
+        for letter in game_over_currency:
+            print(letter, end='',
+                  flush=True)
+            time.sleep(0.03)
+        print()
         game_over()
         return False
     elif result[0][2] == 0: # jos etäisyys alieneista nollassa
-        print(f"The aliens caught you! And you are now their prisoner. Because you got caught,\n "
-              f"no antidote could be made on time and the aliens were able to spread their virus\n "
-              f"and wipe out all living things from the face of the earth.")
+        game_over_distance = Fore.RED + f'''
+    The aliens caught you! And you are now their prisoner. Because you got caught,
+    no antidote could be made on time and the aliens were able to spread their virus
+    and wipe out all living things from the face of the earth.'''
+        for letter in game_over_distance:
+            print(letter, end='',
+                  flush=True)
+            time.sleep(0.03)
+        print()
         game_over()
         return False
     else:

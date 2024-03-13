@@ -40,7 +40,7 @@ while True:
                        f"and your distance to the aliens."
                        f"Don't let either of them run out or your mission will fail!\n")
     user_currency_distance(screen_name)
-    input("\nTime to start the journey. press enter to open check-in for your first flight.")
+    input(Fore.BLUE + "\nTime to start the journey. Press enter to open check-in for your first flight.")
 
     # 1. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
@@ -51,8 +51,8 @@ while True:
     print(boolean_game_on)
     if boolean_game_on == False:
         break
-    input(Fore.RESET + f"\nThat was unexpected...and time consuming. Maybe it's better to hurry.\n "
-                       f"press enter to open check-in.")
+    input(Fore.BLUE + f"\nThat was unexpected...and time consuming. Maybe it's better to hurry.\n"
+                       f"Press enter to open check-in.")
 
     # 2. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
@@ -63,8 +63,8 @@ while True:
     print(boolean_game_on)
     if boolean_game_on == False:
         break
-    input(Fore.RESET + f"\nWhat an interesting game! But now it's time to move on.\n "
-                       f"press enter to open check-in.")
+    input(Fore.BLUE + f"\nWhat an interesting game! But now it's time to move on.\n"
+                       f"Press enter to open check-in.")
 
     # 3. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
@@ -75,8 +75,8 @@ while True:
     print(boolean_game_on)
     if boolean_game_on == False:
         break
-    input(Fore.RESET + f"\nThat traveller was really weird?! let's go and see where you can go next.\n "
-                       f"press enter to open check-in.")
+    input(Fore.BLUE + f"\nThat traveller was really weird?! let's go and see where you can go next.\n"
+                       f"Press enter to open check-in.")
 
     # 4. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
@@ -87,8 +87,8 @@ while True:
     print(boolean_game_on)
     if boolean_game_on == False:
         break
-    input(Fore.RESET + f"\nHow kind of you to help that child. but can you now focus on continuing the journey.\n "
-                       f"press enter to open check-in")
+    input(Fore.BLUE + f"\nHow kind of you to help that child, but can you now focus on continuing the journey.\n"
+                       f"Press enter to open check-in")
 
     # 5. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
@@ -99,8 +99,8 @@ while True:
     print(boolean_game_on)
     if boolean_game_on == False:
         break
-    input(Fore.RESET + f"\nI wonder why that fugitive was on the run? Oh well, it's not our business,\n "
-                       f"so time to move on. press enter to open check-in.")
+    input(Fore.BLUE + f"\nI wonder why that fugitive was on the run? Oh well, it's not our business,\n"
+                       f"so time to move on. Press enter to open check-in.")
 
     # 6. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
@@ -111,8 +111,8 @@ while True:
     print(boolean_game_on)
     if boolean_game_on == False:
         break
-    input(Fore.RESET + f"\nFlight cancellations are always so unfortunate. But it is what it is so keep going.\n "
-                       f"press enter to open check-in.")
+    input(Fore.BLUE + f"\nFlight cancellations are always so unfortunate. But it is what it is so keep going.\n"
+                       f"Press enter to open check-in.")
 
     # NORJA 7. maa ja tehtävä
     boolean_game_on = select_airport_norway(screen_name)
@@ -123,8 +123,8 @@ while True:
     print(boolean_game_on)
     if boolean_game_on == False:
         break
-    input(Fore.RESET + f"\nThat almost gave me a heart attack! Fortunately you got the situation fixed\n "
-                       f"and you can now start the journey back to Cuba. press enter to open check-in.")
+    input(Fore.BLUE + f"\nThat almost gave me a heart attack! Fortunately you got the situation fixed\n"
+                       f"and you can now start the journey back to Cuba. Press enter to open check-in.")
 
     # 8. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
@@ -135,8 +135,8 @@ while True:
     print(boolean_game_on)
     if boolean_game_on == False:
         break
-    input(Fore.RESET + f"That was a big raid! I'm surprised you didn't get caught?!\n "
-                       f"Maybe it's better to hurry and leave. press enter to open check-in.\n")
+    input(Fore.RESET + f"That was a big raid! I'm surprised you didn't get caught?!\n"
+                       f"Maybe it's better to hurry and leave. Press enter to open check-in.\n")
 
     # 9. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
@@ -147,7 +147,7 @@ while True:
     print(boolean_game_on)
     if boolean_game_on == False:
         break
-    input(Fore.RESET + f"\nWhat a fun group that was! But now, carry on. press enter to open check-in.")
+    input(Fore.BLUE + f"\nWhat a fun group that was! But now, carry on. Press enter to open check-in.")
 
     # 10. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
@@ -158,8 +158,8 @@ while True:
     print(boolean_game_on)
     if boolean_game_on == False:
         break
-    input(Fore.RESET + f"\nNext time try not to panic and think before you open your mouth.\n "
-                       f"somehow you survived so let's go! press enter to open check-in.")
+    input(Fore.BLUE + f"\nNext time try not to panic and think before you open your mouth.\n"
+                       f"Somehow you survived so let's go! Press enter to open check-in.")
 
     # 11. maa ja tehtävä
     boolean_game_on = select_airport(screen_name)
@@ -170,8 +170,8 @@ while True:
     print(boolean_game_on)
     if boolean_game_on == False:
         break
-    input(Fore.RESET + f"\nWell, did you answer your new friend's question correctly? Actually i don't really care.\n "
-                       f"Hurry up and keep going! press enter to open check-in.")
+    input(Fore.BLUE + f"\nWell, did you answer your new friend's question correctly? Actually I don't really care.\n"
+                       f"Hurry up and keep going! Press enter to open check-in.")
 
     # 12. maa, takaisin Kuubaan
     select_airport_cuba(screen_name)
