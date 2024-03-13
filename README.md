@@ -1,7 +1,19 @@
 # 2586
-## 1. Kuvaus pelistä
+
+![IMG_0431](https://github.com/seitamnn/MAAILMANLOPUNPELI/assets/156774906/508dca66-5d7b-4000-8f25-84fcb951e3eb)
+
+
+## 1. Pelin kehitys
+2586 on Metropolian tieto- ja viestintätekniikan ensimmäisen vuoden opiskelijoiden suunnittelema ja itse koodaama peli valmiista tietokannasta.
+Pelin tekijät:
+Miia Laaksonen, 
+Sofia Järvelä, 
+Anni Saarelma 
+ja Rosamari Hautala
+
+## 2. Kuvaus pelistä
 Peli perustuu vuoteen 2586, jolloin alienit ovat valtaamassa maapallon ja uhkaavat levittävät tappavaa virusta. Pelissä pelaajan täytyy hakea toiselta puolelta maailmaa muinainen ainesosa, jota voidaan käyttää vastalääkkeen valmistamiseen. Pelaaja liikkuu maasta toiseen lentämällä, mutta lentokentillä odottaa aina erilaisia ratkaistavia tehtäviä. Tehtävän suoritus määrittää, miten peli jatkuu. Pelaajalla on tietty määrä valuuttaa sekä välimatkaa perässä kulkeviin alieneihin. Tarkoitus on päästä pelin alkupisteestä Kuubasta Norjaan ja takaisin niin, että alienit eivät saa kiinni tai valuutta ei lopu kesken. Pelissä on huomioitu kestävä kehitys, sillä pelaaja lentää sähkökäyttöisellä lentokoneella, joka vähentää lentopetrolin käyttöä ja vähentää kasvihuonepäästöjä.
-## 2. Tarvittavat muutokset tietokannassa
+## 3. Tarvittavat muutokset tietokannassa
 Peliä varten tarvitaan tietokantaa lentokonepelistä. Tietokanta kuitenkin sisältää turhaa infoa, sekä  sinne täytyy lisätä mm. taulukko välimatkaa ja valuuttaa varten. 
 Tarvittavat muutokset:
 1. CO2- sarakkeen poistaminen : ALTER TABLE game DROP COLUMN co2_consumed, DROP COLUMN co2_budget;
@@ -24,7 +36,8 @@ Tarvittavat muutokset:
 Alla kuva muokatusta game- taulusta.
 ![image](https://github.com/seitamnn/MAAILMANLOPUNPELI/assets/156774906/7f4a5371-cbe0-4baf-a4bd-435a620117a7)
 
-## 3. Miten peli toimii?
+## 4. Miten peli toimii?
 Peli toteutetaan Python-kielellä, sekä se käyttää muokattua relaatiotietokantaa. Se on tehty pelattavaksi näppäimistöllä.
-Liikkuminen lentokenttien välillä toimii niin, että ohjelma arpoo pelaajalle kolme eri lentokenttää, joista pelaaja valitsee mieluisimman vaihtoehdon. 
+Liikkuminen lentokenttien välillä toimii niin, että ohjelma arpoo pelaajalle kolme eri lentokenttää, joista pelaaja valitsee mieluisimman vaihtoehdon. Pelaajalla on myös käytössään "help"- toiminto, jolla saa tarkistettua esimerkiksi valuutan ja maan jossa on sillä hetkellä.
+
 Tietokantaan on määrätty tietty määrä etäisyyttä sekä valuuttaa, jotka lisääntyvät tai vähenevät pelin edetessä. Jokaisen tehtävän jälkeen tietokanta päivittyy pelaajan suorituksen mukaan. Osassa tehtävissä pelaajalla on mahdollisuus valita kahden vaihtoehdon väliltä, mutta joissakin lopputulos määräytyy sen mukaan, vastaako pelaaja oikein vai väärin esimerkiksi laskutehtäviin. 
