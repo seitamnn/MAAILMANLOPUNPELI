@@ -8,6 +8,7 @@ import time
 
 #game_on = True
 
+
 def user_currency_distance(screen_name):
         sql = (f"SELECT currency, alien_distance FROM game WHERE screen_name = '{screen_name}'")
         cursor = connect.cursor()
@@ -15,6 +16,7 @@ def user_currency_distance(screen_name):
         userdata = cursor.fetchall()
         for data in userdata:
             print(Fore.YELLOW + f"    Currency: {data[0]} $\n    Distance: {data[1]} steps")
+
 
 #funktio lentokentältä toiselle lentämiseen
 def select_airport(screen_name):
