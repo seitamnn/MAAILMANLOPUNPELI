@@ -15,6 +15,13 @@ ja Rosamari Hautala
 Peli perustuu vuoteen 2586, jolloin alienit ovat valtaamassa maapallon ja uhkaavat levittävät tappavaa virusta. Pelissä pelaajan täytyy hakea toiselta puolelta maailmaa muinainen ainesosa, jota voidaan käyttää vastalääkkeen valmistamiseen. Pelaaja liikkuu maasta toiseen lentämällä, mutta lentokentillä odottaa aina erilaisia ratkaistavia tehtäviä. Tehtävän suoritus määrittää, miten peli jatkuu. Pelaajalla on tietty määrä valuuttaa sekä välimatkaa perässä kulkeviin alieneihin. Tarkoitus on päästä pelin alkupisteestä Kuubasta Norjaan ja takaisin niin, että alienit eivät saa kiinni tai valuutta ei lopu kesken. Pelissä on huomioitu kestävä kehitys, sillä pelaaja lentää sähkökäyttöisellä lentokoneella, joka vähentää lentopetrolin käyttöä ja vähentää kasvihuonepäästöjä.
 ## 3. Tarvittavat muutokset tietokannassa
 Peliä varten tarvitaan tietokantaa lentokonepelistä. Tietokanta kuitenkin sisältää turhaa infoa, sekä  sinne täytyy lisätä mm. taulukko välimatkaa ja valuuttaa varten. 
+
+lp.sql tiedosto sisältää tietokannan luonti skriptin.
+
+![image](https://github.com/seitamnn/MAAILMANLOPUNPELI/assets/100755090/aaef603d-7367-440a-bc41-93805f359c3a)
+
+2586.sql tiedosto sisältää tietokantaan tehdyt muutokset.
+
 Tarvittavat muutokset:
 1. CO2- sarakkeen poistaminen : ALTER TABLE game DROP COLUMN co2_consumed, DROP COLUMN co2_budget;
 2. Muutokset lentokenttiin :
